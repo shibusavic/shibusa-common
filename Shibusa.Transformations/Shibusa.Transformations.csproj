@@ -2,5 +2,15 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <PackageId>Shibusa.Transformations</PackageId>
+    <Title>Shibusa Transformations Library</Title>
+    <Description>Common transformation functions, such as transforming DateTime objects, transforming raw text, creating file hashes, converting dollar amounts by frequency, dealing with Social Security Numbers, etc.</Description>
+    <Version>1.0.1</Version>
+    <Authors>shibusavic</Authors>
+    <Company>Shibusa LLC</Company>
+    <RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>Shibusa, LLC 2020</Copyright>
+    <PackageTags>common,utility,transformations</PackageTags>
   </PropertyGroup>
 </Project>

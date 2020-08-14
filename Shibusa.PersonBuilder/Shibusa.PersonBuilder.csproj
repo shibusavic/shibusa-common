@@ -2,6 +2,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <PackageId>Shibusa.PersonBuilder</PackageId>
+    <Title>Shibusa Random Person Construction Library</Title>
+    <Description>Provides a fluent-like interface for random and semi-random person construction.</Description>
+    <Version>1.0.0</Version>
+    <Authors>shibusavic</Authors>
+    <Company>Shibusa LLC</Company>
+    <RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>Shibusa, LLC 2020</Copyright>
+    <PackageTags>common,utility,testing,person,name generator</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\female-names.txt" />
@@ -14,8 +24,8 @@
     <EmbeddedResource Include="Resources\surnames.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shibusa.Maths\Shibusa.Maths.csproj" />
-    <ProjectReference Include="..\Shibusa.Transformations\Shibusa.Transformations.csproj" />
-    <ProjectReference Include="..\Shibusa.Validators\Shibusa.Validators.csproj" />
+    <PackageReference Include="Shibusa.Maths" Version="1.0.0" />
+    <PackageReference Include="Shibusa.Transformations" Version="1.0.1" />
+    <PackageReference Include="Shibusa.Validators" Version="1.0.0" />
   </ItemGroup>
 </Project>
