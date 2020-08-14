@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resources\female-names.txt" />
+    <None Remove="Resources\male-names.txt" />
+    <None Remove="Resources\surnames.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\female-names.txt" />
+    <EmbeddedResource Include="Resources\male-names.txt" />
+    <EmbeddedResource Include="Resources\surnames.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shibusa.Maths\Shibusa.Maths.csproj" />
+    <ProjectReference Include="..\Shibusa.Transformations\Shibusa.Transformations.csproj" />
+    <ProjectReference Include="..\Shibusa.Validators\Shibusa.Validators.csproj" />
+  </ItemGroup>
+</Project>
