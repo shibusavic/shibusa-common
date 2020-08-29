@@ -9,13 +9,13 @@ namespace Shibusa.Transformations
     /// </summary>
     public static class TransformNumbersToWords
     {
-        private static string[] zeroToNineteen = { "zero",  "one",   "two",  "three", "four",   "five",   "six",
+        private static readonly string[] zeroToNineteen = { "zero",  "one",   "two",  "three", "four",   "five",   "six",
             "seven", "eight", "nine", "ten",   "eleven", "twelve", "thirteen",
             "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
 
-        private static string[] tens = { "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
+        private static readonly string[] tens = { "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
 
-        private static string[] denom = { "", "thousand", "million", "billion", "trillion", "quadrillion",
+        private static readonly string[] denom = { "", "thousand", "million", "billion", "trillion", "quadrillion",
              "quintillion", "sextillion", "septillion", "octillion", "nonillion",
              "decillion", "undecillion", "duodecillion", "tredecillion", "quattuordecillion",
              "sexdecillion", "septendecillion", "octodecillion", "novemdecillion", "vigintillion" };
@@ -86,7 +86,7 @@ namespace Shibusa.Transformations
                     words = $"negative {words}";
                 }
             }
-            
+
             return words.Trim();
         }
 
@@ -173,7 +173,7 @@ namespace Shibusa.Transformations
 
         private static string ConvertThreeDigits(int val)
         {
-            string words = string.Empty;
+            string words;
             if (val == 0)
             {
                 words = string.Empty;

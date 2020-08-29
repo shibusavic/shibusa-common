@@ -15,7 +15,7 @@ namespace Shibusa.Maths
         /// <returns>An integer representation of age.</returns>
         public static int AgeInYears(DateTime birthDate, DateTime? fromDate = null)
         {
-            fromDate = fromDate ?? DateTime.Now;
+            fromDate ??= DateTime.Now;
             var age = fromDate.Value.Year - birthDate.Year;
             if (birthDate > fromDate.Value.AddYears(-age)) { age--; }
 

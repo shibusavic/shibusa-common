@@ -144,9 +144,9 @@ namespace Shibusa.Data
                 case Comparison.GreaterThanOrEqual:
                 case Comparison.Between:
                 case Comparison.NotBetween:
-                    throw new Exception($"{comparison.ToString()} is not supported for multiple value comparisons.");
+                    throw new Exception($"{comparison} is not supported for multiple value comparisons.");
                 default:
-                    throw new Exception($"Unknown comparison type ('{comparison.ToString()}') in Where<T>(string left, Comparison comparison, T right, T right2 = default(T))");
+                    throw new Exception($"Unknown comparison type ('{comparison}') in Where<T>(string left, Comparison comparison, T right, T right2 = default(T))");
             }
 
             return new SqlWhere(whereClause.ToString());
@@ -404,9 +404,9 @@ namespace Shibusa.Data
                     break;
                 case Comparison.In:
                 case Comparison.NotIn:
-                    throw new Exception($"{comparison.ToString()} is not supported for single value comparisons.");
+                    throw new Exception($"{comparison} is not supported for single value comparisons.");
                 default:
-                    throw new Exception($"Unknown comparison type ('{comparison.ToString()}') in Where<T>(string left, Comparison comparison, T right, T right2 = default(T))");
+                    throw new Exception($"Unknown comparison type ('{comparison}') in Where<T>(string left, Comparison comparison, T right, T right2 = default(T))");
             }
 
             return new SqlWhere(whereClause.ToString());

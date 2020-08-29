@@ -91,10 +91,9 @@ namespace Shibusa.Calendar
         /// </summary>
         /// <param name="year">The year for which to calculate the holidays.</param>
         /// <returns>A dictionary with each key naming a holiday and each value being the corresponding date for that holiday in the specified year.</returns>
-        public static Dictionary<string, DateTime> Holidays(int year)
+        public static IDictionary<string, DateTime> Holidays(int year)
         {
             CacheYears(new int[] { year });
-            cachedYears ??= new Dictionary<int, Dictionary<string, DateTime>>();
             return cachedYears[year];
         }
 

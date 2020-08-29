@@ -2,14 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Runtime.CompilerServices;
 
 namespace Shibusa.Maths
 {
     public static partial class Calculate
     {
-        private static List<ulong> predefinedPrimes = new List<ulong>() {
+        private static readonly List<ulong> predefinedPrimes = new List<ulong>() {
             2L, 3L, 5L, 7L, 11L, 13L, 17L, 19L, 23L, 29L, 31L, 37L, 41L,
             43L, 47L, 53L, 59L, 61L, 67L, 71L, 73L, 79L, 83L, 89L, 97L,
             101L, 103L, 107L, 109L, 113L, 127L, 131L, 137L, 139L, 149L,
@@ -29,7 +27,7 @@ namespace Shibusa.Maths
             983L, 991L, 997L
         };
 
-        private static ulong largestPredeterminedPrime = predefinedPrimes.Last();
+        private static readonly ulong largestPredeterminedPrime = predefinedPrimes.Last();
 
         /// <summary>
         /// Determine if a number is prime.
@@ -138,8 +136,10 @@ namespace Shibusa.Maths
                 }
             }
 
-            List<int> numbers = new List<int>((int)(upperLimit / (Math.Log(upperLimit) - 1.08366)));
-            numbers.Add(2);
+            List<int> numbers = new List<int>((int)(upperLimit / (Math.Log(upperLimit) - 1.08366)))
+            {
+                2
+            };
 
             for (int i = 1; i <= sieveBound; i++)
             {

@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Shibusa.PersonBuilder.UnitTests
 {

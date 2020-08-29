@@ -9,8 +9,8 @@ namespace Shibusa.FindTextCli
 {
     class Program
     {
-        static HashSet<string> expressions = new HashSet<string>();
-        static HashSet<string> extensions = new HashSet<string>();
+        static readonly HashSet<string> expressions = new HashSet<string>();
+        static readonly HashSet<string> extensions = new HashSet<string>();
         static ExpressionOperator expressionOperator = ExpressionOperator.And;
         static string directory = string.Empty;
         static bool caseInsensitive = false;
@@ -19,7 +19,7 @@ namespace Shibusa.FindTextCli
         static bool forceExpression = false;
         static bool prefixFilenameWithNewline = false;
         static bool useSingleline = false;
-        static List<Regex> regexCollection = new List<Regex>();
+        static readonly List<Regex> regexCollection = new List<Regex>();
         static RegexOptions regexOptions = RegexOptions.Multiline;
         static DirectoryInfo dirInfo;
         static SearchOption searchOption;

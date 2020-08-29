@@ -17,17 +17,12 @@ namespace Shibusa.Data.Abstractions
         /// set to <see cref="CriteriaDefaults.DEFAULT_NUMBER_PER_PAGE"/></remarks>
         public virtual int NumberPerPage
         {
-            get
-            {
-                return numberPerPage;
-            }
-            set
-            {
-                numberPerPage = value < 1
-                    ? CriteriaDefaults.DEFAULT_NUMBER_PER_PAGE : value > CriteriaDefaults.DEFAULT_MAX_PER_PAGE
+            get => numberPerPage;
+            set => numberPerPage = value < 1
+                    ? CriteriaDefaults.DEFAULT_NUMBER_PER_PAGE
+                    : value > CriteriaDefaults.DEFAULT_MAX_PER_PAGE
                         ? CriteriaDefaults.DEFAULT_MAX_PER_PAGE
                         : value;
-            }
         }
 
         /// <summary>
@@ -36,26 +31,14 @@ namespace Shibusa.Data.Abstractions
         /// <remarks><see cref="PageNumber"/> can never be less than 1.</remarks>
         public virtual int PageNumber
         {
-            get
-            {
-                return pageNumber;
-            }
-            set
-            {
-                pageNumber = Math.Max(1, value);
-            }
+            get => pageNumber;
+            set => pageNumber = Math.Max(1, value);
         }
 
         /// <summary>
         /// Gets the zero-based index corresponding to the first record of the current page.
         /// </summary>
         /// <remarks><see cref="OffsetValue"/> will never be less than 0.</remarks>
-        public virtual int OffsetValue
-        {
-            get
-            {
-                return NumberPerPage * (PageNumber - 1);
-            }
-        }
+        public virtual int OffsetValue => NumberPerPage * (PageNumber - 1);
     }
 }

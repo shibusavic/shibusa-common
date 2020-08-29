@@ -1,5 +1,3 @@
-using System;
-
 namespace Shibusa.Maths
 {
     public static partial class Calculate

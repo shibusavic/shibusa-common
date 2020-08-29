@@ -5,14 +5,10 @@ namespace Shibusa.Transformations.UnitTests
 {
     public class NumberToWordsTests
     {
-        private string[] zeroToNineteen = { "zero",  "one",   "two",  "three", "four",   "five",   "six",
+        private readonly string[] zeroToNineteen = { "zero",  "one",   "two",  "three", "four", "five", "six",
             "seven", "eight", "nine", "ten",   "eleven", "twelve", "thirteen",
             "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
-        private string[] tens = { "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
-        private string[] denom = { "", "thousand", "million", "billion", "trillion", "quadrillion",
-             "quintillion", "sextillion", "septillion", "octillion", "nonillion",
-             "decillion", "undecillion", "duodecillion", "tredecillion", "quattuordecillion",
-             "sexdecillion", "septendecillion", "octodecillion", "novemdecillion", "vigintillion" };
+        private readonly string[] tens = { "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
 
         [Fact]
         public void Num2Words_LowNumbers()
@@ -144,7 +140,7 @@ namespace Shibusa.Transformations.UnitTests
             Assert.Throws<ArgumentException>(() => TransformNumbersToWords.ConvertToWords("-"));
         }
 
-        [Fact]  
+        [Fact]
         public void Num2Words_Strings_TooBig()
         {
             Assert.Throws<ArgumentException>(() => TransformNumbersToWords.ConvertToWords("3098309830309830983030983098303098309830309830983030983098301114"));

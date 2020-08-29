@@ -53,7 +53,7 @@ namespace Shibusa.Data
                     result.Append($"FROM '{start.Value.ToString(DATE_FORMAT)}' TO '{end.Value.ToString(DATE_FORMAT)}'");
                     break;
                 default:
-                    throw new ArgumentException($"Unknown temporal comparison type: {comparison.ToString()}");
+                    throw new ArgumentException($"Unknown temporal comparison type: {comparison}");
             }
 
             return result.ToString();

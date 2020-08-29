@@ -95,7 +95,7 @@ namespace Shibusa.Calendar.UnitTests
         {
             var days = UnitedStatesCalendar.GetInclusiveDays(new DateTime(2020, 1, 1), new DateTime(2020, 1, 5));
             Assert.Equal(5, days.Count());
-            days.ToList().ForEach(d => testOutputHelper.WriteLine(d.ToString("yyyy-MM-dd HH:mm:ss:ffff") + $"\t{d.DayOfWeek.ToString()}"));
+            days.ToList().ForEach(d => testOutputHelper.WriteLine(d.ToString("yyyy-MM-dd HH:mm:ss:ffff") + $"\t{d.DayOfWeek}"));
 
             days = UnitedStatesCalendar.GetInclusiveDays(new DateTime(2020, 1, 1), new DateTime(2020, 1, 1));
             Assert.Single(days);
@@ -113,7 +113,7 @@ namespace Shibusa.Calendar.UnitTests
         {
             var days = UnitedStatesCalendar.GetInclusiveWeekDays(new DateTime(2020, 1, 1), new DateTime(2020, 1, 5));
             Assert.Equal(3, days.Count());
-            days.ToList().ForEach(d => testOutputHelper.WriteLine(d.ToString("yyyy-MM-dd HH:mm:ss:ffff") + $"\t{d.DayOfWeek.ToString()}"));
+            days.ToList().ForEach(d => testOutputHelper.WriteLine(d.ToString("yyyy-MM-dd HH:mm:ss:ffff") + $"\t{d.DayOfWeek}"));
         }
 
         [Fact]
@@ -128,7 +128,7 @@ namespace Shibusa.Calendar.UnitTests
         {
             var days = UnitedStatesCalendar.GetHolidayDates(new DateTime(2020, 1, 1), new DateTime(2020, 1, 5));
             Assert.Single(days);
-            days.ToList().ForEach(d => testOutputHelper.WriteLine(d.ToString("yyyy-MM-dd HH:mm:ss:ffff") + $"\t{d.DayOfWeek.ToString()}"));
+            days.ToList().ForEach(d => testOutputHelper.WriteLine(d.ToString("yyyy-MM-dd HH:mm:ss:ffff") + $"\t{d.DayOfWeek}"));
         }
 
         [Fact]
@@ -136,7 +136,7 @@ namespace Shibusa.Calendar.UnitTests
         {
             var days = UnitedStatesCalendar.GetWeekDaysExcludingHolidays(new DateTime(2020, 1, 1), new DateTime(2020, 1, 5));
             Assert.Equal(2, days.Count());
-            days.ToList().ForEach(d => testOutputHelper.WriteLine(d.ToString("yyyy-MM-dd HH:mm:ss:ffff") + $"\t{d.DayOfWeek.ToString()}"));
+            days.ToList().ForEach(d => testOutputHelper.WriteLine(d.ToString("yyyy-MM-dd HH:mm:ss:ffff") + $"\t{d.DayOfWeek}"));
         }
 
         [Fact]

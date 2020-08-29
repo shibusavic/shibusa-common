@@ -43,8 +43,7 @@ namespace Shibusa.Validators
 
         private static bool ValidateLeftSideOfEmail(string left)
         {
-            bool result = (Regex.IsMatch(left, "\" +\"")) ? true
-                : (left.Contains(" ")) ? false : true;
+            bool result = Regex.IsMatch(left, "\" +\"") || (!left.Contains(" "));
 
             result = result && !(left.StartsWith(".") || left.EndsWith("."));
 

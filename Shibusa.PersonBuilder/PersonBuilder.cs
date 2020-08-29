@@ -80,7 +80,7 @@ namespace Shibusa.PersonBuilder
             femaleNameCount = femaleNames.Count;
             surnameCount = surnames.Count;
 
-            races = new HashSet<string>() { 
+            races = new HashSet<string>() {
                 Constants.Race.WHITE,
                 Constants.Race.BLACK,
                 Constants.Race.AMERICAN_INDIAN,
@@ -88,7 +88,7 @@ namespace Shibusa.PersonBuilder
                 Constants.Race.OTHER
             };
 
-            ethnicities = new HashSet<string>() { 
+            ethnicities = new HashSet<string>() {
                 Constants.Ethnicity.HISPANIC,
                 Constants.Ethnicity.NOT_HISPANIC
             };

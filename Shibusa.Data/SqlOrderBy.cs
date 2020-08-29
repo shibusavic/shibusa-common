@@ -25,7 +25,7 @@ namespace Shibusa.Data
         /// <summary>
         /// Creates a multiple-column "ORDER BY" clause.
         /// </summary>
-        /// <param name="columns">A <see cref="Dictionary{TKey, TValue}"/> of column names (Keys)
+        /// <param name="columns">An <see cref="IDictionary{TKey, TValue}"/> of column names (Keys)
         /// and sort directions (Values). Each <see cref="KeyValuePair{TKey, TValue}"/> results in
         /// a column and sort direction being produced in the output. Note that
         /// the columns are sorted in the order in which they appear in the dictionary.</param>
@@ -37,7 +37,7 @@ namespace Shibusa.Data
         /// </returns>
         /// <remarks>A <see cref="SortOrder"/> value of <see cref="SortOrder.Unspecified"/>
         /// will be converted to <see cref="SortOrder.Ascending"/>.</remarks>
-        public static string Create(Dictionary<string, SortOrder> columns)
+        public static string Create(IDictionary<string, SortOrder> columns)
         {
             if (columns == null) { return string.Empty; }
 
