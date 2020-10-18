@@ -5,7 +5,7 @@
     <PackageId>Shibusa.Transformations</PackageId>
     <Title>Shibusa Transformations Library</Title>
     <Description>Common transformation functions, such as transforming DateTime objects, transforming raw text, creating file hashes, converting dollar amounts by frequency, dealing with Social Security Numbers, etc.</Description>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>shibusavic</Authors>
     <Company>Shibusa LLC</Company>
     <RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
