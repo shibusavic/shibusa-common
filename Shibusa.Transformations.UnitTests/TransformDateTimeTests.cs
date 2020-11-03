@@ -11,7 +11,7 @@ namespace Shibusa.Transformations.UnitTests
             DateTime now = DateTime.Now;
 
             Assert.Equal(DateTimeKind.Local, now.Kind);
-            var sod = TransformDateTime.StartOfDay(now);
+            var sod = now.StartOfDay();
             Assert.NotEqual(now, sod);
             Assert.Equal(now.Kind, sod.Kind);
             Assert.Equal(0, sod.Hour);
@@ -21,7 +21,7 @@ namespace Shibusa.Transformations.UnitTests
 
             now = DateTime.UtcNow;
             Assert.Equal(DateTimeKind.Utc, now.Kind);
-            sod = TransformDateTime.StartOfDay(now);
+            sod = now.StartOfDay();
             Assert.NotEqual(now, sod);
             Assert.Equal(now.Kind, sod.Kind);
             Assert.Equal(0, sod.Hour);
@@ -35,7 +35,7 @@ namespace Shibusa.Transformations.UnitTests
         {
             var now = DateTime.Now;
             Assert.Equal(DateTimeKind.Local, now.Kind);
-            var eod = TransformDateTime.EndOfDay(now);
+            var eod = now.EndOfDay();
             Assert.NotEqual(now, eod);
             Assert.Equal(now.Kind, eod.Kind);
             Assert.Equal(23, eod.Hour);
@@ -45,7 +45,7 @@ namespace Shibusa.Transformations.UnitTests
 
             now = DateTime.UtcNow;
             Assert.Equal(DateTimeKind.Utc, now.Kind);
-            eod = TransformDateTime.EndOfDay(now);
+            eod = now.EndOfDay();
             Assert.NotEqual(now, eod);
             Assert.Equal(now.Kind, eod.Kind);
             Assert.Equal(23, eod.Hour);

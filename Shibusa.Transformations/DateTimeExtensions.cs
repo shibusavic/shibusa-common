@@ -3,16 +3,16 @@ using System;
 namespace Shibusa.Transformations
 {
     /// <summary>
-    /// Utility class for common manipulations of <see cref="DateTime"/> objects.
+    /// Extends <see cref="DateTime"/>.
     /// </summary>
-    public static class TransformDateTime
+    public static class DateTimeExtensions
     {
         /// <summary>
-        /// Converts a <see cref="DateTime"/> to the start of its day, preserving the <see cref="DateTime.Kind"/>.
+        /// Converts a <see cref="DateTime"/> to the start of its day, preserving the <see cref="DateTime.Kind"/>
         /// </summary>
-        /// <param name="date">The date to transform.</param>
-        /// <returns>Start time of the date passed in; the <see cref="DateTime.Kind"/> of date is preserved.</returns>
-        public static DateTime StartOfDay(DateTime date) =>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static DateTime StartOfDay(this DateTime date) =>
             new DateTime(date.Year, date.Month, date.Day, 0, 0, 0, 0, date.Kind);
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace Shibusa.Transformations
         /// </summary>
         /// <param name="date">The date to transform.</param>
         /// <returns>Ending time of the date passed in; the <see cref="DateTime.Kind"/> of date is preserved.</returns>
-        public static DateTime EndOfDay(DateTime date) =>
+        public static DateTime EndOfDay(this DateTime date) =>
             new DateTime(date.Year, date.Month, date.Day, 23, 59, 59, 999, date.Kind);
     }
 }
