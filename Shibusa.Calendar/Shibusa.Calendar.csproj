@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <PackageId>Shibusa.Calendar</PackageId>
     <Title>Shibusa Calendar Library</Title>
@@ -8,7 +8,7 @@
       Common calendar functions, such as determining the dates of US holidays and counting
       days or weekdays.
     </Description>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
     <Authors>shibusavic</Authors>
     <Company>Shibusa LLC</Company>
     <RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
@@ -17,6 +17,6 @@
     <PackageTags>common,utility,calendar,holidays</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Shibusa.Transformations" Version="1.0.2" />
+    <PackageReference Include="Shibusa.Transformations" Version="1.1.0" />
   </ItemGroup>
 </Project>

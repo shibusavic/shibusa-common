@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <PackageId>Shibusa.PersonBuilder</PackageId>
     <Title>Shibusa Random Person Construction Library</Title>
     <Description>Provides a fluent-like interface for random and semi-random person construction.</Description>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
     <Authors>shibusavic</Authors>
     <Company>Shibusa LLC</Company>
     <RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
@@ -24,8 +24,8 @@
     <EmbeddedResource Include="Resources\surnames.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Shibusa.Maths" Version="1.0.2" />
-    <PackageReference Include="Shibusa.Transformations" Version="1.0.2" />
-    <PackageReference Include="Shibusa.Validators" Version="1.0.2" />
+    <PackageReference Include="Shibusa.Maths" Version="1.1.0" />
+    <PackageReference Include="Shibusa.Transformations" Version="1.1.0" />
+    <PackageReference Include="Shibusa.Validators" Version="1.1.0" />
   </ItemGroup>
 </Project>

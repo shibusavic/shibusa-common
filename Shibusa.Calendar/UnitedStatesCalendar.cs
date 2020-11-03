@@ -1,3 +1,4 @@
+using Shibusa.Transformations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,8 +78,8 @@ namespace Shibusa.Calendar
             {
                 foreach (var holiday in Holidays(year).Values)
                 {
-                    if (holiday >= Transformations.TransformDateTime.StartOfDay(startDate)
-                        && holiday <= Transformations.TransformDateTime.EndOfDay(endDate))
+                    if (holiday >= startDate.StartOfDay()
+                        && holiday <= endDate.EndOfDay())
                     {
                         yield return holiday;
                     }
