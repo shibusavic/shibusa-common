@@ -65,13 +65,7 @@ namespace Shibusa.Validators
         /// <summary>
         /// Gets the collection of used areas.
         /// </summary>
-        public static IEnumerable<int> UsedAreas
-        {
-            get
-            {
-                return Enumerable.Range(1, 999).Except(UnusedAreas);
-            }
-        }
+        public static IEnumerable<int> UsedAreas=> Enumerable.Range(1, 999).Except(UnusedAreas);
 
         /// <summary>
         /// Unused Areas.

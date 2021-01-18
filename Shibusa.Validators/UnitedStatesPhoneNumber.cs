@@ -15,20 +15,12 @@ namespace Shibusa.Validators
         /// <returns>An indicator of whether the structure of the phone number is valid.</returns>
         public static bool IsValidStructure(string phoneNumber, params int[] validCounts)
         {
-            bool isValid = false;
             string numbersOnly = new string(phoneNumber.ToCharArray().Where(c => char.IsDigit(c)).ToArray());
             int length = numbersOnly.Length;
 
-            if (validCounts != null && validCounts.Any())
-            {
-                isValid = validCounts.Contains(length);
-            }
-            else
-            {
-                isValid = length >= 10 && length <= 11;
-            }
-
-            return isValid;
+            return (validCounts != null && validCounts.Any())
+                ? validCounts.Contains(length)
+                : length >= 10 && length <= 11;
         }
     }
 }
