@@ -274,8 +274,9 @@ namespace Shibusa.FindTextCli
                     case "-f":
                         forceExpression = true;
                         break;
-                    case "--prefix-file-name":
+                    case "--prefix-newline":
                     case "-p":
+                    case "-nl":
                         prefixFilenameWithNewline = true;
                         break;
                     case "--use-singleline":
@@ -348,19 +349,19 @@ namespace Shibusa.FindTextCli
 
             Dictionary<string, string> helpDefinitions = new Dictionary<string, string>()
             {
-                { "--directory | --dir | -d <directory>","The directory to search."},
-                { "--expression | -e <expression>", "A regular expression by which to search."},
-                { "[--extension | -x <file extension>]", "Add file extension to extensions searched. When no extensions are provided, all files are searched." },
-                { "[--operator | -o <And | Or>]",  "Use 'And' to combine expressions together and use 'Or' if any expression match is desired."},
-                { "[--force | -f]","Force your expression to be accepted without manipulation."},
-                { "[--insensitive | -i]", "Make search case insensitive." },
-                { "[--recursive | -r]", "Make file searching include subdirectories." },
-                { "[--show-lines | -l]", "Show the matching lines." },
-                { "[--show-line-numbers | -ln]", "Show the line numbers for matching lines."},
-                { "[--trim | -t]", "Trim the matching lines in the output."},
-                { "[--prefix-file-name | -p]","Prefix file names with a newline character."},
-                { "[--use-singleline | -s]","Use Singleline (instead of the default Multiline) for regular expressions."},
-                { "[--help | -h | ?]","Show this help." }
+                { "-d | --directory | --dir <directory>","The directory to search."},
+                { "-e | --expression <expression>", "A regular expression by which to search."},
+                { "[-x | --extension <file extension>]", "Add file extension to extensions searched. When no extensions are provided, all files are searched." },
+                { "[-o | --operator <And | Or>]",  "Use 'And' to combine expressions together and use 'Or' if any expression match is desired."},
+                { "[-f | --force]","Force your expression to be accepted without manipulation."},
+                { "[-i | --insensitive]", "Make search case insensitive." },
+                { "[-r | --recursive]", "Make file searching include subdirectories." },
+                { "[-l | --show-lines]", "Show the matching lines." },
+                { "[-ln | --show-line-numbers]", "Show the line numbers for matching lines."},
+                { "[-t | --trim]", "Trim the matching lines in the output."},
+                { "[-p | -nl | --prefix-newline]","Prefix file names with a newline character."},
+                { "[-s | --use-singleline]","Use Singleline (instead of the default Multiline) for regular expressions."},
+                { "[-h | --help  ?]","Show this help." }
             };
 
             string assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
@@ -401,7 +402,7 @@ namespace Shibusa.FindTextCli
             Console.WriteLine($"{Environment.NewLine}Same query, but find only first names like 'James' (case insensitive):");
             Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"First Name\\s+?:\\s+?[a-zA-Z]+\" -e \"\\bJames\\b\" -i -r -ln -f");
             Console.WriteLine($"{Environment.NewLine}Find a multi-line block of text (by switching to single-line):");
-            Console.WriteLine($"\t\t(It seems counter-intuitive, but you use the single-line regular expression option to accomplish this;");
+            Console.WriteLine($"\t\t(It may seem counter-intuitive, but you use the single-line regular expression option to accomplish this;");
             Console.WriteLine("\t\t see: https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-options.)");
             Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"<Id>.*</Id>\" -s -r -f");
         }
