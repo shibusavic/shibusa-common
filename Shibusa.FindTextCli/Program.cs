@@ -9,8 +9,8 @@ namespace Shibusa.FindTextCli
 {
     class Program
     {
-        static readonly HashSet<string> expressions = new HashSet<string>();
-        static readonly HashSet<string> extensions = new HashSet<string>();
+        static readonly HashSet<string> expressions = new();
+        static readonly HashSet<string> extensions = new();
         static ExpressionOperator expressionOperator = ExpressionOperator.And;
         static string directory = string.Empty;
         static bool caseInsensitive = false;
@@ -19,7 +19,7 @@ namespace Shibusa.FindTextCli
         static bool forceExpression = false;
         static bool prefixFilenameWithNewline = false;
         static bool useSingleline = false;
-        static readonly List<Regex> regexCollection = new List<Regex>();
+        static readonly List<Regex> regexCollection = new();
         static RegexOptions regexOptions = RegexOptions.Multiline;
         static DirectoryInfo dirInfo;
         static SearchOption searchOption;
@@ -202,7 +202,7 @@ namespace Shibusa.FindTextCli
         {
             while (extension.StartsWith(".") && extension.Length > 1)
             {
-                extension = extension.Substring(1);
+                extension = extension[1..];
             }
 
             if (!string.IsNullOrWhiteSpace(extension))
@@ -213,7 +213,7 @@ namespace Shibusa.FindTextCli
 
         static void HandleArguments(string[] args)
         {
-            List<string> expressions = new List<string>();
+            List<string> expressions = new();
 
             for (int a = 0; a < args.Length; a++)
             {
@@ -347,7 +347,7 @@ namespace Shibusa.FindTextCli
                 Console.WriteLine($"Exit code: {exitCode}");
             }
 
-            Dictionary<string, string> helpDefinitions = new Dictionary<string, string>()
+            Dictionary<string, string> helpDefinitions = new()
             {
                 { "-d | --directory | --dir <directory>","The directory to search."},
                 { "-e | --expression <expression>", "A regular expression by which to search."},

@@ -31,7 +31,6 @@ namespace Shibusa.Validators
             if (result)
             {
                 var split = email.Split('@');
-                if (split.Length != 2) { result = false; }
 
                 result = split.Length == 2 &&
                     ValidateLeftSideOfEmail(split[0]) &&
