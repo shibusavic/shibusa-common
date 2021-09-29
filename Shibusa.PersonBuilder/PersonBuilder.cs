@@ -11,17 +11,17 @@ namespace Shibusa.PersonBuilder
     /// </summary>
     public partial class PersonBuilder
     {
-        protected readonly static HashSet<string> maleNames = new HashSet<string>();
-        protected readonly static HashSet<string> femaleNames = new HashSet<string>();
-        protected readonly static HashSet<string> surnames = new HashSet<string>();
-        protected readonly static HashSet<string> races = new HashSet<string>();
-        protected readonly static HashSet<string> ethnicities = new HashSet<string>();
+        protected readonly static HashSet<string> maleNames = new();
+        protected readonly static HashSet<string> femaleNames = new();
+        protected readonly static HashSet<string> surnames = new();
+        protected readonly static HashSet<string> races = new();
+        protected readonly static HashSet<string> ethnicities = new();
 
         protected readonly static int maleNameCount = 0;
         protected readonly static int femaleNameCount = 0;
         protected readonly static int surnameCount = 0;
 
-        protected readonly static Random random = new Random(DateTime.Now.Millisecond);
+        protected readonly static Random random = new(DateTime.Now.Millisecond);
 
         protected Person person;
 

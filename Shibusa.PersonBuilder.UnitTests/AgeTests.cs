@@ -40,7 +40,7 @@ namespace Shibusa.PersonBuilder.UnitTests
         {
             for (int i = 0; i < 100; i++)
             {
-                Age age = new Age().Between(56, 110);
+                Age age = Age.Between(56, 110);
                 Assert.True(age >= 56 && age <= 110);
             }
         }
@@ -69,7 +69,7 @@ namespace Shibusa.PersonBuilder.UnitTests
         [Fact]
         public void SettingDateOfBirth_SetsAge()
         {
-            DateTime dateOfBirth = new DateTime(1980, 5, 19);
+            DateTime dateOfBirth = new(1980, 5, 19);
             var person = new PersonBuilder()
                 .WithName(Gender.Male)
                 .WithDateOfBirth(dateOfBirth)

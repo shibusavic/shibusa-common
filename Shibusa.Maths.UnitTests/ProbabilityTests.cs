@@ -7,8 +7,8 @@ namespace Shibusa.Maths.UnitTests
         [Fact]
         public void Probability_Equality()
         {
-            Probability a = new Probability(4D, 52D);
-            Probability b = new Probability(4D, 52D);
+            Probability a = new(4D, 52D);
+            Probability b = new(4D, 52D);
             Assert.Equal(a, b);
             b = new Probability(26D, 52D);
             Assert.NotEqual(a, b);
@@ -17,7 +17,7 @@ namespace Shibusa.Maths.UnitTests
         [Fact]
         public void Probability_Likelihood_Complement()
         {
-            Probability a = new Probability(4D, 52D);
+            Probability a = new(4D, 52D);
             Assert.Equal(4D / 52D, a.Likelihood);
             Assert.Equal(1D - (4D / 52D), a.Complement);
         }
@@ -25,7 +25,7 @@ namespace Shibusa.Maths.UnitTests
         [Fact]
         public void Probability_IndependentEvent()
         {
-            Probability coinFlip = new Probability(1D, 2D);
+            Probability coinFlip = new(1D, 2D);
 
             // flip it twice
             Assert.Equal(.25D, Probability.IndependentProbability(new Probability[] { coinFlip, coinFlip }));
@@ -34,8 +34,8 @@ namespace Shibusa.Maths.UnitTests
         [Fact]
         public void Probability_MutuallyExclusive()
         {
-            Probability chanceOfRolling3 = new Probability(1D, 6D);
-            Probability chanceOfRollingOdd = new Probability(3D, 6D);
+            Probability chanceOfRolling3 = new(1D, 6D);
+            Probability chanceOfRollingOdd = new(3D, 6D);
 
             Assert.Equal(2D / 3D, Probability.MutuallyExclusiveProbability(new Probability[] { chanceOfRolling3, chanceOfRollingOdd }));
         }
@@ -43,8 +43,8 @@ namespace Shibusa.Maths.UnitTests
         [Fact]
         public void Probability_NonMutuallyExclusive()
         {
-            Probability chanceOfDrawingRedCard = new Probability(26D, 52D);
-            Probability chanceOfDrawingKing = new Probability(4D, 52D);
+            Probability chanceOfDrawingRedCard = new(26D, 52D);
+            Probability chanceOfDrawingKing = new(4D, 52D);
 
             // chance of drawing either red card or king
             double expected = (26D / 52D) + (4D / 52D) - (2D / 52D);
@@ -58,8 +58,8 @@ namespace Shibusa.Maths.UnitTests
         [Fact]
         public void Probability_Conditional1()
         {
-            Probability firstDraw = new Probability(4D, 52D);
-            Probability secondDraw = new Probability(4D, 51D);
+            Probability firstDraw = new(4D, 52D);
+            Probability secondDraw = new(4D, 51D);
 
             double expected = (16D / 2652D) / (4D / 52D);
 
@@ -74,8 +74,8 @@ namespace Shibusa.Maths.UnitTests
         [Fact]
         public void Probability_Conditional2()
         {
-            Probability firstDie = new Probability(1D, 6D);
-            Probability secondDie = new Probability(2D, 6D); // given a 5, the second die can only be a 5 or a 6.
+            Probability firstDie = new(1D, 6D);
+            Probability secondDie = new(2D, 6D); // given a 5, the second die can only be a 5 or a 6.
 
             double expected = 1D / 3D;
 

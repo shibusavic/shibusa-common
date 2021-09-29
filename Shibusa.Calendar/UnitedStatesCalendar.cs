@@ -110,7 +110,7 @@ namespace Shibusa.Calendar
         /// </summary>
         /// <param name="year">The year for which to calculate Valentine's Day.</param>
         /// <returns>Valentine's Day for the specified year.</returns>
-        public static DateTime SaintValentinesDay(int year) => new DateTime(year, 2, 14);
+        public static DateTime SaintValentinesDay(int year) => new(year, 2, 14);
 
         /// <summary>
         /// Returns the date for Easter Sunday for the year provided.
@@ -157,7 +157,7 @@ namespace Shibusa.Calendar
         /// </summary>
         /// <param name="year"></param>
         /// <returns>Independence day for the specified year.</returns>
-        public static DateTime IndependenceDay(int year) => new DateTime(year, 7, 4);
+        public static DateTime IndependenceDay(int year) => new(year, 7, 4);
 
         /// <summary>
         /// Returns the date for Labor Day for the year provided.
@@ -179,7 +179,7 @@ namespace Shibusa.Calendar
         /// </summary>
         /// <param name="year">The year for which to calculate Veterans Day.</param>
         /// <returns>Veterans Day for the specified year.</returns>
-        public static DateTime VeteransDay(int year) => new DateTime(year, 11, 11);
+        public static DateTime VeteransDay(int year) => new(year, 11, 11);
 
         /// <summary>
         /// Returns the date for Thanksgiving Day for the year provided.
@@ -207,7 +207,7 @@ namespace Shibusa.Calendar
         /// </summary>
         /// <param name="year">The year for which to calculate Christmas.</param>
         /// <returns>Christmas for the specified year.</returns>
-        public static DateTime ChristmasDay(int year) => new DateTime(year, 12, 25);
+        public static DateTime ChristmasDay(int year) => new(year, 12, 25);
 
         /// <summary>
         /// Returns the date for New Year's Day for the year provided.

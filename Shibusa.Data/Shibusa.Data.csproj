@@ -1,16 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
-    <PackageId>Shibusa.Data</PackageId>
-    <Title>Shibusa Data Library</Title>
-    <Description>Contains common utilities for constructing SQL statements and paged searching by criteria.</Description>
-    <Version>1.1.0</Version>
-    <Authors>shibusavic</Authors>
-    <Company>Shibusa LLC</Company>
-    <RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Copyright>Shibusa, LLC 2020</Copyright>
-    <PackageTags>common,utility,data,SQL,criteria</PackageTags>
-  </PropertyGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<PackageId>Shibusa.Data</PackageId>
+		<Title>Shibusa Data Library</Title>
+		<Description>Contains common utilities for constructing SQL statements and paged searching by criteria.</Description>
+		<Version>5.0.0</Version>
+		<Authors>shibusavic</Authors>
+		<Company>Shibusa LLC</Company>
+		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Copyright>Shibusa, LLC 2021</Copyright>
+		<PackageTags>common,utility,data,SQL,criteria</PackageTags>
+	</PropertyGroup>
 </Project>

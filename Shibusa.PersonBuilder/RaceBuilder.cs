@@ -49,7 +49,7 @@ namespace Shibusa.PersonBuilder
             {
                 int numberOfRacesAdded = 0;
                 List<string> listOfRaces = Constants.Race.GetRaces().ToList();
-                List<string> racesAdded = new List<string>();
+                List<string> racesAdded = new();
                 while (numberOfRacesAdded < minimum && numberOfRacesAdded <= maximum && listOfRaces.Any())
                 {
                     int indexOfSelection = random.Next(0, listOfRaces.Count);

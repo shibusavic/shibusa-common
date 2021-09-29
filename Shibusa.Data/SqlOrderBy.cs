@@ -41,7 +41,7 @@ namespace Shibusa.Data
         {
             if (columns == null) { return string.Empty; }
 
-            List<string> sorts = new List<string>();
+            List<string> sorts = new();
             foreach (var column in columns)
             {
                 sorts.Add(Create(column));

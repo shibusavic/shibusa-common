@@ -19,7 +19,7 @@ namespace Shibusa.Validators
         {
             if (string.IsNullOrWhiteSpace(socialSecurityNumber)) { return false; }
 
-            Regex unformattedSsnRegex = new Regex(@"^\d{3}-?\d{2}-?\d{4}$");
+            Regex unformattedSsnRegex = new(@"^\d{3}-?\d{2}-?\d{4}$");
 
             return unformattedSsnRegex.IsMatch(socialSecurityNumber);
         }
@@ -37,7 +37,7 @@ namespace Shibusa.Validators
                 string numbersOnly = socialSecurityNumber.Replace("-", "");
                 ushort area = ushort.Parse(numbersOnly.Substring(0, 3));
                 ushort group = ushort.Parse(numbersOnly.Substring(3, 2));
-                ushort series = ushort.Parse(numbersOnly.Substring(5));
+                ushort series = ushort.Parse(numbersOnly[5..]);
 
                 isVerified = (area > 0 && group > 0 && series > 0
                     && !unusedAreas.Any(a => a.low <= area && area <= a.high));
@@ -53,7 +53,7 @@ namespace Shibusa.Validators
         {
             get
             {
-                List<int> results = new List<int>();
+                List<int> results = new();
                 foreach ((ushort low, ushort high) in unusedAreas)
                 {
                     results.AddRange(Enumerable.Range(low, high - low + 1));
@@ -65,14 +65,14 @@ namespace Shibusa.Validators
         /// <summary>
         /// Gets the collection of used areas.
         /// </summary>
-        public static IEnumerable<int> UsedAreas=> Enumerable.Range(1, 999).Except(UnusedAreas);
+        public static IEnumerable<int> UsedAreas => Enumerable.Range(1, 999).Except(UnusedAreas);
 
         /// <summary>
         /// Unused Areas.
         /// </summary>
         /// <seealso cref="https://www.ssa.gov/employer/stateweb.htm"/>
         private static readonly ReadOnlyCollection<(ushort low, ushort high)> unusedAreas =
-            new ReadOnlyCollection<(ushort, ushort)>(new List<(ushort, ushort)> {
+            new(new List<(ushort, ushort)> {
                 (237,246),
                 (587,699),
                 (750,999)

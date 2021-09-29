@@ -7,7 +7,7 @@ namespace Shibusa.Maths
 {
     public static partial class Calculate
     {
-        private static readonly List<ulong> predefinedPrimes = new List<ulong>() {
+        private static readonly List<ulong> predefinedPrimes = new() {
             2L, 3L, 5L, 7L, 11L, 13L, 17L, 19L, 23L, 29L, 31L, 37L, 41L,
             43L, 47L, 53L, 59L, 61L, 67L, 71L, 73L, 79L, 83L, 89L, 97L,
             101L, 103L, 107L, 109L, 113L, 127L, 131L, 137L, 139L, 149L,
@@ -58,7 +58,7 @@ namespace Shibusa.Maths
         /// <returns>The Nth prime, starting at the 0 index.</returns>
         public static ulong GetNthPrime(int position)
         {
-            int count = predefinedPrimes.Count();
+            int count = predefinedPrimes.Count;
             if (position < count)
             {
                 return predefinedPrimes[position];
@@ -117,13 +117,13 @@ namespace Shibusa.Maths
         /// <seealso cref="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes"/></remarks>
         public static int[] GetPrimes(int upperLimit)
         {
-            if (upperLimit <= 1) return new int[0];
+            if (upperLimit <= 1) return Array.Empty<int>();
             if (upperLimit == 2) return new int[1] { 2 };
 
             int sieveBound = (int)(upperLimit - 1) / 2;
             int boundary = ((int)Math.Sqrt(upperLimit) - 1) / 2;
 
-            BitArray primeBits = new BitArray(sieveBound + 1, true);
+            BitArray primeBits = new(sieveBound + 1, true);
 
             for (int i = 1; i <= boundary; i++)
             {
@@ -136,7 +136,7 @@ namespace Shibusa.Maths
                 }
             }
 
-            List<int> numbers = new List<int>((int)(upperLimit / (Math.Log(upperLimit) - 1.08366)))
+            List<int> numbers = new((int)(upperLimit / (Math.Log(upperLimit) - 1.08366)))
             {
                 2
             };

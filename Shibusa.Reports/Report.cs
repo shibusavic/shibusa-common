@@ -113,7 +113,7 @@ namespace Shibusa.Reports
         /// <param name="headers">The headers to remove. The headers require no special order.</param>
         public virtual void RemoveHeaders(IEnumerable<string> headers)
         {
-            List<string> matchingHeaders = new List<string>(headersCollection.Where(h => headers.Contains(h)));
+            List<string> matchingHeaders = new(headersCollection.Where(h => headers.Contains(h)));
             matchingHeaders.ForEach(h => RemoveHeader(h));
         }
 
@@ -264,7 +264,7 @@ namespace Shibusa.Reports
         /// <returns>The delimited header as a string.</returns>
         public virtual string GetHeaderAsString()
         {
-            List<string> headerItems = new List<string>();
+            List<string> headerItems = new();
 
             foreach (var header in Headers)
             {
@@ -289,7 +289,7 @@ namespace Shibusa.Reports
         /// <returns>A delimited line.</returns>
         public virtual string GetLineAsString(int index)
         {
-            List<string> lineItems = new List<string>();
+            List<string> lineItems = new();
 
             foreach (var header in Headers)
             {
@@ -324,7 +324,7 @@ namespace Shibusa.Reports
             if (stream?.CanWrite ?? false)
             {
                 var buffer = Encoding.UTF8.GetBytes(text);
-                await stream.WriteAsync(buffer, 0, buffer.Length).ConfigureAwait(false);
+                await stream.WriteAsync(buffer.AsMemory(0, buffer.Length)).ConfigureAwait(false);
             }
         }
 

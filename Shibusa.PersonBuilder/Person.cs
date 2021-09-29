@@ -10,7 +10,7 @@ namespace Shibusa.PersonBuilder
     {
         private DateTime? dateOfBirth = default;
         private Age age = -1;
-        private readonly Random random = new Random();
+        private readonly Random random = new();
 
         /// <summary>
         /// Creates a new instance of the <see cref="Person"/> class.

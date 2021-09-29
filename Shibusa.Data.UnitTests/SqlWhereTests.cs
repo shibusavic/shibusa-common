@@ -20,7 +20,7 @@ namespace Shibusa.Data.UnitTests
         public void Where_MakeFriendlyFalse_NoChange()
         {
             // makeFriendly:false leaves the right side as-is.
-            SqlWhere where = new SqlWhere().Where(left: "Name", comparison: Comparison.Equal,
+            SqlWhere where = SqlWhere.Where(left: "Name", comparison: Comparison.Equal,
                 right: "@name", makeFriendly: false);
 
             Assert.Equal("Name = @name", where.Raw);
@@ -29,7 +29,7 @@ namespace Shibusa.Data.UnitTests
         [Fact]
         public void Where_MakeFriendlyTrue_Change()
         {
-            SqlWhere where = new SqlWhere().Where(left: "Name", comparison: Comparison.Equal,
+            SqlWhere where = SqlWhere.Where(left: "Name", comparison: Comparison.Equal,
                 right: "@name", makeFriendly: true);
 
             Assert.Equal("Name = '@name'", where.Raw);
@@ -41,9 +41,9 @@ namespace Shibusa.Data.UnitTests
             // Any string will do to prove the transfer.
             string expected = "[Name] LIKE %PEACE%";
 
-            SqlWhere where = new SqlWhere(expected);
+            SqlWhere where = new(expected);
 
-            SqlWhere otherClause = new SqlWhere(where);
+            SqlWhere otherClause = new(where);
 
             Assert.Equal(where.Raw, otherClause.Raw);
 
@@ -58,12 +58,12 @@ namespace Shibusa.Data.UnitTests
 
             string expected = $"((((Name IS NULL AND Age > 30) OR (Name LIKE '%e%' AND Age < 30)) AND BankBalance BETWEEN 0 AND 500000) OR (TimeCreated = '{start.ToString(DATE_FORMAT)}' OR TimeCreated = '{finish.ToString(DATE_FORMAT)}'))";
 
-            SqlWhere query = new SqlWhere().WhereEqual(left: "Name", right: default(string))
-                .And(new SqlWhere().WhereGreaterThan("Age", 30))
-                .Or(new SqlWhere().WhereLike("Name", "%e%").And(new SqlWhere().WhereLessThan("Age", 30)))
-                .And(new SqlWhere().WhereBetween("BankBalance", 0, 500000))
-                .Or(new SqlWhere().WhereEqual("TimeCreated", start)
-                    .Or(new SqlWhere().WhereEqual("TimeCreated", finish)));
+            SqlWhere query = SqlWhere.WhereEqual(left: "Name", right: default(string))
+                .And(SqlWhere.WhereGreaterThan("Age", 30))
+                .Or(SqlWhere.WhereLike("Name", "%e%").And(SqlWhere.WhereLessThan("Age", 30)))
+                .And(SqlWhere.WhereBetween("BankBalance", 0, 500000))
+                .Or(SqlWhere.WhereEqual("TimeCreated", start)
+                    .Or(SqlWhere.WhereEqual("TimeCreated", finish)));
 
             Assert.Equal(expected, query.Raw);
         }
@@ -71,7 +71,7 @@ namespace Shibusa.Data.UnitTests
         [Fact]
         public void OrderBy()
         {
-            Dictionary<string, SortOrder> cols = new Dictionary<string, SortOrder>
+            Dictionary<string, SortOrder> cols = new()
             {
                 { "Name", SortOrder.Ascending },
                 { "BankBalance", SortOrder.Descending }

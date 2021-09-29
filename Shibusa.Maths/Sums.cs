@@ -3,7 +3,7 @@ namespace Shibusa.Maths
     public static partial class Calculate
     {
         /// <summary>
-        /// Sum all of the whole numbers divisible by <paramref name="divisor"/> up to <see cref="max"/>.
+        /// Sum all of the whole numbers divisible by <paramref name="divisor"/> up to <paramref name="max"/>.
         /// </summary>
         /// <param name="divisor">The divisor (the denominator).</param>
         /// <param name="max">The largest number divisible by <paramref name="divisor"/>.</param>

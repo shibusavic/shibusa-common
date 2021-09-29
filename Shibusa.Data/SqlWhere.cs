@@ -56,42 +56,42 @@ namespace Shibusa.Data
         /// </summary>
         /// <param name="where">The object to clone.</param>
         /// <returns>A new <see cref="SqlWhere"/>.</returns>
-        public SqlWhere Where(SqlWhere where) => new SqlWhere(where);
+        public static SqlWhere Where(SqlWhere where) => new(where);
 
         /// <summary>
         /// Creates a new <see cref="SqlWhere"/> object that takes in an applicable string representing the WHERE clause.
         /// </summary>
         /// <param name="where">The WHERE clause with which to prime the <see cref="Raw"/> property.</param>
         /// <returns>A new <see cref="SqlWhere"/>.</returns>
-        public SqlWhere Where(string where) => new SqlWhere(where);
+        public static SqlWhere Where(string where) => new(where);
 
         /// <summary>
         /// Attaches the <see cref="Raw"/> of an <see cref="WhereClause"/> to the existing <see cref="Raw"/> with an AND conjunction.
         /// </summary>
         /// <param name="where">The <see cref="WhereClause"/> implementation to attach to the existing WHERE clause.</param>
         /// <returns>A new <see cref="SqlWhere"/>.</returns>
-        public SqlWhere And(SqlWhere where) => new SqlWhere($"({Raw} AND {where.Raw})");
+        public SqlWhere And(SqlWhere where) => new($"({Raw} AND {where.Raw})");
 
         /// <summary>
         /// Attaches the <see cref="Raw"/> of a <see cref="WhereClause"/> to the existing <see cref="Raw"/> with an OR conjunction.
         /// </summary>
         /// <param name="where">The <see cref="WhereClause"/> implementation to attach to the existing WHERE clause.</param>
         /// <returns>An <see cref="WhereClause"/> implementation with the combined WHERE clause.</returns>
-        public SqlWhere Or(SqlWhere where) => new SqlWhere($"({Raw} OR {where.Raw})");
+        public SqlWhere Or(SqlWhere where) => new($"({Raw} OR {where.Raw})");
 
         /// <summary>
         /// Attaches the <see cref="Raw"/> of a <see cref="WhereClause"/> to the existing <see cref="Raw"/> with an AND NOT conjunction.
         /// </summary>
         /// <param name="where">The <see cref="WhereClause"/> implementation to attach to the existing WHERE clause.</param>
         /// <returns>An <see cref="WhereClause"/> implementation with the combined WHERE clause.</returns>
-        public SqlWhere AndNot(SqlWhere where) => new SqlWhere($"({Raw} AND NOT {where.Raw})");
+        public SqlWhere AndNot(SqlWhere where) => new($"({Raw} AND NOT {where.Raw})");
 
         /// <summary>
         /// Attaches the <see cref="Raw"/> of a <see cref="WhereClause"/> to the existing <see cref="Raw"/> with an OR NOT conjunction.
         /// </summary>
         /// <param name="where">The <see cref="WhereClause"/> implementation to attach to the existing WHERE clause.</param>
         /// <returns>An <see cref="WhereClause"/> implementation with the combined WHERE clause.</returns>
-        public SqlWhere OrNot(SqlWhere where) => new SqlWhere($"({Raw} OR NOT {where.Raw})");
+        public SqlWhere OrNot(SqlWhere where) => new($"({Raw} OR NOT {where.Raw})");
 
         /// <summary>
         /// Creates an <see cref="SqlWhere"/> implementation that compares the left to the
@@ -109,7 +109,7 @@ namespace Shibusa.Data
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// the comparison specified. <seealso cref="WhereClause.RawSql"/></returns>
         /// <remarks>This method cannot support IN or NOT IN. Use the methods that take in IEnumerable arguments.</remarks>
-        public SqlWhere Where<T>(string left, Comparison comparison, IEnumerable<T> right, bool makeFriendly = true)
+        public static SqlWhere Where<T>(string left, Comparison comparison, IEnumerable<T> right, bool makeFriendly = true)
         {
             var whereClause = new StringBuilder();
 
@@ -164,7 +164,7 @@ namespace Shibusa.Data
         /// or converted to NULL if appropriate.</param>
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// an equality check. <seealso cref="WhereClause.RawSql"/></returns>
-        public SqlWhere WhereEqual<T>(string left, T right, bool makeFriendly = true)
+        public static SqlWhere WhereEqual<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.Equal, right, default, makeFriendly);
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace Shibusa.Data
         /// or converted to NULL if appropriate.</param>
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// a check for lack of equality. <seealso cref="WhereClause.RawSql"/></returns>
-        public SqlWhere WhereNotEqual<T>(string left, T right, bool makeFriendly = true)
+        public static SqlWhere WhereNotEqual<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.NotEqual, right, default, makeFriendly);
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace Shibusa.Data
         /// or converted to NULL if appropriate.</param>
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// a '&gt;' comparison. <seealso cref="WhereClause.RawSql"/></returns>
-        public SqlWhere WhereGreaterThan<T>(string left, T right, bool makeFriendly = true)
+        public static SqlWhere WhereGreaterThan<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.GreaterThan, right, default, makeFriendly);
 
         /// <summary>
@@ -209,7 +209,7 @@ namespace Shibusa.Data
         /// or converted to NULL if appropriate.</param>
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// a '&gt;=' comparison. <seealso cref="WhereClause.RawSql"/></returns>
-        public SqlWhere WhereGreaterThanOrEqual<T>(string left, T right, bool makeFriendly = true)
+        public static SqlWhere WhereGreaterThanOrEqual<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.GreaterThanOrEqual, right, default, makeFriendly);
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace Shibusa.Data
         /// or converted to NULL if appropriate.</param>
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// a '&lt;' comparison. <seealso cref="WhereClause.RawSql"/></returns>
-        public SqlWhere WhereLessThan<T>(string left, T right, bool makeFriendly = true)
+        public static SqlWhere WhereLessThan<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.LessThan, right, default, makeFriendly);
 
         /// <summary>
@@ -239,7 +239,7 @@ namespace Shibusa.Data
         /// or converted to NULL if appropriate.</param>
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// a '&lt;=' comparison. <seealso cref="WhereClause.RawSql"/></returns>
-        public SqlWhere WhereLessThanOrEqual<T>(string left, T right, bool makeFriendly = true)
+        public static SqlWhere WhereLessThanOrEqual<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.LessThanOrEqual, right, default, makeFriendly);
 
         /// <summary>
@@ -254,7 +254,7 @@ namespace Shibusa.Data
         /// or converted to NULL if appropriate.</param>
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// a LIKE comparison. <seealso cref="WhereClause.RawSql"/></returns>
-        public SqlWhere WhereLike<T>(string left, T right, bool makeFriendly = true)
+        public static SqlWhere WhereLike<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.Like, right, default, makeFriendly);
 
         /// <summary>
@@ -268,7 +268,7 @@ namespace Shibusa.Data
         /// candidate for conversion, the values on the right will be modified to be friendly to the
         /// underlying system.</param>
         /// <returns>A new <see cref="SqlWhere" /> instance constructed from the arguments.</returns>
-        public SqlWhere WhereCiLike<T>(string left, T right, bool makeFriendly = true)
+        public static SqlWhere WhereCiLike<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.CiLike, right, default, makeFriendly);
 
         /// <summary>
@@ -283,7 +283,7 @@ namespace Shibusa.Data
         /// or converted to NULL if appropriate.</param>
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// a NOT LIKE comparison. <seealso cref="WhereClause.RawSql"/></returns>
-        public SqlWhere WhereNotLike<T>(string left, T right, bool makeFriendly = true)
+        public static SqlWhere WhereNotLike<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.NotLike, right, default, makeFriendly);
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace Shibusa.Data
         /// candidate for conversion, the values on the right will be modified to be friendly to the
         /// underlying system.</param>
         /// <returns>A new <see cref="SqlWhere" /> instance constructed from the arguments.</returns>
-        public SqlWhere WhereNotCiLike<T>(string left, T right, bool makeFriendly = true)
+        public static SqlWhere WhereNotCiLike<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.NotCiLike, right, default, makeFriendly);
 
         /// <summary>
@@ -312,7 +312,7 @@ namespace Shibusa.Data
         /// or converted to NULL if appropriate.</param>
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// a BETWEEN right AND right2 comparison. <seealso cref="WhereClause.RawSql"/></returns>
-        public SqlWhere WhereBetween<T>(string left, T right, T right2, bool makeFriendly = true)
+        public static SqlWhere WhereBetween<T>(string left, T right, T right2, bool makeFriendly = true)
             => Where(left, Comparison.Between, right, right2, makeFriendly);
 
         /// <summary>
@@ -327,7 +327,7 @@ namespace Shibusa.Data
         /// or converted to NULL if appropriate.</param>
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// a NOT BETWEEN right AND right2 comparison. <seealso cref="WhereClause.RawSql"/></returns>
-        public SqlWhere WhereNotBetween<T>(string left, T right, T right2, bool makeFriendly = true)
+        public static SqlWhere WhereNotBetween<T>(string left, T right, T right2, bool makeFriendly = true)
             => Where(left, Comparison.NotBetween, right, right2, makeFriendly);
 
         /// <summary>
@@ -344,7 +344,7 @@ namespace Shibusa.Data
         /// or converted to NULL if appropriate.</param>
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// either an IN or a NOT IN right comparison. <seealso cref="WhereClause.RawSql"/></returns>
-        public SqlWhere Where<T>(string left, Comparison comparison, T right, T right2 = default, bool makeFriendly = true)
+        public static SqlWhere Where<T>(string left, Comparison comparison, T right, T right2 = default, bool makeFriendly = true)
         {
             if (string.IsNullOrWhiteSpace(left)) { throw new ArgumentNullException(nameof(left)); }
 
@@ -423,7 +423,7 @@ namespace Shibusa.Data
         /// or converted to NULL if appropriate.</param>
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// an IN right comparison. <seealso cref="WhereClause.RawSql"/></returns>
-        public SqlWhere WhereIn<T>(string left, IEnumerable<T> right, bool makeFriendly = true)
+        public static SqlWhere WhereIn<T>(string left, IEnumerable<T> right, bool makeFriendly = true)
             => Where(left: left, comparison: Comparison.In, right: right, makeFriendly: makeFriendly);
 
         /// <summary>
@@ -438,10 +438,10 @@ namespace Shibusa.Data
         /// or converted to NULL if appropriate.</param>
         /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
         /// a NOT IN right comparison. <seealso cref="WhereClause.RawSql"/></returns>
-        public SqlWhere WhereNotIn<T>(string left, IEnumerable<T> right, bool makeFriendly = true)
+        public static SqlWhere WhereNotIn<T>(string left, IEnumerable<T> right, bool makeFriendly = true)
             => Where(left: left, comparison: Comparison.NotIn, right: right, makeFriendly: makeFriendly);
 
-        private string CleanseSql(string text, bool makeLikable = false)
+        private static string CleanseSql(string text, bool makeLikable = false)
         {
             // whitespace passes through, but nulls have be converted.
             if (string.IsNullOrEmpty(text)) { return "NULL"; }
@@ -462,12 +462,12 @@ namespace Shibusa.Data
             return $"'{text}'";
         }
 
-        private string MakeDateSqlReady(DateTime date, bool makeLikable = false)
+        private static string MakeDateSqlReady(DateTime date, bool makeLikable = false)
         {
             return CleanseSql(date.ToString(DATE_FORMAT), makeLikable);
         }
 
-        private string MakeSqlReady<T>(T item, bool makeLikable = false)
+        private static string MakeSqlReady<T>(T item, bool makeLikable = false)
         {
             if (item == null) { return "NULL"; }
 
@@ -489,7 +489,7 @@ namespace Shibusa.Data
             return result;
         }
 
-        private IEnumerable<string> MakeSqlReady<T>(IEnumerable<T> items, bool makeLikable = false)
+        private static IEnumerable<string> MakeSqlReady<T>(IEnumerable<T> items, bool makeLikable = false)
         {
             if (items == null) { return new List<string>(); }
 

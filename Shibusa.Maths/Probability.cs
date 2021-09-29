@@ -127,10 +127,7 @@ namespace Shibusa.Maths
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
         {
-            var hashCode = -1901430519;
-            hashCode = hashCode * -1521134295 + NumberOfWaysEventCanHappen.GetHashCode();
-            hashCode = hashCode * -1521134295 + NumberOfAllPossibleOutcomes.GetHashCode();
-            return hashCode;
+            return HashCode.Combine(NumberOfWaysEventCanHappen, NumberOfAllPossibleOutcomes);
         }
     }
 }

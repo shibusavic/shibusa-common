@@ -32,7 +32,7 @@ namespace Shibusa.Maths
             }
 
             ulong result = 1L;
-            IDictionary<ulong, int> dictionary = new SortedDictionary<ulong, int>();
+            SortedDictionary<ulong, int> dictionary = new();
             for (int i = 0; i < numbers.Length; i++)
             {
                 var primes = GetPrimeFactorsDictionary(numbers[i]);

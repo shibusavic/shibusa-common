@@ -20,8 +20,8 @@ namespace Shibusa.Calendar
         /// <paramref name="start"/> and <paramref name="finish"/> dates.</returns>
         public static IEnumerable<DateTime> GetInclusiveDays(DateTime start, DateTime finish)
         {
-            DateTime incrementer = new DateTime(start.StartOfDay().Ticks);
-            DateTime limit = new DateTime(finish.EndOfDay().Ticks);
+            DateTime incrementer = new(start.StartOfDay().Ticks);
+            DateTime limit = new(finish.EndOfDay().Ticks);
 
             while (incrementer <= limit)
             {

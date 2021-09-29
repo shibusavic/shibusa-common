@@ -34,7 +34,7 @@ namespace Shibusa.Reports
 
                 foreach (IDictionary<string, string> line in Lines)
                 {
-                    List<string> lineItems = new List<string>();
+                    List<string> lineItems = new();
 
                     foreach (var header in Headers)
                     {

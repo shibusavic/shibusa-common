@@ -87,10 +87,10 @@ namespace Shibusa.Transformations
             int currentIteration = 0)
         {
             if (string.IsNullOrWhiteSpace(template)) { throw new ArgumentNullException(nameof(template)); }
-            if (string.IsNullOrWhiteSpace(regularExpression)) { throw new ArgumentException(nameof(regularExpression)); }
+            if (string.IsNullOrWhiteSpace(regularExpression)) { throw new ArgumentNullException(nameof(regularExpression)); }
             if (indexOfGroupWithKey < 0) { throw new ArgumentException($"{nameof(indexOfGroupWithKey)} cannot be negative."); }
 
-            string templateCopy = string.Copy(template);
+            string templateCopy = new(template);
             Dictionary<string, string> dictionary;
 
             try
@@ -102,7 +102,7 @@ namespace Shibusa.Transformations
                 throw new ArgumentException("The keys provided in the dictionary are not unique. The key matching is case insensitive.");
             }
 
-            Regex regex = new Regex(regularExpression, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            Regex regex = new(regularExpression, RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
             MatchCollection matches = regex.Matches(template);
 

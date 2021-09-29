@@ -23,7 +23,7 @@ namespace Shibusa.PersonBuilder.UnitTests
             Assert.NotNull(person.Name.MiddleInitial);
             Assert.NotNull(person.Name.MiddleName);
             Assert.Equal(PersonBuilder.Constants.Ethnicity.NOT_HISPANIC, person.Ethnicity);
-            Assert.True(person.Races.Count() >= 1 && person.Races.Count() <= 2);
+            Assert.True(condition: person.Races.Any() && person.Races.Count() <= 2);
         }
     }
 }

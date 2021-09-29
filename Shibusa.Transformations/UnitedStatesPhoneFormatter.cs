@@ -26,7 +26,7 @@ namespace Shibusa.Transformations
             // Set default format specifier             
             if (string.IsNullOrWhiteSpace(format)) { format = "F"; }
 
-            string numericString = new string(arg.ToString().ToCharArray().Where(c => char.IsDigit(c)).ToArray());
+            string numericString = new(arg.ToString().ToCharArray().Where(c => char.IsDigit(c)).ToArray());
 
             string result = numericString;
 
@@ -51,11 +51,11 @@ namespace Shibusa.Transformations
                     }
                     else if (numericString.Length == 7)
                     {
-                        result = $"{numericString.Substring(0, 3)}-{numericString.Substring(3)}";
+                        result = $"{numericString.Substring(0, 3)}-{numericString[3..]}";
                     }
                     else if (numericString.Length == 10)
                     {
-                        result = $"({numericString.Substring(0, 3)}) {numericString.Substring(3, 3)}-{numericString.Substring(6)}";
+                        result = $"({numericString.Substring(0, 3)}) {numericString.Substring(3, 3)}-{numericString[6..]}";
                     }
                     else
                     {
@@ -69,11 +69,11 @@ namespace Shibusa.Transformations
                     }
                     else if (numericString.Length == 7)
                     {
-                        result = $"{numericString.Substring(0, 3)}.{numericString.Substring(3)}";
+                        result = $"{numericString.Substring(0, 3)}.{numericString[3..]}";
                     }
                     else if (numericString.Length == 10)
                     {
-                        result = $"{numericString.Substring(0, 3)}.{numericString.Substring(3, 3)}.{numericString.Substring(6)}";
+                        result = $"{numericString.Substring(0, 3)}.{numericString.Substring(3, 3)}.{numericString[6..]}";
                     }
                     else
                     {
@@ -87,7 +87,7 @@ namespace Shibusa.Transformations
                     }
                     else
                     {
-                        result = $"+1 ({numericString.Substring(0, 3)}) {numericString.Substring(3, 3)}-{numericString.Substring(6)}";
+                        result = $"+1 ({numericString.Substring(0, 3)}) {numericString.Substring(3, 3)}-{numericString[6..]}";
                     }
                     break;
                 case "Idots":
@@ -97,7 +97,7 @@ namespace Shibusa.Transformations
                     }
                     else
                     {
-                        result = $"+1.{numericString.Substring(0, 3)}.{numericString.Substring(3, 3)}.{numericString.Substring(6)}";
+                        result = $"+1.{numericString.Substring(0, 3)}.{numericString.Substring(3, 3)}.{numericString[6..]}";
                     }
                     break;
                 default:

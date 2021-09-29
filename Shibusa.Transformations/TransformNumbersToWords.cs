@@ -34,7 +34,7 @@ namespace Shibusa.Transformations
 
             val = val.Trim();
 
-            Regex regex = new Regex("-?\\d+");
+            Regex regex = new("-?\\d+");
             if (!regex.IsMatch(val))
             {
                 throw new ArgumentException("Value provided is not a number.");
@@ -43,7 +43,7 @@ namespace Shibusa.Transformations
             bool isNegative = val.Substring(0, 1) == "-";
             if (isNegative)
             {
-                val = val.Substring(1);
+                val = val[1..];
             }
 
             if (val.All(v => v == '0'))
@@ -114,7 +114,7 @@ namespace Shibusa.Transformations
             string words;
             if (val < 0)
             {
-                string str = val.ToString().Substring(1);
+                string str = val.ToString()[1..];
                 if (!ulong.TryParse(str, out ulong res))
                 {
                     throw new Exception("Number too small to convert.");
@@ -166,9 +166,9 @@ namespace Shibusa.Transformations
 
         private static string GetLastThree(string val, out string newVal)
         {
-            newVal = val.Length > 3 ? val.Substring(0, val.Length - 3)
+            newVal = val.Length > 3 ? val[0..^3]
                 : string.Empty;
-            return val.Substring(val.Length - 3);
+            return val[^3..];
         }
 
         private static string ConvertThreeDigits(int val)

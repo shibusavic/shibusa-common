@@ -16,7 +16,7 @@ namespace Shibusa.Transformations.UnitTests
             Assert.Equal(dailyAmount, answer);
         }
 
-        private void AssertInRange(decimal expectedAnswer, decimal answer, decimal errorRange = .01M)
+        private static void AssertInRange(decimal expectedAnswer, decimal answer, decimal errorRange = .01M)
         {
             var high = expectedAnswer * (1 + errorRange);
             var low = expectedAnswer * (1 - errorRange);

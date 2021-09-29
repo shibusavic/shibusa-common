@@ -82,12 +82,7 @@ namespace Shibusa.PersonBuilder
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
         {
-            var hashCode = -2016661541;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(FirstName);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(LastName);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(MiddleName);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Suffix);
-            return hashCode;
+            return HashCode.Combine(FirstName, LastName, MiddleName, Suffix);
         }
 
         /// <summary>
@@ -127,6 +122,28 @@ namespace Shibusa.PersonBuilder
             }
 
             return Transformations.TransformRawText.CondenseSpacingAndTrim(name);
+        }
+
+        /// <summary>
+        /// Determines the equality of two <see cref="PersonName"/> instances.
+        /// </summary>
+        /// <param name="left">The left <see cref="PersonName"/>.</param>
+        /// <param name="right">The right <see cref="PersonName"/>.</param>
+        /// <returns>An indicator of  equality; true if <paramref name="left"/> and <paramref name="right"/> are equal.</returns>
+        public static bool operator ==(PersonName left, PersonName right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>
+        /// Determines the inequality of two <see cref="PersonName"/> instances.
+        /// </summary>
+        /// <param name="left">The left <see cref="PersonName"/>.</param>
+        /// <param name="right">The right <see cref="PersonName"/>.</param>
+        /// <returns>An indicator of  equality; true if <paramref name="left"/> and <paramref name="right"/> are not equal.</returns>
+        public static bool operator !=(PersonName left, PersonName right)
+        {
+            return !(left == right);
         }
     }
 }

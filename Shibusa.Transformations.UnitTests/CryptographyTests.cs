@@ -55,7 +55,7 @@ namespace Shibusa.Transformations.UnitTests
 
                 // Make the second file identical except for an additional newline character.
                 var buffer = Encoding.UTF8.GetBytes($"{content1}{Environment.NewLine}");
-                await tempFile.WriteAsync(buffer, 0, buffer.Length);
+                await tempFile.WriteAsync(buffer.AsMemory(0, buffer.Length));
                 await tempFile.FlushAsync();
                 tempFile.Close();
 

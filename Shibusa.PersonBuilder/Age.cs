@@ -8,7 +8,7 @@ namespace Shibusa.PersonBuilder
     public readonly struct Age : IEquatable<Age>
     {
         private readonly int age;
-        private readonly static Random random = new Random(DateTime.Now.Millisecond);
+        private readonly static Random random = new(DateTime.Now.Millisecond);
         private readonly int? minimum;
         private readonly int? maximum;
         private const int MIN = 0;
@@ -41,7 +41,7 @@ namespace Shibusa.PersonBuilder
         /// Implicitely converts an int to <see cref="Age"/>.
         /// </summary>
         /// <param name="age"></param>
-        public static implicit operator Age(int age) => new Age(age);
+        public static implicit operator Age(int age) => new(age);
 
         /// <summary>
         /// Implicitely converts an <see cref="Age"/> to an int.
@@ -79,7 +79,7 @@ namespace Shibusa.PersonBuilder
         /// <param name="max">The maximum inclusive age to generate</param>
         /// <returns>An age no less than <paramref name="max"/> and no greater 
         /// than the value of <paramref name="max"/>.</returns>
-        public Age Between(int min, int max)
+        public static Age Between(int min, int max)
         {
             return new Age(min: min, max: max);
         }
@@ -120,6 +120,28 @@ namespace Shibusa.PersonBuilder
         public override int GetHashCode()
         {
             return -1062103556 + age.GetHashCode();
+        }
+
+        /// <summary>
+        /// Determines the equality of two <see cref="Age"/> instances.
+        /// </summary>
+        /// <param name="left">The left <see cref="Age"/>.</param>
+        /// <param name="right">The right <see cref="Age"/>.</param>
+        /// <returns>An indicator of  equality; true if <paramref name="left"/> and <paramref name="right"/> are equal.</returns>
+        public static bool operator ==(Age left, Age right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>
+        /// Determines the inequality of two <see cref="Age"/> instances.
+        /// </summary>
+        /// <param name="left">The left <see cref=""/>.</param>
+        /// <param name="right">The right <see cref=""/>.</param>
+        /// <returns>An indicator of  equality; true if <paramref name="left"/> and <paramref name="right"/> are not equal.</returns>
+        public static bool operator !=(Age left, Age right)
+        {
+            return !(left == right);
         }
     }
 }
