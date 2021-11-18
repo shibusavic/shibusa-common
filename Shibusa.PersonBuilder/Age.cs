@@ -11,8 +11,8 @@ namespace Shibusa.PersonBuilder
         private readonly static Random random = new(DateTime.Now.Millisecond);
         private readonly int? minimum;
         private readonly int? maximum;
-        private const int MIN = 0;
-        private const int MAX = 120;
+        private const int MinValue = 0;
+        private const int MaxValue = 120;
 
         /// <summary>
         /// Creates a new instance of the <see cref="Age"/> struct and explicitely sets age.
@@ -57,7 +57,7 @@ namespace Shibusa.PersonBuilder
         /// <returns>An age no less than the value of <paramref name="min"/>.</returns>
         public Age AtLeast(int min)
         {
-            return Between(min, maximum ?? MAX);
+            return Between(min, maximum ?? MaxValue);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Shibusa.PersonBuilder
         /// <returns>An age no greater than the value of <paramref name="max"/>.</returns>
         public Age AtMost(int max)
         {
-            return Between(minimum ?? MIN, max);
+            return Between(minimum ?? MinValue, max);
         }
 
         /// <summary>

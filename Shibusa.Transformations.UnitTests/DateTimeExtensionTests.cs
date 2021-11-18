@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Shibusa.Transformations.UnitTests
 {
-    public class TransformDateTimeTests
+    public class DateTimeExtensionTests
     {
         [Fact]
         public void StartOfDay()
@@ -52,6 +52,45 @@ namespace Shibusa.Transformations.UnitTests
             Assert.Equal(59, eod.Minute);
             Assert.Equal(59, eod.Second);
             Assert.Equal(999, eod.Millisecond);
+        }
+
+        [Fact]
+        public void GetWeekday_Forward_1()
+        {
+            var saturday = new DateTime(2021, 10, 2);
+            var nextWeekday = saturday.AddWeekdays(1);
+            var expected = new DateTime(2021, 10, 4);
+            Assert.Equal(expected, nextWeekday);
+        }
+
+        [Fact]
+        public void GetWeekday_Forward_10()
+        {
+            var saturday = new DateTime(2021, 10, 2);
+            var nextWeekday = saturday.AddWeekdays(10);
+            var expected = new DateTime(2021, 10, 15);
+            Assert.True(nextWeekday.DayOfWeek == DayOfWeek.Friday);
+            Assert.Equal(expected, nextWeekday);
+        }
+
+        [Fact]
+        public void GetWeekday_Reverse_1()
+        {
+            var saturday = new DateTime(2021, 10, 2);
+            var previousWeekday = saturday.AddWeekdays(-1);
+            var expected = new DateTime(2021, 10, 1);
+            Assert.True(previousWeekday.DayOfWeek == DayOfWeek.Friday);
+            Assert.Equal(expected, previousWeekday);
+        }
+
+        [Fact]
+        public void GetWeekday_Reverse_10()
+        {
+            var saturday = new DateTime(2021, 10, 2);
+            var previousWeekday = saturday.AddWeekdays(-10);
+            Assert.True(previousWeekday.DayOfWeek == DayOfWeek.Monday);
+            var expected = new DateTime(2021, 9, 20);
+            Assert.Equal(expected, previousWeekday);
         }
     }
 }

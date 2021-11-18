@@ -9,7 +9,7 @@ namespace Shibusa.Data
     /// </summary>
     public static class SqlFor
     {
-        private const string DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.fffffff";
+        private const string DateFormat = "yyyy-MM-dd HH:mm:ss.fffffff";
 
         /// <summary>
         /// Constructs a T-SQL FOR statement.
@@ -35,22 +35,22 @@ namespace Shibusa.Data
                     break;
                 case TemporalComparison.AsOf:
                     if (!start.HasValue) { throw new ArgumentNullException(nameof(start)); }
-                    result.Append($"AS OF '{start.Value.ToString(DATE_FORMAT)}'");
+                    result.Append($"AS OF '{start.Value.ToString(DateFormat)}'");
                     break;
                 case TemporalComparison.Between:
                     if (!start.HasValue) { throw new ArgumentNullException(nameof(start)); }
                     if (!end.HasValue) { throw new ArgumentNullException(nameof(end)); }
-                    result.Append($"BETWEEN '{start.Value.ToString(DATE_FORMAT)}' AND '{end.Value.ToString(DATE_FORMAT)}'");
+                    result.Append($"BETWEEN '{start.Value.ToString(DateFormat)}' AND '{end.Value.ToString(DateFormat)}'");
                     break;
                 case TemporalComparison.ContainedIn:
                     if (!start.HasValue) { throw new ArgumentNullException(nameof(start)); }
                     if (!end.HasValue) { throw new ArgumentNullException(nameof(end)); }
-                    result.Append($"CONTAINED IN ('{start.Value.ToString(DATE_FORMAT)}','{end.Value.ToString(DATE_FORMAT)}')");
+                    result.Append($"CONTAINED IN ('{start.Value.ToString(DateFormat)}','{end.Value.ToString(DateFormat)}')");
                     break;
                 case TemporalComparison.FromTo:
                     if (!start.HasValue) { throw new ArgumentNullException(nameof(start)); }
                     if (!end.HasValue) { throw new ArgumentNullException(nameof(end)); }
-                    result.Append($"FROM '{start.Value.ToString(DATE_FORMAT)}' TO '{end.Value.ToString(DATE_FORMAT)}'");
+                    result.Append($"FROM '{start.Value.ToString(DateFormat)}' TO '{end.Value.ToString(DateFormat)}'");
                     break;
                 default:
                     throw new ArgumentException($"Unknown temporal comparison type: {comparison}");

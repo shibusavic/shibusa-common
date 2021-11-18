@@ -9,8 +9,8 @@ namespace Shibusa.Transformations.UnitTests
         {
             decimal dailyAmount = 1000M;
 
-            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.DAILY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.DAILY,
+            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Daily,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Daily,
                 amount: dailyAmount);
 
             Assert.Equal(dailyAmount, answer);
@@ -37,56 +37,56 @@ namespace Shibusa.Transformations.UnitTests
             decimal expectedSemiAnnual = expectedMonthly * 6;
             decimal expectedAnnual = expectedMonthly * 12;
 
-            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
+            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Hourly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Hourly,
                 amount: hourlyAmount);
 
             AssertInRange(hourlyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.DAILY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Hourly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Daily,
                 amount: hourlyAmount);
 
             AssertInRange(expectedDailyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Hourly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Weekly,
                 amount: hourlyAmount);
 
             AssertInRange(expectedWeeklyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Hourly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
                 amount: hourlyAmount);
 
             AssertInRange(expectedTwoWeeks, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Hourly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
                 amount: hourlyAmount);
 
             AssertInRange(expectedSemiMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Hourly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Monthly,
                 amount: hourlyAmount);
 
             AssertInRange(expectedMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Hourly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
                 amount: hourlyAmount);
 
             AssertInRange(expectedQuarterly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Hourly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
                 amount: hourlyAmount);
 
             AssertInRange(expectedSemiAnnual, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Hourly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Annually,
                 amount: hourlyAmount);
 
             AssertInRange(expectedAnnual, answer);
@@ -105,56 +105,56 @@ namespace Shibusa.Transformations.UnitTests
             decimal expectedSemiAnnual = expectedMonthly * 6;
             decimal expectedAnnual = expectedMonthly * 12;
 
-            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.DAILY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
+            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Daily,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Hourly,
                 amount: dailyAmount);
 
             AssertInRange(expectedHourlyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.DAILY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.DAILY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Daily,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Daily,
                 amount: dailyAmount);
 
             AssertInRange(dailyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.DAILY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Daily,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Weekly,
                 amount: dailyAmount);
 
             AssertInRange(expectedWeeklyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.DAILY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Daily,
+                targetFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
                 amount: dailyAmount);
 
             AssertInRange(expectedTwoWeeks, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.DAILY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Daily,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
                 amount: dailyAmount);
 
             AssertInRange(expectedSemiMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.DAILY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Daily,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Monthly,
                 amount: dailyAmount);
 
             AssertInRange(expectedMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.DAILY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Daily,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
                 amount: dailyAmount);
 
             AssertInRange(expectedQuarterly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.DAILY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Daily,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
                 amount: dailyAmount);
 
             AssertInRange(expectedSemiAnnual, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.DAILY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Daily,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Annually,
                 amount: dailyAmount);
 
             AssertInRange(expectedAnnual, answer);
@@ -173,56 +173,56 @@ namespace Shibusa.Transformations.UnitTests
             decimal expectedSemiAnnual = expectedMonthly * 6M;
             decimal expectedAnnual = expectedMonthly * 12M;
 
-            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
+            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Weekly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Hourly,
                 amount: weeklyAmount);
 
             AssertInRange(expectedHourlyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.DAILY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Weekly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Daily,
                 amount: weeklyAmount);
 
             AssertInRange(expectedDailyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Weekly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Weekly,
                 amount: weeklyAmount);
 
             AssertInRange(weeklyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Weekly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
                 amount: weeklyAmount);
 
             AssertInRange(expectedTwoWeeks, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Weekly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
                 amount: weeklyAmount);
 
             AssertInRange(expectedSemiMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Weekly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Monthly,
                 amount: weeklyAmount);
 
             AssertInRange(expectedMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Weekly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
                 amount: weeklyAmount);
 
             AssertInRange(expectedQuarterly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Weekly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
                 amount: weeklyAmount);
 
             AssertInRange(expectedSemiAnnual, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Weekly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Annually,
                 amount: weeklyAmount);
 
             AssertInRange(expectedAnnual, answer);
@@ -241,56 +241,56 @@ namespace Shibusa.Transformations.UnitTests
             decimal expectedSemiAnnual = expectedMonthly * 6M;
             decimal expectedAnnual = expectedMonthly * 12M;
 
-            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
-                targetFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
+            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Hourly,
                 amount: baseAmount);
 
             AssertInRange(expectedHourlyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
-                targetFrequency: TransformDollarsByFrequency.Frequency.DAILY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Daily,
                 amount: baseAmount);
 
             AssertInRange(expectedDailyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
-                targetFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Weekly,
                 amount: baseAmount);
 
             AssertInRange(expectedWeekly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
-                targetFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
+                targetFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
                 amount: baseAmount);
 
             AssertInRange(baseAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
                 amount: baseAmount);
 
             AssertInRange(expectedSemiMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
-                targetFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Monthly,
                 amount: baseAmount);
 
             AssertInRange(expectedMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
-                targetFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
                 amount: baseAmount);
 
             AssertInRange(expectedQuarterly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
                 amount: baseAmount);
 
             AssertInRange(expectedSemiAnnual, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
-                targetFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Annually,
                 amount: baseAmount);
 
             AssertInRange(expectedAnnual, answer);
@@ -309,56 +309,56 @@ namespace Shibusa.Transformations.UnitTests
             decimal expectedSemiAnnual = expectedMonthly * 6M;
             decimal expectedAnnual = expectedMonthly * 12M;
 
-            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
+            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Hourly,
                 amount: baseAmount);
 
             AssertInRange(expectedHourlyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.DAILY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Daily,
                 amount: baseAmount);
 
             AssertInRange(expectedDailyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Weekly,
                 amount: baseAmount);
 
             AssertInRange(expectedWeekly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
                 amount: baseAmount);
 
             AssertInRange(expectedEveryTwoWeeks, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
                 amount: baseAmount);
 
             AssertInRange(baseAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Monthly,
                 amount: baseAmount);
 
             AssertInRange(expectedMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
                 amount: baseAmount);
 
             AssertInRange(expectedQuarterly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
                 amount: baseAmount);
 
             AssertInRange(expectedSemiAnnual, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Annually,
                 amount: baseAmount);
 
             AssertInRange(expectedAnnual, answer);
@@ -377,56 +377,56 @@ namespace Shibusa.Transformations.UnitTests
             decimal expectedSemiAnnual = baseAmount * 6M;
             decimal expectedAnnual = baseAmount * 12M;
 
-            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
+            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Monthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Hourly,
                 amount: baseAmount);
 
             AssertInRange(expectedHourlyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.DAILY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Monthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Daily,
                 amount: baseAmount);
 
             AssertInRange(expectedDailyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Monthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Weekly,
                 amount: baseAmount);
 
             AssertInRange(expectedWeekly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Monthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
                 amount: baseAmount);
 
             AssertInRange(expectedEveryTwoWeeks, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Monthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
                 amount: baseAmount);
 
             AssertInRange(expectedSemiMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Monthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Monthly,
                 amount: baseAmount);
 
             AssertInRange(baseAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Monthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
                 amount: baseAmount);
 
             AssertInRange(expectedQuarterly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Monthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
                 amount: baseAmount);
 
             AssertInRange(expectedSemiAnnual, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Monthly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Annually,
                 amount: baseAmount);
 
             AssertInRange(expectedAnnual, answer);
@@ -445,56 +445,56 @@ namespace Shibusa.Transformations.UnitTests
             decimal expectedSemiAnnual = expectedMonthly * 6M;
             decimal expectedAnnual = expectedMonthly * 12M;
 
-            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
+            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Hourly,
                 amount: baseAmount);
 
             AssertInRange(expectedHourlyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.DAILY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Daily,
                 amount: baseAmount);
 
             AssertInRange(expectedDailyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Weekly,
                 amount: baseAmount);
 
             AssertInRange(expectedWeekly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
                 amount: baseAmount);
 
             AssertInRange(expectedEveryTwoWeeks, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
                 amount: baseAmount);
 
             AssertInRange(expectedSemiMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Monthly,
                 amount: baseAmount);
 
             AssertInRange(expectedMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
                 amount: baseAmount);
 
             AssertInRange(baseAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
                 amount: baseAmount);
 
             AssertInRange(expectedSemiAnnual, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Annually,
                 amount: baseAmount);
 
             AssertInRange(expectedAnnual, answer);
@@ -513,56 +513,56 @@ namespace Shibusa.Transformations.UnitTests
             decimal expectedQuarterly = expectedMonthly * 3M;
             decimal expectedAnnual = expectedMonthly * 12M;
 
-            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
+            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Hourly,
                 amount: baseAmount);
 
             AssertInRange(expectedHourlyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.DAILY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Daily,
                 amount: baseAmount);
 
             AssertInRange(expectedDailyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Weekly,
                 amount: baseAmount);
 
             AssertInRange(expectedWeekly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
                 amount: baseAmount);
 
             AssertInRange(expectedEveryTwoWeeks, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
                 amount: baseAmount);
 
             AssertInRange(expectedSemiMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Monthly,
                 amount: baseAmount);
 
             AssertInRange(expectedMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
                 amount: baseAmount);
 
             AssertInRange(expectedQuarterly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
                 amount: baseAmount);
 
             AssertInRange(baseAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Annually,
                 amount: baseAmount);
 
             AssertInRange(expectedAnnual, answer);
@@ -581,56 +581,56 @@ namespace Shibusa.Transformations.UnitTests
             decimal expectedQuarterly = expectedMonthly * 3M;
             decimal expectedSemiAnnually = baseAmount / 2M;
 
-            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.HOURLY,
+            decimal answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Annually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Hourly,
                 amount: baseAmount);
 
             AssertInRange(expectedHourlyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.DAILY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Annually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Daily,
                 amount: baseAmount);
 
             AssertInRange(expectedDailyAmount, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.WEEKLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Annually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Weekly,
                 amount: baseAmount);
 
             AssertInRange(expectedWeekly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.EVERY_TWO_WEEKS,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Annually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.EveryTwoWeeks,
                 amount: baseAmount);
 
             AssertInRange(expectedEveryTwoWeeks, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Annually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiMonthly,
                 amount: baseAmount);
 
             AssertInRange(expectedSemiMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.MONTHLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Annually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Monthly,
                 amount: baseAmount);
 
             AssertInRange(expectedMonthly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.QUARTERLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Annually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Quarterly,
                 amount: baseAmount);
 
             AssertInRange(expectedQuarterly, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.SEMI_ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Annually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.SemiAnnually,
                 amount: baseAmount);
 
             AssertInRange(expectedSemiAnnually, answer);
 
-            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
-                targetFrequency: TransformDollarsByFrequency.Frequency.ANNUALLY,
+            answer = TransformDollarsByFrequency.Convert(sourceFrequency: TransformDollarsByFrequency.Frequency.Annually,
+                targetFrequency: TransformDollarsByFrequency.Frequency.Annually,
                 amount: baseAmount);
 
             AssertInRange(baseAmount, answer);

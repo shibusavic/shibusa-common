@@ -110,11 +110,11 @@ namespace Shibusa.PersonBuilder
             /// </summary>
             public static class Race
             {
-                public const string WHITE = "White";
-                public const string BLACK = "Black";
-                public const string AMERICAN_INDIAN = "American Indian / Alaska Native";
-                public const string HAWAIIAN = "Hawaiian Native / Pacific Islander";
-                public const string OTHER = "Other";
+                public const string White = "White";
+                public const string Black = "Black";
+                public const string AmericanIndian = "American Indian / Alaska Native";
+                public const string Hawaiian = "Hawaiian Native / Pacific Islander";
+                public const string Other = "Other";
 
                 public static IEnumerable<string> GetRaces()
                 {

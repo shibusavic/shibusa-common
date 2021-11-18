@@ -7,21 +7,21 @@ namespace Shibusa.Data.Abstractions
     /// </summary>
     public abstract class PagedTemporalCriteriaBase : TemporalCriteriaBase
     {
-        protected int numberPerPage = CriteriaDefaults.DEFAULT_NUMBER_PER_PAGE;
+        protected int numberPerPage = CriteriaDefaults.DefaultNumberPerPage;
         protected int pageNumber = 1;
 
         /// <summary>
         /// Gets or sets the maximum number of records to be returned per page.
         /// </summary>
         /// <remarks>If this is set to any number less than 1, it will be
-        /// set to <see cref="CriteriaDefaults.DEFAULT_NUMBER_PER_PAGE"/></remarks>
+        /// set to <see cref="CriteriaDefaults.DefaultNumberPerPage"/></remarks>
         public virtual int NumberPerPage
         {
             get => numberPerPage;
             set => numberPerPage = value < 1
-                    ? CriteriaDefaults.DEFAULT_NUMBER_PER_PAGE
-                    : value > CriteriaDefaults.DEFAULT_MAX_PER_PAGE
-                        ? CriteriaDefaults.DEFAULT_MAX_PER_PAGE
+                    ? CriteriaDefaults.DefaultNumberPerPage
+                    : value > CriteriaDefaults.DefaultMaxPerPage
+                        ? CriteriaDefaults.DefaultMaxPerPage
                         : value;
         }
 

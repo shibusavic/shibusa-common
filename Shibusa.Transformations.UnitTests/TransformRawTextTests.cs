@@ -29,10 +29,10 @@ namespace Shibusa.Transformations.UnitTests
         [Fact]
         public void CovertNewLinesAndTabsToSpaces_NoMatch_NoChange()
         {
-            const string empty = "    ";
-            const string noNewlinesOrTabsHere = "I am string, hear me roar.";
-            Assert.Equal(empty, TransformRawText.ConvertNewLinesAndTabsToSpaces(empty));
-            Assert.Equal(noNewlinesOrTabsHere, TransformRawText.ConvertNewLinesAndTabsToSpaces(noNewlinesOrTabsHere));
+            const string Empty = "    ";
+            const string NoNewlinesOrTabsHere = "I am string, hear me roar.";
+            Assert.Equal(Empty, TransformRawText.ConvertNewLinesAndTabsToSpaces(Empty));
+            Assert.Equal(NoNewlinesOrTabsHere, TransformRawText.ConvertNewLinesAndTabsToSpaces(NoNewlinesOrTabsHere));
         }
 
         [Fact]
@@ -105,7 +105,7 @@ namespace Shibusa.Transformations.UnitTests
 
             var output = TransformRawText.Transform(template: text,
                 keyValuePairs: dictionary,
-                regularExpression: TransformRawText.CURLY_BRACE_EXPRESSION,
+                regularExpression: TransformRawText.CurlyBraceExpression,
                 indexOfGroupWithKey: 1);
 
             testOutputHelper.WriteLine(output);
@@ -131,7 +131,7 @@ namespace Shibusa.Transformations.UnitTests
 
             var output = TransformRawText.Transform(template: text,
                 keyValuePairs: dictionary,
-                regularExpression: TransformRawText.BRACKET_EXPRESSION,
+                regularExpression: TransformRawText.BracketExpression,
                 indexOfGroupWithKey: 1);
 
             testOutputHelper.WriteLine(output);
@@ -156,7 +156,7 @@ namespace Shibusa.Transformations.UnitTests
             var dictionary = new Dictionary<string, string> { { "firstname", firstName } };
             var output = TransformRawText.Transform(template: text,
                 keyValuePairs: dictionary,
-                regularExpression: TransformRawText.POUND_EXPRESSION,
+                regularExpression: TransformRawText.PoundExpression,
                 indexOfGroupWithKey: 1);
 
             testOutputHelper.WriteLine(output);
@@ -184,7 +184,7 @@ Hello #FirstName#!
 
             var output = TransformRawText.Transform(template: text,
                 keyValuePairs: new Dictionary<string, string> { { "firstname", firstName } },
-                regularExpression: TransformRawText.POUND_EXPRESSION,
+                regularExpression: TransformRawText.PoundExpression,
                 indexOfGroupWithKey: 1);
 
             testOutputHelper.WriteLine(output);
@@ -255,7 +255,7 @@ Hello #FirstName#!
             {
                 var output = TransformRawText.Transform(template: text,
                     keyValuePairs: new Dictionary<string, string> { { "firstname", firstName } },
-                    regularExpression: TransformRawText.POUND_EXPRESSION);
+                    regularExpression: TransformRawText.PoundExpression);
             });
         }
 
@@ -270,7 +270,7 @@ Hello #FirstName#!
 
             var output = TransformRawText.Transform(template: text,
                 keyValuePairs: new Dictionary<string, string> { { "firstname", firstName } },
-                regularExpression: TransformRawText.POUND_EXPRESSION,
+                regularExpression: TransformRawText.PoundExpression,
                 indexOfGroupWithKey: 1,
                 throwOnMissingKeys: false,
                 replaceMissingKeysWithEmptySpace: false);
@@ -291,7 +291,7 @@ Hello #FirstName#!
 
             var output = TransformRawText.Transform(template: text,
                 keyValuePairs: new Dictionary<string, string> { { "firstname", firstName } },
-                regularExpression: TransformRawText.POUND_EXPRESSION,
+                regularExpression: TransformRawText.PoundExpression,
                 indexOfGroupWithKey: 1,
                 throwOnMissingKeys: false,
                 replaceMissingKeysWithEmptySpace: true);
@@ -362,7 +362,7 @@ Hello #FirstName#!
             };
             var output = TransformRawText.Transform(template: text,
                 keyValuePairs: dictionary,
-                regularExpression: TransformRawText.POUND_EXPRESSION,
+                regularExpression: TransformRawText.PoundExpression,
                 indexOfGroupWithKey: 1);
 
             testOutputHelper.WriteLine(output);
@@ -383,7 +383,7 @@ Hello #FirstName#!
                     { "firstname", "#lastname#" },
                     { "lastname", "#firstname#" },
                 },
-                regularExpression: TransformRawText.POUND_EXPRESSION,
+                regularExpression: TransformRawText.PoundExpression,
                 indexOfGroupWithKey: 1,
                 throwOnMissingKeys: false,
                 recursive: true,

@@ -9,7 +9,7 @@ namespace Shibusa.Data.UnitTests
     public class SqlWhereTests
     {
         private readonly ITestOutputHelper testOutputHelper;
-        private const string DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.fffffff";
+        private const string DateFormat = "yyyy-MM-dd HH:mm:ss.fffffff";
 
         public SqlWhereTests(ITestOutputHelper testOutputHelper)
         {
@@ -56,7 +56,7 @@ namespace Shibusa.Data.UnitTests
             DateTime start = DateTime.Now.AddDays(-1);
             DateTime finish = DateTime.Now.AddDays(1);
 
-            string expected = $"((((Name IS NULL AND Age > 30) OR (Name LIKE '%e%' AND Age < 30)) AND BankBalance BETWEEN 0 AND 500000) OR (TimeCreated = '{start.ToString(DATE_FORMAT)}' OR TimeCreated = '{finish.ToString(DATE_FORMAT)}'))";
+            string expected = $"((((Name IS NULL AND Age > 30) OR (Name LIKE '%e%' AND Age < 30)) AND BankBalance BETWEEN 0 AND 500000) OR (TimeCreated = '{start.ToString(DateFormat)}' OR TimeCreated = '{finish.ToString(DateFormat)}'))";
 
             SqlWhere query = SqlWhere.WhereEqual(left: "Name", right: default(string))
                 .And(SqlWhere.WhereGreaterThan("Age", 30))
@@ -98,7 +98,7 @@ namespace Shibusa.Data.UnitTests
 
             testOutputHelper.WriteLine(actual);
 
-            Assert.Equal($"FOR SYSTEM_TIME AS OF '{date.ToString(DATE_FORMAT)}'", actual);
+            Assert.Equal($"FOR SYSTEM_TIME AS OF '{date.ToString(DateFormat)}'", actual);
         }
 
         [Fact]
@@ -108,7 +108,7 @@ namespace Shibusa.Data.UnitTests
             DateTime finish = DateTime.Now.AddDays(1);
 
             string actual = SqlFor.Create(TemporalComparison.Between, start, finish);
-            string expected = $"FOR SYSTEM_TIME BETWEEN '{start.ToString(DATE_FORMAT)}' AND '{finish.ToString(DATE_FORMAT)}'";
+            string expected = $"FOR SYSTEM_TIME BETWEEN '{start.ToString(DateFormat)}' AND '{finish.ToString(DateFormat)}'";
             Assert.Equal(expected, actual);
         }
 
@@ -119,7 +119,7 @@ namespace Shibusa.Data.UnitTests
             DateTime finish = DateTime.Now.AddDays(1);
 
             string actual = SqlFor.Create(TemporalComparison.ContainedIn, start,finish);
-            string expected = $"FOR SYSTEM_TIME CONTAINED IN ('{start.ToString(DATE_FORMAT)}','{finish.ToString(DATE_FORMAT)}')";
+            string expected = $"FOR SYSTEM_TIME CONTAINED IN ('{start.ToString(DateFormat)}','{finish.ToString(DateFormat)}')";
             Assert.Equal(expected, actual);
         }
 
@@ -130,7 +130,7 @@ namespace Shibusa.Data.UnitTests
             DateTime finish = DateTime.Now.AddDays(1);
 
             string actual = SqlFor.Create(TemporalComparison.FromTo, start, finish);
-            string expected = $"FOR SYSTEM_TIME FROM '{start.ToString(DATE_FORMAT)}' TO '{finish.ToString(DATE_FORMAT)}'";
+            string expected = $"FOR SYSTEM_TIME FROM '{start.ToString(DateFormat)}' TO '{finish.ToString(DateFormat)}'";
             Assert.Equal(expected, actual);
         }
     }

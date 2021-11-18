@@ -14,7 +14,7 @@ namespace Shibusa.Data
     /// </summary>
     public sealed class SqlWhere : IEquatable<SqlWhere>
     {
-        private const string DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.fffffff";
+        private const string DateFormat = "yyyy-MM-dd HH:mm:ss.fffffff";
 
         /// <summary>
         /// The raw T-SQL to attach to a "WHERE" statement. This value does not
@@ -464,7 +464,7 @@ namespace Shibusa.Data
 
         private static string MakeDateSqlReady(DateTime date, bool makeLikable = false)
         {
-            return CleanseSql(date.ToString(DATE_FORMAT), makeLikable);
+            return CleanseSql(date.ToString(DateFormat), makeLikable);
         }
 
         private static string MakeSqlReady<T>(T item, bool makeLikable = false)

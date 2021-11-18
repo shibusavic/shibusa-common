@@ -10,19 +10,19 @@ namespace Shibusa.Reports.UnitTests
     /// </summary>
     public class ConsoleReportTests
     {
-        const string pipeDelimiter = " | ";
+        const string PipeDelimiter = " | ";
 
         [Fact]
         public void SetHeaders_Succeeds()
         {
             string[] headers = new string[] { "A", "B", "C" };
 
-            string expectedHeaderString = string.Join(pipeDelimiter, headers);
+            string expectedHeaderString = string.Join(PipeDelimiter, headers);
 
             var report = new ConsoleReport(new ReportConfiguration()
             {
                 AddDiscoveredHeaders = false,
-                Delimiter = pipeDelimiter,
+                Delimiter = PipeDelimiter,
                 HeadersAreCaseSensitive = false
             });
 
@@ -39,12 +39,12 @@ namespace Shibusa.Reports.UnitTests
         {
             string[] expectedHeaders = new string[] { "A", "B", "C" };
 
-            string expectedHeaderString = string.Join(pipeDelimiter, expectedHeaders);
+            string expectedHeaderString = string.Join(PipeDelimiter, expectedHeaders);
 
             var report = new ConsoleReport(new ReportConfiguration()
             {
                 AddDiscoveredHeaders = true,
-                Delimiter = pipeDelimiter,
+                Delimiter = PipeDelimiter,
                 HeadersAreCaseSensitive = false
             });
 
@@ -66,13 +66,13 @@ namespace Shibusa.Reports.UnitTests
             string[] expectedHeaders = new string[] { "A", "B", "C" };
             string[] expectedLineItems = new string[] { "a", "b", "c" };
 
-            string expectedHeaderString = string.Join(pipeDelimiter, expectedHeaders);
-            string expectedLineString = string.Join(pipeDelimiter, expectedLineItems);
+            string expectedHeaderString = string.Join(PipeDelimiter, expectedHeaders);
+            string expectedLineString = string.Join(PipeDelimiter, expectedLineItems);
 
             var report = new ConsoleReport(new ReportConfiguration()
             {
                 AddDiscoveredHeaders = false,
-                Delimiter = pipeDelimiter,
+                Delimiter = PipeDelimiter,
                 HeadersAreCaseSensitive = false
             });
 
@@ -99,7 +99,7 @@ namespace Shibusa.Reports.UnitTests
             var report = new ConsoleReport(new ReportConfiguration()
             {
                 AddDiscoveredHeaders = true,
-                Delimiter = pipeDelimiter,
+                Delimiter = PipeDelimiter,
                 HeadersAreCaseSensitive = false
             });
 
@@ -123,7 +123,7 @@ namespace Shibusa.Reports.UnitTests
             {
                 AddDiscoveredHeaders = false,
                 IgnoreExtraLineValues = false,
-                Delimiter = pipeDelimiter,
+                Delimiter = PipeDelimiter,
                 HeadersAreCaseSensitive = false
             });
 
@@ -139,7 +139,7 @@ namespace Shibusa.Reports.UnitTests
             {
                 AddDiscoveredHeaders = false,
                 IgnoreExtraLineValues = false,
-                Delimiter = pipeDelimiter,
+                Delimiter = PipeDelimiter,
                 HeadersAreCaseSensitive = true
             });
 
@@ -160,7 +160,7 @@ namespace Shibusa.Reports.UnitTests
             {
                 AddDiscoveredHeaders = false,
                 IgnoreExtraLineValues = false,
-                Delimiter = pipeDelimiter,
+                Delimiter = PipeDelimiter,
                 HeadersAreCaseSensitive = false
             });
 
@@ -186,7 +186,7 @@ namespace Shibusa.Reports.UnitTests
             {
                 AddDiscoveredHeaders = true,
                 IgnoreExtraLineValues = false,
-                Delimiter = pipeDelimiter,
+                Delimiter = PipeDelimiter,
                 HeadersAreCaseSensitive = false,
                 MaxColumnLength = 5
             });
@@ -213,7 +213,7 @@ namespace Shibusa.Reports.UnitTests
             {
                 AddDiscoveredHeaders = true,
                 IgnoreExtraLineValues = false,
-                Delimiter = pipeDelimiter,
+                Delimiter = PipeDelimiter,
                 HeadersAreCaseSensitive = false,
                 MaxColumnLength = 5
             });
@@ -236,7 +236,7 @@ namespace Shibusa.Reports.UnitTests
             {
                 AddDiscoveredHeaders = true,
                 IgnoreExtraLineValues = false,
-                Delimiter = pipeDelimiter,
+                Delimiter = PipeDelimiter,
                 HeadersAreCaseSensitive = false,
                 MaxColumnLength = 5
             });
@@ -258,7 +258,7 @@ namespace Shibusa.Reports.UnitTests
             {
                 AddDiscoveredHeaders = true,
                 IgnoreExtraLineValues = false,
-                Delimiter = pipeDelimiter,
+                Delimiter = PipeDelimiter,
                 HeadersAreCaseSensitive = false,
                 MaxColumnLength = 5
             });
@@ -285,7 +285,7 @@ namespace Shibusa.Reports.UnitTests
         {
             var report = new ConsoleReport(new ReportConfiguration()
             {
-                Delimiter = pipeDelimiter,
+                Delimiter = PipeDelimiter,
                 HeadersAreCaseSensitive = false,
             });
 
@@ -302,7 +302,7 @@ namespace Shibusa.Reports.UnitTests
         {
             var report = new ConsoleReport(new ReportConfiguration()
             {
-                Delimiter = pipeDelimiter,
+                Delimiter = PipeDelimiter,
                 HeadersAreCaseSensitive = false,
             });
 

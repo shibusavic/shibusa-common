@@ -19,7 +19,7 @@ namespace Shibusa.Data.Abstractions
         /// Gets or sets the logical operator to apply to combinations of values among the properties
         /// in this object.
         /// </summary>
-        public virtual LogicalOperator LogicalOperator { get; set; } = CriteriaDefaults.DEFAULT_LOGICAL_OPERATOR;
+        public virtual LogicalOperator LogicalOperator { get; set; } = CriteriaDefaults.DefaultLogicalOperator;
 
         /// <summary>
         /// Gets a <see cref="IDictionary{TKey, TValue}"/> of strings (e.g., column or property names) and <see cref="SortOrder"/> values by which

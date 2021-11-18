@@ -8,22 +8,22 @@ namespace Shibusa.Data.Abstractions
         /// <summary>
         /// The default page number for queries.
         /// </summary>
-        public const int DEFAULT_PAGE_NUMBER = 1;
+        public const int DefaultPageNumber = 1;
 
         /// <summary>
         /// The default number of records per page.
         /// </summary>
-        public const int DEFAULT_NUMBER_PER_PAGE = 50;
+        public const int DefaultNumberPerPage = 50;
 
         /// <summary>
         /// The default maximum number of records to return per page.
         /// </summary>
-        public const int DEFAULT_MAX_PER_PAGE = 1000;
+        public const int DefaultMaxPerPage = 1000;
 
         /// <summary>
         /// The default <see cref="LogicalOperator"/> for query criterion conjunctions.
         /// </summary>
-        public const LogicalOperator DEFAULT_LOGICAL_OPERATOR = LogicalOperator.And;
+        public const LogicalOperator DefaultLogicalOperator = LogicalOperator.And;
     }
 
     /// <summary>

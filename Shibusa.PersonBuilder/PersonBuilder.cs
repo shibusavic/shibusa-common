@@ -81,11 +81,11 @@ namespace Shibusa.PersonBuilder
             surnameCount = surnames.Count;
 
             races = new HashSet<string>() {
-                Constants.Race.WHITE,
-                Constants.Race.BLACK,
-                Constants.Race.AMERICAN_INDIAN,
-                Constants.Race.HAWAIIAN,
-                Constants.Race.OTHER
+                Constants.Race.White,
+                Constants.Race.Black,
+                Constants.Race.AmericanIndian,
+                Constants.Race.Hawaiian,
+                Constants.Race.Other
             };
 
             ethnicities = new HashSet<string>() {

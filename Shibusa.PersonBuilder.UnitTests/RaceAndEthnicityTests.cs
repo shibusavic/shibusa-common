@@ -26,18 +26,18 @@ namespace Shibusa.PersonBuilder.UnitTests
         public void GetRaces()
         {
             var races = PersonBuilder.Constants.Race.GetRaces();
-            Assert.Contains(PersonBuilder.Constants.Race.WHITE, races);
+            Assert.Contains(PersonBuilder.Constants.Race.White, races);
         }
 
         [Fact]
         public void WithRaces_Single()
         {
             var person = new PersonBuilder()
-                .WithRace(PersonBuilder.Constants.Race.HAWAIIAN)
+                .WithRace(PersonBuilder.Constants.Race.Hawaiian)
                 .Build();
 
             Assert.Single(person.Races);
-            Assert.Contains(PersonBuilder.Constants.Race.HAWAIIAN, person.Races);
+            Assert.Contains(PersonBuilder.Constants.Race.Hawaiian, person.Races);
         }
 
         [Fact]

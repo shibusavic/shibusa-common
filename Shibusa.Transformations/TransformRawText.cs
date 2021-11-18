@@ -12,22 +12,22 @@ namespace Shibusa.Transformations
         /// <summary>
         /// The regular expression for the data tag match.
         /// </summary>
-        public const string DATA_TAG_EXPRESSION = @"<data name=""([^\""]+)""[\s+]?\/>";
+        public const string DataTagExpression = @"<data name=""([^\""]+)""[\s+]?\/>";
 
         /// <summary>
         /// The regular expression for the curly brace match.
         /// </summary>
-        public const string CURLY_BRACE_EXPRESSION = @"\{[\s+]?([^\}]+)\}";
+        public const string CurlyBraceExpression = @"\{[\s+]?([^\}]+)\}";
 
         /// <summary>
         /// The regular expression for the bracket match.
         /// </summary>
-        public const string BRACKET_EXPRESSION = @"\[[\s+]?([^\}]+)\]";
+        public const string BracketExpression = @"\[[\s+]?([^\}]+)\]";
 
         /// <summary>
         /// The regular expression for the pound match.
         /// </summary>
-        public const string POUND_EXPRESSION = @"#[\s+]?([^#}]+)#";
+        public const string PoundExpression = @"#[\s+]?([^#}]+)#";
 
         /// <summary>
         /// Convert all newline and tab characters to spaces.
@@ -78,7 +78,7 @@ namespace Shibusa.Transformations
         /// matched groups.</exception>
         public static string Transform(string template,
             Dictionary<string, string> keyValuePairs,
-            string regularExpression = DATA_TAG_EXPRESSION,
+            string regularExpression = DataTagExpression,
             int indexOfGroupWithKey = 0,
             bool throwOnMissingKeys = true,
             bool replaceMissingKeysWithEmptySpace = true,
@@ -161,7 +161,7 @@ namespace Shibusa.Transformations
             Dictionary<string, string> keyValuePairs,
             bool recursive = false) => Transform(template: template,
                 keyValuePairs: keyValuePairs,
-                regularExpression: DATA_TAG_EXPRESSION,
+                regularExpression: DataTagExpression,
                 indexOfGroupWithKey: 1,
                 recursive: recursive);
 
@@ -177,7 +177,7 @@ namespace Shibusa.Transformations
         public static string TransformBraces(string template,
             Dictionary<string, string> keyValuePairs, bool recursive = false) => Transform(template: template,
                 keyValuePairs: keyValuePairs,
-                regularExpression: CURLY_BRACE_EXPRESSION,
+                regularExpression: CurlyBraceExpression,
                 indexOfGroupWithKey: 1,
                 recursive: recursive);
 
@@ -194,7 +194,7 @@ namespace Shibusa.Transformations
             Dictionary<string, string> keyValuePairs,
             bool recursive = false) => Transform(template: template,
                 keyValuePairs: keyValuePairs,
-                regularExpression: POUND_EXPRESSION,
+                regularExpression: PoundExpression,
                 indexOfGroupWithKey: 1,
                 recursive: recursive);
 
@@ -211,7 +211,7 @@ namespace Shibusa.Transformations
             Dictionary<string, string> keyValuePairs,
             bool recursive = false) => Transform(template: template,
                 keyValuePairs: keyValuePairs,
-                regularExpression: BRACKET_EXPRESSION,
+                regularExpression: BracketExpression,
                 indexOfGroupWithKey: 1,
                 recursive: recursive);
     }
