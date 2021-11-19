@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<PackageId>Shibusa.Transformations</PackageId>
 		<Title>Shibusa Transformations Library</Title>
 		<Description>Common transformation functions, such as transforming DateTime objects, transforming raw text, creating file hashes, converting dollar amounts by frequency, dealing with Social Security Numbers, Enum descriptions, etc.</Description>
-		<Version>5.0.0</Version>
+		<Version>6.0.0</Version>
 		<Authors>shibusavic</Authors>
 		<Company>Shibusa LLC</Company>
 		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
