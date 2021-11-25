@@ -8,8 +8,8 @@ namespace Shibusa.Data
 {
     /// <summary>
     /// Represents a complete T-SQL WHERE clause. This class implements the Specification pattern to provide
-    /// AND, OR, ANDNOT, and ORNOT combinations. Clauses can be joined together in a variety of ways, even
-    /// providing complex nested conditions.
+    /// AND, OR, AND NOT, and OR NOT combinations. Clauses can be joined together in a variety of ways, including
+    /// complex nested conditions.
     /// <seealso cref="https://en.wikipedia.org/wiki/Specification_pattern"/>
     /// </summary>
     public sealed class SqlWhere : IEquatable<SqlWhere>
@@ -17,13 +17,7 @@ namespace Shibusa.Data
         private const string DateFormat = "yyyy-MM-dd HH:mm:ss.fffffff";
 
         /// <summary>
-        /// The raw T-SQL to attach to a "WHERE" statement. This value does not
-        /// begin with the 'WHERE' statement.
-        /// </summary>
-        public string Raw { get; private set; }
-
-        /// <summary>
-        /// Default constructor.
+        /// Creates a new instance of the <see cref="SqlWhere"/> clause.
         /// </summary>
         public SqlWhere()
         {
@@ -31,86 +25,85 @@ namespace Shibusa.Data
         }
 
         /// <summary>
-        /// Constructor that takes in an applicable string representing the WHERE clause.
+        /// Creates a new instance of the <see cref="SqlWhere"/> clause.
         /// </summary>
         /// <param name="where">The WHERE clause with which to prime the <see cref="Raw"/> property.</param>
         public SqlWhere(string where)
         {
-            Raw = string.IsNullOrWhiteSpace(where)
-                ? throw new ArgumentNullException(nameof(where))
-                : where;
+            Raw = where ?? string.Empty;
         }
 
         /// <summary>
-        /// Constructor that takes in an existing <see cref="SqlWhere"/> object.
+        /// Creates a new instance of the <see cref="SqlWhere"/> clause.
         /// </summary>
         /// <param name="where">The <see cref="SqlWhere"/> object to clone.</param>
         public SqlWhere(SqlWhere where)
         {
-            Raw = where == null ? throw new ArgumentNullException(nameof(where))
-                : where.Raw;
+            Raw = where?.Raw ?? string.Empty;
         }
 
         /// <summary>
-        /// Creates a clone of the provided <see cref="SqlWhere"/> object.
+        /// Gets the raw T-SQL string to attach to a "WHERE" statement. This value does NOT begin with the 'WHERE' statement.
         /// </summary>
-        /// <param name="where">The object to clone.</param>
-        /// <returns>A new <see cref="SqlWhere"/>.</returns>
+        public string Raw { get; private set; }
+
+        /// <summary>
+        /// Creates a clone of the provided <see cref="SqlWhere"/> instance.
+        /// </summary>
+        /// <param name="where">The <see cref="SqlWhere"/> instance to clone.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance.</returns>
         public static SqlWhere Where(SqlWhere where) => new(where);
 
         /// <summary>
-        /// Creates a new <see cref="SqlWhere"/> object that takes in an applicable string representing the WHERE clause.
+        /// Creates a new <see cref="SqlWhere"/> instance that takes in an applicable string representing the WHERE clause.
         /// </summary>
         /// <param name="where">The WHERE clause with which to prime the <see cref="Raw"/> property.</param>
-        /// <returns>A new <see cref="SqlWhere"/>.</returns>
+        /// <returns>A <see cref="SqlWhere"/> instance</returns>
         public static SqlWhere Where(string where) => new(where);
 
         /// <summary>
-        /// Attaches the <see cref="Raw"/> of an <see cref="WhereClause"/> to the existing <see cref="Raw"/> with an AND conjunction.
+        /// Attaches the <see cref="Raw"/> of a <see cref="SqlWhere"/> to the existing <see cref="Raw"/> with an AND conjunction.
         /// </summary>
-        /// <param name="where">The <see cref="WhereClause"/> implementation to attach to the existing WHERE clause.</param>
-        /// <returns>A new <see cref="SqlWhere"/>.</returns>
-        public SqlWhere And(SqlWhere where) => new($"({Raw} AND {where.Raw})");
+        /// <param name="where">The <see cref="SqlWhere"/> instance to attach to the existing WHERE clause.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance with the combined WHERE clause.</returns>
+        public SqlWhere And(SqlWhere where) => string.IsNullOrWhiteSpace(Raw) ? new(where) : new($"({Raw} AND {where.Raw})");
 
         /// <summary>
-        /// Attaches the <see cref="Raw"/> of a <see cref="WhereClause"/> to the existing <see cref="Raw"/> with an OR conjunction.
+        /// Attaches the <see cref="Raw"/> of a <see cref="SqlWhere"/> to the existing <see cref="Raw"/> with an OR conjunction.
         /// </summary>
-        /// <param name="where">The <see cref="WhereClause"/> implementation to attach to the existing WHERE clause.</param>
-        /// <returns>An <see cref="WhereClause"/> implementation with the combined WHERE clause.</returns>
-        public SqlWhere Or(SqlWhere where) => new($"({Raw} OR {where.Raw})");
+        /// <param name="where">The <see cref="SqlWhere"/> instance to attach to the existing WHERE clause.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance with the combined WHERE clause.</returns>
+        public SqlWhere Or(SqlWhere where) => string.IsNullOrWhiteSpace(Raw) ? new(where) : new($"({Raw} OR {where.Raw})");
 
         /// <summary>
-        /// Attaches the <see cref="Raw"/> of a <see cref="WhereClause"/> to the existing <see cref="Raw"/> with an AND NOT conjunction.
+        /// Attaches the <see cref="Raw"/> of a <see cref="SqlWhere"/> to the existing <see cref="Raw"/> with an AND NOT conjunction.
         /// </summary>
-        /// <param name="where">The <see cref="WhereClause"/> implementation to attach to the existing WHERE clause.</param>
-        /// <returns>An <see cref="WhereClause"/> implementation with the combined WHERE clause.</returns>
-        public SqlWhere AndNot(SqlWhere where) => new($"({Raw} AND NOT {where.Raw})");
+        /// <param name="where">The <see cref="SqlWhere"/> instance to attach to the existing WHERE clause.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance with the combined WHERE clause.</returns>
+        public SqlWhere AndNot(SqlWhere where) => string.IsNullOrWhiteSpace(Raw) ? new(where) : new($"({Raw} AND NOT {where.Raw})");
 
         /// <summary>
-        /// Attaches the <see cref="Raw"/> of a <see cref="WhereClause"/> to the existing <see cref="Raw"/> with an OR NOT conjunction.
+        /// Attaches the <see cref="Raw"/> of a <see cref="SqlWhere"/> to the existing <see cref="Raw"/> with an OR NOT conjunction.
         /// </summary>
-        /// <param name="where">The <see cref="WhereClause"/> implementation to attach to the existing WHERE clause.</param>
-        /// <returns>An <see cref="WhereClause"/> implementation with the combined WHERE clause.</returns>
-        public SqlWhere OrNot(SqlWhere where) => new($"({Raw} OR NOT {where.Raw})");
+        /// <param name="where">The <see cref="SqlWhere"/> instance to attach to the existing WHERE clause.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance with the combined WHERE clause.</returns>
+        public SqlWhere OrNot(SqlWhere where) => string.IsNullOrWhiteSpace(Raw) ? new(where) : new($"({Raw} OR NOT {where.Raw})");
 
         /// <summary>
-        /// Creates an <see cref="SqlWhere"/> implementation that compares the left to the
-        /// right using the <see cref="Comparison"/> value provided.
+        /// Creates a <see cref="SqlWhere"/> instance that compares the left to the right using the <see cref="Comparison"/> value provided.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., int, string, datetime).</typeparam>
+        /// <typeparam name="T">Any type, but typically those commonly converted to data storage
+        /// (e.g., <see cref="int"/>, <see cref="string"/>, or <see cref="DateTime"/>).</typeparam>
         /// <param name="left">The name of the column reference.</param>
-        /// <param name="comparison">The type of comparison to be constructed.
-        /// <seealso cref="Comparison"/></param>
-        /// <param name="right">The object to compare to the left value.</param>
-        /// <param name="right2">A second object to support the T-SQL BETWEEN keyword.</param>
-        /// <param name="makeFriendly">If true, the values in right and right2
-        /// will be wrapped in ticks or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// the comparison specified. <seealso cref="WhereClause.RawSql"/></returns>
-        /// <remarks>This method cannot support IN or NOT IN. Use the methods that take in IEnumerable arguments.</remarks>
+        /// <param name="comparison">The type of <see cref="Comparison"/> to be constructed.</param>
+        /// <param name="right">A collection of type T to which the left should be compared.</param>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance representing the comparison specified.</returns>
         public static SqlWhere Where<T>(string left, Comparison comparison, IEnumerable<T> right, bool makeFriendly = true)
         {
+            if (string.IsNullOrWhiteSpace(left)) { throw new ArgumentNullException(nameof(left)); }
+            if (!(right?.Any() ?? false)) { return null; }
+
             var whereClause = new StringBuilder();
 
             List<string> modifiedRight;
@@ -121,7 +114,7 @@ namespace Shibusa.Data
             else
             {
                 modifiedRight = new List<string>();
-                right.ToList().ForEach(i => modifiedRight.Add(i.ToString()));
+                right.ToList().ForEach(r => modifiedRight.Add(r.ToString()));
             }
 
             whereClause.Append($"{left}");
@@ -137,7 +130,9 @@ namespace Shibusa.Data
                 case Comparison.Equal:
                 case Comparison.NotEqual:
                 case Comparison.Like:
+                case Comparison.CiLike:
                 case Comparison.NotLike:
+                case Comparison.NotCiLike:
                 case Comparison.LessThan:
                 case Comparison.LessThanOrEqual:
                 case Comparison.GreaterThan:
@@ -153,47 +148,39 @@ namespace Shibusa.Data
         }
 
         /// <summary>
-        /// Creates an object implementing <see cref="SqlWhere"/> that represents
-        /// an equality comparison between left and right.
+        /// Creates an instance of <see cref="SqlWhere"/> that represents an equality comparison between left and right.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., <see cref="Int32"/>, <see cref="String"/>, or <see cref="DateTime"/>).</typeparam>
+        /// <typeparam name="T">Any type, but typically those commonly converted to data storage
+        /// (e.g., <see cref="int"/>, <see cref="string"/>, or <see cref="DateTime"/>).</typeparam>
         /// <param name="left">The name of the column reference.</param>
         /// <param name="right">The object to compare to the left value.</param>
-        /// <param name="makeFriendly">If true, the value of right will be wrapped in ticks
-        /// or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// an equality check. <seealso cref="WhereClause.RawSql"/></returns>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>An instance of <see cref="SqlWhere"/> that has raw SQL representing an equality check.</returns>
         public static SqlWhere WhereEqual<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.Equal, right, default, makeFriendly);
 
         /// <summary>
-        /// Creates an object implementing <see cref="SqlWhere"/> that represents
-        /// a lack of equality comparison between left and right.
+        /// Creates an instance of <see cref="SqlWhere"/> that represents a lack of equality comparison between left and right.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., <see cref="Int32"/>, <see cref="String"/>, or <see cref="DateTime"/>).</typeparam>
+        /// <typeparam name="T">Any type, but typically those commonly converted to data storage
+        /// (e.g., <see cref="int"/>, <see cref="string"/>, or <see cref="DateTime"/>).</typeparam>
         /// <param name="left">The name of the column reference.</param>
         /// <param name="right">The object to compare to the left value.</param>
-        /// <param name="makeFriendly">If true, the value of right will be wrapped in ticks
-        /// or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// a check for lack of equality. <seealso cref="WhereClause.RawSql"/></returns>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>An instance of <see cref="SqlWhere"/> representing an inequality.</returns>
         public static SqlWhere WhereNotEqual<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.NotEqual, right, default, makeFriendly);
 
         /// <summary>
-        /// Creates an object implementing <see cref="SqlWhere"/> that represents
-        /// a left '&gt;' right comparison.
+        /// Creates an instance of <see cref="SqlWhere"/> that represents a left '&gt;' right comparison.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., <see cref="Int32"/>, <see cref="String"/>, or <see cref="DateTime"/>).</typeparam>
+        /// <typeparam name="T">Any type, but typically those commonly converted to data storage
+        /// (e.g., <see cref="int"/>, <see cref="string"/>, or <see cref="DateTime"/>).</typeparam>
         /// <param name="left">The name of the column reference.</param>
         /// <param name="right">The object to compare to the left value.</param>
-        /// <param name="makeFriendly">If true, the value of right will be wrapped in ticks
-        /// or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// a '&gt;' comparison. <seealso cref="WhereClause.RawSql"/></returns>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>An object with an <see cref="SqlWhere"/> instance that has raw SQL representing
+        /// a '&gt;' comparison. </returns>
         public static SqlWhere WhereGreaterThan<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.GreaterThan, right, default, makeFriendly);
 
@@ -201,158 +188,131 @@ namespace Shibusa.Data
         /// Creates an object implementing <see cref="SqlWhere"/> that represents
         /// a left '&gt;=' right comparison.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., <see cref="Int32"/>, <see cref="String"/>, or <see cref="DateTime"/>).</typeparam>
+        /// <typeparam name="T">Any type, but typically those commonly converted to data storage
+        /// (e.g., <see cref="int"/>, <see cref="string"/>, or <see cref="DateTime"/>).</typeparam>
         /// <param name="left">The name of the column reference.</param>
         /// <param name="right">The object to compare to the left value.</param>
-        /// <param name="makeFriendly">If true, the value of right will be wrapped in ticks
-        /// or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// a '&gt;=' comparison. <seealso cref="WhereClause.RawSql"/></returns>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>An object with an <see cref="SqlWhere"/> instance that has raw SQL representing
+        /// a '&gt;=' comparison.</returns>
         public static SqlWhere WhereGreaterThanOrEqual<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.GreaterThanOrEqual, right, default, makeFriendly);
 
         /// <summary>
-        /// Creates an object implementing <see cref="SqlWhere"/> that represents
-        /// a left '&lt;' right comparison.
+        /// Creates an object implementing <see cref="SqlWhere"/> that represents a left '&lt;' right comparison.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., <see cref="Int32"/>, <see cref="String"/>, or <see cref="DateTime"/>).</typeparam>
+        /// <typeparam name="T">Any type, but typically those commonly converted to data storage
+        /// (e.g., <see cref="int"/>, <see cref="string"/>, or <see cref="DateTime"/>).</typeparam>
         /// <param name="left">The name of the column reference.</param>
         /// <param name="right">The object to compare to the left value.</param>
-        /// <param name="makeFriendly">If true, the value of right will be wrapped in ticks
-        /// or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// a '&lt;' comparison. <seealso cref="WhereClause.RawSql"/></returns>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance that has raw SQL representing a '&lt;' comparison. </returns>
         public static SqlWhere WhereLessThan<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.LessThan, right, default, makeFriendly);
 
         /// <summary>
-        /// Creates an object implementing <see cref="SqlWhere"/> that represents
-        /// a left '&lt;=' right comparison.
+        /// Creates an object implementing <see cref="SqlWhere"/> that represents a left '&lt;=' right comparison.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., <see cref="Int32"/>, <see cref="String"/>, or <see cref="DateTime"/>).</typeparam>
+        /// <typeparam name="T">Any type, but typically those commonly converted to data storage
+        /// (e.g., <see cref="int"/>, <see cref="string"/>, or <see cref="DateTime"/>).</typeparam>
         /// <param name="left">The name of the column reference.</param>
         /// <param name="right">The object to compare to the left value.</param>
-        /// <param name="makeFriendly">If true, the value of right will be wrapped in ticks
-        /// or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// a '&lt;=' comparison. <seealso cref="WhereClause.RawSql"/></returns>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance that has raw SQL representing a '&lt;=' comparison. </returns>
         public static SqlWhere WhereLessThanOrEqual<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.LessThanOrEqual, right, default, makeFriendly);
 
         /// <summary>
-        /// Creates an object implementing <see cref="SqlWhere"/> that represents
-        /// a check using LIKE to compare left and right.
+        /// Creates a <see cref="SqlWhere"/> instance that represents a check using LIKE to compare left and right.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., <see cref="Int32"/>, <see cref="String"/>, or <see cref="DateTime"/>).</typeparam>
+        /// <typeparam name="T">Any type, but typically those commonly converted to data storage
+        /// (e.g., <see cref="int"/>, <see cref="string"/>, or <see cref="DateTime"/>).</typeparam>
         /// <param name="left">The name of the column reference.</param>
         /// <param name="right">The object to compare to the left value.</param>
-        /// <param name="makeFriendly">If true, the value of right will be wrapped in ticks
-        /// or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// a LIKE comparison. <seealso cref="WhereClause.RawSql"/></returns>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance that has raw SQL representing a LIKE comparison. </returns>
         public static SqlWhere WhereLike<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.Like, right, default, makeFriendly);
 
         /// <summary>
-        /// Creates a new <see cref="SqlWhere" /> instance where the left is compared to the right
-        /// using a partial string match in a case insensitive match.
+        /// Creates a <see cref="SqlWhere" /> instance where the left is compared to the right using a case-insensitive LIKE match.
         /// </summary>
-        /// <typeparam name="T">The type of instances in the right argument.</typeparam>
+        /// <typeparam name="T">Any type, but typically a <see cref="string"/>.</typeparam>
         /// <param name="left">The value of the left side of the equation.</param>
         /// <param name="right">The instance to which to compare.</param>
-        /// <param name="makeFriendly">If true and if the type of item in the enumerable is an appopriate
-        /// candidate for conversion, the values on the right will be modified to be friendly to the
-        /// underlying system.</param>
-        /// <returns>A new <see cref="SqlWhere" /> instance constructed from the arguments.</returns>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance that has raw SQL representing a CILIKE comparison. </returns>
         public static SqlWhere WhereCiLike<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.CiLike, right, default, makeFriendly);
 
         /// <summary>
-        /// Creates an object implementing <see cref="SqlWhere"/> that represents
-        /// a check using NOT LIKE to compare left and right.
+        /// Creates a <see cref="SqlWhere"/> instance that represents a check using NOT LIKE to compare left and right.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., <see cref="Int32"/>, <see cref="String"/>, or <see cref="DateTime"/>).</typeparam>
+        /// <typeparam name="T">Any type, but typically a <see cref="string"/>.</typeparam>
         /// <param name="left">The name of the column reference.</param>
         /// <param name="right">The object to compare to the left value.</param>
-        /// <param name="makeFriendly">If true, the value of right will be wrapped in ticks
-        /// or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// a NOT LIKE comparison. <seealso cref="WhereClause.RawSql"/></returns>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance that has raw SQL representing a NOT LIKE comparison. </returns>
         public static SqlWhere WhereNotLike<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.NotLike, right, default, makeFriendly);
 
         /// <summary>
-        /// Creates a new <see cref="SqlWhere" /> instance where the left is compared to the right
-        /// using a partial string match, excluding all that match.
+        /// Creates a <see cref="SqlWhere" /> instance where the left is compared to the right using a case-insensitive NOT LIKE match.
         /// </summary>
         /// <typeparam name="T">The type of instances in the right argument.</typeparam>
         /// <param name="left">The value of the left side of the equation.</param>
         /// <param name="right">The instance to which to compare.</param>
-        /// <param name="makeFriendly">If true and if the type of item in the enumerable is an appopriate
-        /// candidate for conversion, the values on the right will be modified to be friendly to the
-        /// underlying system.</param>
-        /// <returns>A new <see cref="SqlWhere" /> instance constructed from the arguments.</returns>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance that has raw SQL representing a NOT CILIKE comparison.</returns>
         public static SqlWhere WhereNotCiLike<T>(string left, T right, bool makeFriendly = true)
             => Where(left, Comparison.NotCiLike, right, default, makeFriendly);
 
         /// <summary>
-        /// Creates an object implementing <see cref="SqlWhere"/> that represents
-        /// a left BETWEEN right AND right2 comparison.
+        /// Creates an object implementing <see cref="SqlWhere"/> that represents a BETWEEN comparision.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., <see cref="Int32"/>, <see cref="String"/>, or <see cref="DateTime"/>).</typeparam>
+        /// <typeparam name="T">Any type, but typically those commonly converted to data storage
+        /// (e.g., <see cref="int"/>, <see cref="string"/>, or <see cref="DateTime"/>).</typeparam>
         /// <param name="left">The name of the column reference.</param>
-        /// <param name="right">The object to compare to the left value.</param>
-        /// <param name="makeFriendly">If true, the value of right will be wrapped in ticks
-        /// or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// a BETWEEN right AND right2 comparison. <seealso cref="WhereClause.RawSql"/></returns>
+        /// <param name="right">The first boundary of the BETWEEN comparision.</param>
+        /// <param name="right2">The second boundary of the BETWEEN comparison.</param>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> and <paramref name="right2"/> will be made SQL friendly.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance that has raw SQL representing a BETWEEN comparison.</returns>
         public static SqlWhere WhereBetween<T>(string left, T right, T right2, bool makeFriendly = true)
             => Where(left, Comparison.Between, right, right2, makeFriendly);
 
         /// <summary>
-        /// Creates an object implementing <see cref="SqlWhere"/> that represents
-        /// a left NOT BETWEEN right AND right2 comparison.
+        /// Creates an object implementing <see cref="SqlWhere"/> that represents a NOT BETWEEN comparision.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., <see cref="Int32"/>, <see cref="String"/>, or <see cref="DateTime"/>).</typeparam>
+        /// <typeparam name="T">Any type, but typically those commonly converted to data storage
+        /// (e.g., <see cref="int"/>, <see cref="string"/>, or <see cref="DateTime"/>).</typeparam>
         /// <param name="left">The name of the column reference.</param>
-        /// <param name="right">The object to compare to the left value.</param>
-        /// <param name="makeFriendly">If true, the value of right will be wrapped in ticks
-        /// or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// a NOT BETWEEN right AND right2 comparison. <seealso cref="WhereClause.RawSql"/></returns>
+        /// <param name="right">The first boundary of the NOT BETWEEN comparision.</param>
+        /// <param name="right2">The second boundary of the NOT BETWEEN comparison.</param>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> and <paramref name="right2"/> will be made SQL friendly.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance that has raw SQL representing a NOT BETWEEN comparison.</returns>
         public static SqlWhere WhereNotBetween<T>(string left, T right, T right2, bool makeFriendly = true)
             => Where(left, Comparison.NotBetween, right, right2, makeFriendly);
 
         /// <summary>
-        /// Creates an object implementing <see cref="SqlWhere"/> that represents either
-        /// an IN or NOT IN comparison.
+        /// Creates an object implementing <see cref="SqlWhere"/> that represents either an IN or NOT IN comparison.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., <see cref="Int32"/>, <see cref="String"/>, or <see cref="DateTime"/>).</typeparam>
+        /// <typeparam name="T">Any type, but typically those commonly converted to data storage
+        /// (e.g., <see cref="int"/>, <see cref="string"/>, or <see cref="DateTime"/>).</typeparam>
         /// <param name="left">The name of the column reference.</param>
         /// <param name="comparison">The type of comparison to be constructed. Only <see cref="Comparison.In"/>
         /// and <see cref="Comparison.NotIn"/> are allowed.
-        /// <param name="right">An <see cref="IEnumerable{T}"/> Fcollection.</param>
-        /// <param name="makeFriendly">If true, the values in right will be wrapped in ticks
-        /// or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// either an IN or a NOT IN right comparison. <seealso cref="WhereClause.RawSql"/></returns>
+        /// <param name="right">The first boundary of the comparision.</param>
+        /// <param name="right2">The second boundary of the comparison.</param>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance that has raw SQL representing the comparison.</returns>
         public static SqlWhere Where<T>(string left, Comparison comparison, T right, T right2 = default, bool makeFriendly = true)
         {
             if (string.IsNullOrWhiteSpace(left)) { throw new ArgumentNullException(nameof(left)); }
 
             bool isLikable = (comparison == Comparison.Like || comparison == Comparison.NotLike ||
                               comparison == Comparison.CiLike || comparison == Comparison.NotCiLike);
-            string modifiedRight = (makeFriendly || isLikable)
-                ? MakeSqlReady(right, isLikable)
-                : right?.ToString();
+
+            string modifiedRight = (makeFriendly || isLikable) ? MakeSqlReady(right, isLikable) : right?.ToString();
 
             var whereClause = new StringBuilder();
 
@@ -394,12 +354,12 @@ namespace Shibusa.Data
                     break;
                 case Comparison.Between:
                     if (right2 == null) { throw new ArgumentNullException(nameof(right2), "Two arguments are required when using BETWEEN."); }
-                    string modifiedRight2 = makeFriendly ? MakeSqlReady(right2) : right.ToString();
+                    string modifiedRight2 = makeFriendly ? MakeSqlReady(right2) : right2.ToString();
                     whereClause.Append($" BETWEEN {modifiedRight} AND {modifiedRight2}");
                     break;
                 case Comparison.NotBetween:
                     if (right2 == null) { throw new ArgumentNullException(nameof(right2), "Two arguments are required when using NOT BETWEEN."); }
-                    modifiedRight2 = makeFriendly ? MakeSqlReady(right2) : right.ToString();
+                    modifiedRight2 = makeFriendly ? MakeSqlReady(right2) : right2.ToString();
                     whereClause.Append($" NOT BETWEEN {modifiedRight} AND {modifiedRight2}");
                     break;
                 case Comparison.In:
@@ -413,31 +373,26 @@ namespace Shibusa.Data
         }
 
         /// <summary>
-        /// Creates an object implementing <see cref="SqlWhere"/> that represents an IN comparison.
+        /// Creates a <see cref="SqlWhere"/> instance that represents an IN comparison.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., <see cref="Int32"/>, <see cref="String"/>, or <see cref="DateTime"/>).</typeparam>
+        /// <typeparam name="T">Any type, but typically those commonly converted to data storage
+        /// (e.g., <see cref="int"/>, <see cref="string"/>, or <see cref="DateTime"/>).</typeparam>
         /// <param name="left">The name of the column reference.</param>
         /// <param name="right">An <see cref="IEnumerable{T}"/> collection.</param>
-        /// <param name="makeFriendly">If true, the values in right will be wrapped in ticks
-        /// or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// an IN right comparison. <seealso cref="WhereClause.RawSql"/></returns>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance representing an IN comparison. </returns>
         public static SqlWhere WhereIn<T>(string left, IEnumerable<T> right, bool makeFriendly = true)
             => Where(left: left, comparison: Comparison.In, right: right, makeFriendly: makeFriendly);
 
         /// <summary>
-        /// Creates an object implementing <see cref="SqlWhere"/> that represents either
-        /// a NOT IN comparison.
+        /// Creates a <see cref="SqlWhere"/> instance that represents a NOT IN comparison.
         /// </summary>
-        /// <typeparam name="T">Virtually any type, but typically those commonly converted to data storage
-        /// (e.g., <see cref="Int32"/>, <see cref="String"/>, or <see cref="DateTime"/>).</typeparam>
+        /// <typeparam name="T">Any type, but typically those commonly converted to data storage
+        /// (e.g., <see cref="int"/>, <see cref="string"/>, or <see cref="DateTime"/>).</typeparam>
         /// <param name="left">The name of the column reference.</param>
         /// <param name="right">An <see cref="IEnumerable{T}"/> collection.</param>
-        /// <param name="makeFriendly">If true, the values in right will be wrapped in ticks
-        /// or converted to NULL if appropriate.</param>
-        /// <returns>An object with an <see cref="SqlWhere"/> implementation that has raw SQL representing
-        /// a NOT IN right comparison. <seealso cref="WhereClause.RawSql"/></returns>
+        /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
+        /// <returns>A <see cref="SqlWhere"/> instance representing a NOT IN comparison. </returns>
         public static SqlWhere WhereNotIn<T>(string left, IEnumerable<T> right, bool makeFriendly = true)
             => Where(left: left, comparison: Comparison.NotIn, right: right, makeFriendly: makeFriendly);
 
@@ -473,20 +428,11 @@ namespace Shibusa.Data
 
             Type type = Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T);
 
-            string result;
-
-            if (type == typeof(Guid)
-                || type == typeof(string))
-            {
-                result = CleanseSql(item.ToString(), makeLikable);
-            }
-            else if (type == typeof(DateTime))
-            {
-                result = MakeDateSqlReady((item as DateTime?).Value, makeLikable);
-            }
-            else { result = item.ToString(); }
-
-            return result;
+            return (type == typeof(Guid) || type == typeof(string))
+                ? CleanseSql(item.ToString(), makeLikable)
+                : (type == typeof(DateTime))
+                    ? MakeDateSqlReady((item as DateTime?).Value, makeLikable)
+                    : item.ToString();
         }
 
         private static IEnumerable<string> MakeSqlReady<T>(IEnumerable<T> items, bool makeLikable = false)
@@ -499,8 +445,7 @@ namespace Shibusa.Data
 
             items.ToList().ForEach(i =>
             {
-                if (type == typeof(Guid)
-                    || type == typeof(string))
+                if (type == typeof(Guid) || type == typeof(string))
                 {
                     results.Add(CleanseSql(i.ToString(), makeLikable));
                 }
@@ -519,9 +464,8 @@ namespace Shibusa.Data
 
         /// <summary>
         /// Returns a string that represents the current object.
-        /// The value matches that of <see cref="Raw"/>.
         /// </summary>
-        /// <returns>A string that represents the current object; in this case, <see cref="Raw"/>.</returns>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
             return Raw;
@@ -554,7 +498,29 @@ namespace Shibusa.Data
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
         {
-            return 2027124281 + EqualityComparer<string>.Default.GetHashCode(Raw);
+            return HashCode.Combine(Raw);
+        }
+
+        /// <summary>
+        /// Determines the equality of two <see cref="SqlWhere"/> instances.
+        /// </summary>
+        /// <param name="left">The left <see cref="SqlWhere"/>.</param>
+        /// <param name="right">The right <see cref="SqlWhere"/>.</param>
+        /// <returns>An indicator of  equality; true if <paramref name="left"/> and <paramref name="right"/> are equal.</returns>
+        public static bool operator ==(SqlWhere left, SqlWhere right)
+        {
+            return EqualityComparer<SqlWhere>.Default.Equals(left, right);
+        }
+
+        /// <summary>
+        /// Determines the inequality of two <see cref="SqlWhere"/> instances.
+        /// </summary>
+        /// <param name="left">The left <see cref="SqlWhere"/>.</param>
+        /// <param name="right">The right <see cref="SqlWhere"/>.</param>
+        /// <returns>An indicator of  equality; true if <paramref name="left"/> and <paramref name="right"/> are not equal.</returns>
+        public static bool operator !=(SqlWhere left, SqlWhere right)
+        {
+            return !(left == right);
         }
     }
 }

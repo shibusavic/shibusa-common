@@ -21,7 +21,7 @@ namespace Shibusa.Data.Abstractions
         public const int DefaultMaxPerPage = 1000;
 
         /// <summary>
-        /// The default <see cref="LogicalOperator"/> for query criterion conjunctions.
+        /// The default <see cref="LogicalOperator"/> for query conjunctions.
         /// </summary>
         public const LogicalOperator DefaultLogicalOperator = LogicalOperator.And;
     }

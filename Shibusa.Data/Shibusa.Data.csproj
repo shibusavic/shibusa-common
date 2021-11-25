@@ -5,7 +5,7 @@
 		<PackageId>Shibusa.Data</PackageId>
 		<Title>Shibusa Data Library</Title>
 		<Description>Contains common utilities for constructing SQL statements and paged searching by criteria.</Description>
-		<Version>6.0.0</Version>
+		<Version>6.0.1</Version>
 		<Authors>shibusavic</Authors>
 		<Company>Shibusa LLC</Company>
 		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>

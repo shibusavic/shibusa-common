@@ -223,6 +223,7 @@ namespace Shibusa.FindTextCli
                 {
                     case "--help":
                     case "-h":
+                    case "-?":
                     case "?":
                         showHelp = true;
                         break;
@@ -249,7 +250,7 @@ namespace Shibusa.FindTextCli
                     case "--operator":
                     case "-o":
                         if (a > args.Length - 1) { throw new ArgumentException($"Expecting an operator after {args[a]}"); }
-                        if (!Enum.TryParse<ExpressionOperator>(args[++a], true, out expressionOperator))
+                        if (!Enum.TryParse(args[++a], true, out expressionOperator))
                         {
                             throw new ArgumentException($"{args[a]} is not a valid operator.");
                         }
@@ -349,19 +350,19 @@ namespace Shibusa.FindTextCli
 
             Dictionary<string, string> helpDefinitions = new()
             {
-                { "-d | --directory | --dir <directory>","The directory to search."},
-                { "-e | --expression <expression>", "A regular expression by which to search."},
-                { "[-x | --extension <file extension>]", "Add file extension to extensions searched. When no extensions are provided, all files are searched." },
-                { "[-o | --operator <And | Or>]",  "Use 'And' to combine expressions together and use 'Or' if any expression match is desired."},
-                { "[-f | --force]","Force your expression to be accepted without manipulation."},
-                { "[-i | --insensitive]", "Make search case insensitive." },
-                { "[-r | --recursive]", "Make file searching include subdirectories." },
-                { "[-l | --show-lines]", "Show the matching lines." },
-                { "[-ln | --show-line-numbers]", "Show the line numbers for matching lines."},
-                { "[-t | --trim]", "Trim the matching lines in the output."},
-                { "[-p | -nl | --prefix-newline]","Prefix file names with a newline character."},
-                { "[-s | --use-singleline]","Use Singleline (instead of the default Multiline) for regular expressions."},
-                { "[-h | --help  ?]","Show this help." }
+                { "-d|--directory|--dir <directory>", "The directory to search." },
+                { "-e|--expression <expression>", "A regular expression by which to search." },
+                { "[-x|--extension <file extension>]", "Add file extension to extensions searched. When no extensions are provided, all files are searched." },
+                { "[-o|--operator <And | Or>]", "Use 'And' to combine expressions together and use 'Or' if any expression match is desired." },
+                { "[-f|--force]", "Force your expression to be accepted without manipulation." },
+                { "[-i|--insensitive]", "Make search case insensitive." },
+                { "[-r|--recursive]", "Make file searching include subdirectories." },
+                { "[-l|--show-lines]", "Show the matching lines." },
+                { "[-ln|--show-line-numbers]", "Show the line numbers for matching lines." },
+                { "[-t|--trim]", "Trim the matching lines in the output." },
+                { "[-p|-nl|--prefix-newline]", "Prefix file names with a newline character." },
+                { "[-s|--use-singleline]", "Use Singleline (instead of the default Multiline) for regular expressions." },
+                { "[-h|--help|?|-?]", "Show this help." }
             };
 
             string assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
