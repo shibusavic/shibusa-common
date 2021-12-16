@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<PackageId>Shibusa.Maths</PackageId>
+		<Title>Shibusa Mathematics Library</Title>
+		<Description>Contains common math functions useful in business situations and monte-carlo-like constructs.</Description>
+		<Version>6.0.1</Version>
+		<Authors>shibusavic</Authors>
+		<Company>Shibusa LLC</Company>
+		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Copyright>Shibusa, LLC 2021</Copyright>
+		<PackageTags>common,utility,math,maths,mathematics,ages,primes,fibonacci,combinations</PackageTags>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+</Project>

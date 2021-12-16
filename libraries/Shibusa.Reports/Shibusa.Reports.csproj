@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<PackageId>Shibusa.Reports</PackageId>
+		<Title>Shibusa Reporting Library</Title>
+		<Description>Contains tools for report generation.</Description>
+		<Version>6.0.1</Version>
+		<Authors>shibusavic</Authors>
+		<Company>Shibusa LLC</Company>
+		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Copyright>Shibusa, LLC 2021</Copyright>
+		<PackageTags>common,utility,reports,csv,excel</PackageTags>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+</Project>

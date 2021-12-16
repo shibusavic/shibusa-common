@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<PackageId>Shibusa.PersonBuilder</PackageId>
+		<Title>Shibusa Random Person Construction Library</Title>
+		<Description>Provides a fluent-like interface for random and semi-random person construction.</Description>
+		<Version>6.0.1</Version>
+		<Authors>shibusavic</Authors>
+		<Company>Shibusa LLC</Company>
+		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Copyright>Shibusa, LLC 2021</Copyright>
+		<PackageTags>common,utility,testing,person,name generator</PackageTags>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="Resources\female-names.txt" />
+		<None Remove="Resources\male-names.txt" />
+		<None Remove="Resources\surnames.txt" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\female-names.txt" />
+		<EmbeddedResource Include="Resources\male-names.txt" />
+		<EmbeddedResource Include="Resources\surnames.txt" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Shibusa.Maths" Version="6.0.0" />
+		<PackageReference Include="Shibusa.Transformations" Version="6.0.0" />
+		<PackageReference Include="Shibusa.Validators" Version="6.0.0" />
+	</ItemGroup>
+</Project>
