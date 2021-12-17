@@ -9,7 +9,7 @@ namespace Shibusa.Data
     /// complex nested conditions.
     /// <seealso cref="https://en.wikipedia.org/wiki/Specification_pattern"/>
     /// </summary>
-    public sealed class SqlWhere : IEquatable<SqlWhere>
+    public sealed class SqlWhere
     {
         private const string DateFormat = "yyyy-MM-dd HH:mm:ss.fffffff";
 
@@ -96,10 +96,10 @@ namespace Shibusa.Data
         /// <param name="right">A collection of type T to which the left should be compared.</param>
         /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
         /// <returns>A <see cref="SqlWhere"/> instance representing the comparison specified.</returns>
-        public static SqlWhere? Where<T>(string? left, Comparison comparison, IEnumerable<T> right, bool makeFriendly = true)
+        public static SqlWhere Where<T>(string left, Comparison comparison, IEnumerable<T> right, bool makeFriendly = true)
         {
             if (string.IsNullOrWhiteSpace(left)) { throw new ArgumentNullException(nameof(left)); }
-            if (!(right?.Any() ?? false)) { return null; }
+            if (!right.Any()) { throw new ArgumentException($"{right} cannot be empty."); }
 
             var whereClause = new StringBuilder();
 
@@ -302,7 +302,7 @@ namespace Shibusa.Data
         /// <param name="right2">The second boundary of the comparison.</param>
         /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
         /// <returns>A <see cref="SqlWhere"/> instance that has raw SQL representing the comparison.</returns>
-        public static SqlWhere Where<T>(string left, Comparison comparison, T? right, T? right2 = default, bool makeFriendly = true)
+        public static SqlWhere Where<T>(string left, Comparison comparison, T right, T? right2 = default, bool makeFriendly = true)
         {
             if (string.IsNullOrWhiteSpace(left)) { throw new ArgumentNullException(nameof(left)); }
 
@@ -378,7 +378,7 @@ namespace Shibusa.Data
         /// <param name="right">An <see cref="IEnumerable{T}"/> collection.</param>
         /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
         /// <returns>A <see cref="SqlWhere"/> instance representing an IN comparison. </returns>
-        public static SqlWhere? WhereIn<T>(string left, IEnumerable<T> right, bool makeFriendly = true)
+        public static SqlWhere WhereIn<T>(string left, IEnumerable<T> right, bool makeFriendly = true)
             => Where(left: left, comparison: Comparison.In, right: right, makeFriendly: makeFriendly);
 
         /// <summary>
@@ -390,10 +390,10 @@ namespace Shibusa.Data
         /// <param name="right">An <see cref="IEnumerable{T}"/> collection.</param>
         /// <param name="makeFriendly">If true, the value of <paramref name="right"/> will be made SQL friendly.</param>
         /// <returns>A <see cref="SqlWhere"/> instance representing a NOT IN comparison. </returns>
-        public static SqlWhere? WhereNotIn<T>(string left, IEnumerable<T> right, bool makeFriendly = true)
+        public static SqlWhere WhereNotIn<T>(string left, IEnumerable<T> right, bool makeFriendly = true)
             => Where(left: left, comparison: Comparison.NotIn, right: right, makeFriendly: makeFriendly);
 
-        private static string CleanseSql(string? text, bool makeLikable = false)
+        private static string CleanseSql(string text, bool makeLikable = false)
         {
             // whitespace passes through, but nulls have be converted.
             if (string.IsNullOrEmpty(text)) { return "NULL"; }
@@ -419,14 +419,14 @@ namespace Shibusa.Data
             return CleanseSql(date.ToString(DateFormat), makeLikable);
         }
 
-        private static string MakeSqlReady<T>(T? item, bool makeLikable = false)
+        private static string MakeSqlReady<T>(T item, bool makeLikable = false)
         {
             if (item == null) { return "NULL"; }
 
             Type? type = Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T);
 
             return (type == typeof(Guid) || type == typeof(string))
-                ? CleanseSql(item.ToString(), makeLikable)
+                ? CleanseSql(item.ToString() ?? string.Empty, makeLikable)
                 : (type == typeof(DateTime))
                     ? MakeDateSqlReady(Convert.ToDateTime(item), makeLikable)
                     : item.ToString() ?? string.Empty;
@@ -446,7 +446,7 @@ namespace Shibusa.Data
                 {
                     if (type == typeof(Guid) || type == typeof(string))
                     {
-                        results.Add(CleanseSql(i.ToString(), makeLikable));
+                        results.Add(CleanseSql(i.ToString() ?? string.Empty, makeLikable));
                     }
                     else if (type == typeof(DateTime))
                     {
@@ -469,58 +469,6 @@ namespace Shibusa.Data
         public override string ToString()
         {
             return Raw;
-        }
-
-        /// <summary>
-        /// Determines whether the specified object is equal to the current object.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current object.</param>
-        /// <returns>True if the specified object is equal to the current object; otherwise, false.</returns>
-        public override bool Equals(object? obj)
-        {
-            return Equals(obj as SqlWhere);
-        }
-
-        /// <summary>
-        /// Determines whether the specified object is equal to the current object.
-        /// </summary>
-        /// <param name="other">The object to compare with the current object.</param>
-        /// <returns>True if the specified object is equal to the current object; otherwise, false.</returns>
-        public bool Equals(SqlWhere? other)
-        {
-            return other != null &&
-                   Raw == other.Raw;
-        }
-
-        /// <summary>
-        /// Returns the hash code for this object.
-        /// </summary>
-        /// <returns>A hash code for the current object.</returns>
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Raw);
-        }
-
-        /// <summary>
-        /// Determines the equality of two <see cref="SqlWhere"/> instances.
-        /// </summary>
-        /// <param name="left">The left <see cref="SqlWhere"/>.</param>
-        /// <param name="right">The right <see cref="SqlWhere"/>.</param>
-        /// <returns>An indicator of  equality; true if <paramref name="left"/> and <paramref name="right"/> are equal.</returns>
-        public static bool operator ==(SqlWhere? left, SqlWhere? right)
-        {
-            return EqualityComparer<SqlWhere>.Default.Equals(left, right);
-        }
-
-        /// <summary>
-        /// Determines the inequality of two <see cref="SqlWhere"/> instances.
-        /// </summary>
-        /// <param name="left">The left <see cref="SqlWhere"/>.</param>
-        /// <param name="right">The right <see cref="SqlWhere"/>.</param>
-        /// <returns>An indicator of  equality; true if <paramref name="left"/> and <paramref name="right"/> are not equal.</returns>
-        public static bool operator !=(SqlWhere? left, SqlWhere? right)
-        {
-            return !(left == right);
         }
     }
 }

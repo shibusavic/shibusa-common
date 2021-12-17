@@ -36,9 +36,9 @@ namespace Shibusa.Data
         /// </returns>
         /// <remarks>A <see cref="SortOrder"/> value of <see cref="SortOrder.Unspecified"/>
         /// will be converted to <see cref="SortOrder.Ascending"/>.</remarks>
-        public static string Create(IDictionary<string, SortOrder>? columns)
+        public static string Create(IDictionary<string, SortOrder> columns)
         {
-            if (columns == null) { return string.Empty; }
+            if (!columns.Any()) { return string.Empty; }
 
             List<string> sorts = new();
             foreach (var column in columns)

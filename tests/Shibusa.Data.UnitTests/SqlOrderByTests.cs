@@ -6,9 +6,8 @@ namespace Shibusa.Data.UnitTests
     public class SqlOrderByTests
     {
         [Fact]
-        public void Create_NullOrEmpty_ReturnsEmptyString()
+        public void Create_Empty_ReturnsEmptyString()
         {
-            Assert.Equal(string.Empty, SqlOrderBy.Create(columns: null));
             Assert.Equal(string.Empty, SqlOrderBy.Create(columns: new Dictionary<string, SortOrder>()));
         }
 
