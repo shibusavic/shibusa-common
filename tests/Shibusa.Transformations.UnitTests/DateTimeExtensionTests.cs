@@ -91,5 +91,25 @@ namespace Shibusa.Transformations.UnitTests
             DateTime expected = new(2021, 9, 20);
             Assert.Equal(expected, previousWeekday);
         }
+
+        [Fact]
+        public void ToDateOnly_Local()
+        {
+            var now = DateTime.Now;
+            var dateOnly = now.ToDateOnly();
+            Assert.Equal(dateOnly.Year, now.Year);
+            Assert.Equal(dateOnly.Month, now.Month);
+            Assert.Equal(dateOnly.Day, now.Day);
+        }
+
+        [Fact]
+        public void ToDateOnly_Utc()
+        {
+            var now = DateTime.UtcNow;
+            var dateOnly = now.ToDateOnly();
+            Assert.Equal(dateOnly.Year, now.Year);
+            Assert.Equal(dateOnly.Month, now.Month);
+            Assert.Equal(dateOnly.Day, now.Day);
+        }
     }
 }
