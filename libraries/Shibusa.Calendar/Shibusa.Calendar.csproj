@@ -7,7 +7,7 @@
 		<Description>
 			Common calendar functions, such as determining the dates of US holidays and counting days or weekdays.
 		</Description>
-		<Version>6.0.1</Version>
+		<Version>6.0.2</Version>
 		<Authors>shibusavic</Authors>
 		<Company>Shibusa LLC</Company>
 		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
@@ -18,6 +18,6 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Shibusa.Transformations" Version="6.0.1" />
+		<PackageReference Include="Shibusa.Transformations" Version="6.0.2" />
 	</ItemGroup>
 </Project>

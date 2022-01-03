@@ -51,6 +51,6 @@ namespace Shibusa.Transformations
         /// </summary>
         /// <param name="date">The <see cref="DateTime"/> to convert.</param>
         /// <returns>A <see cref="DateOnly"/> instance.</returns>
-        public static DateOnly ToDateOnly(this DateTime date) => new DateOnly(date.Year, date.Month, date.Day);
+        public static DateOnly ToDateOnly(this DateTime date) => new(date.Year, date.Month, date.Day);
     }
 }
