@@ -1,5 +1,3 @@
-using System;
-
 namespace Shibusa.PersonBuilder
 {
     public partial class PersonBuilder

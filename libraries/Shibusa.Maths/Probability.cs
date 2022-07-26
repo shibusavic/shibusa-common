@@ -3,7 +3,7 @@ namespace Shibusa.Maths
     /// <summary>
     /// Represents the probability of an event.
     /// </summary>
-    public class Probability : IEquatable<Probability>
+    public class Probability
     {
         /// <summary>
         /// Creates a new instance of the <see cref="Probability"/> class.
@@ -100,37 +100,6 @@ namespace Shibusa.Maths
         public static double ConditionalProbability(Probability firstEvent, Probability secondEvent)
         {
             return IndependentProbability(new Probability[] { firstEvent, secondEvent }) / firstEvent.Likelihood;
-        }
-
-        /// <summary>
-        /// Determines whether the specified object is equal to the current object.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current object.</param>
-        /// <returns>True if the specified object is equal to the current object; otherwise, false.</returns>
-        public override bool Equals(object? obj)
-        {
-            return Equals(obj as Probability);
-        }
-
-        /// <summary>
-        /// Determines whether the specified object is equal to the current object.
-        /// </summary>
-        /// <param name="other">The object to compare with the current object.</param>
-        /// <returns>True if the specified object is equal to the current object; otherwise, false.</returns>
-        public bool Equals(Probability? other)
-        {
-            return other != null &&
-                   NumberOfWaysEventCanHappen == other.NumberOfWaysEventCanHappen &&
-                   NumberOfAllPossibleOutcomes == other.NumberOfAllPossibleOutcomes;
-        }
-
-        /// <summary>
-        /// Returns the hash code for this object.
-        /// </summary>
-        /// <returns>A hash code for the current object.</returns>
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(NumberOfWaysEventCanHappen, NumberOfAllPossibleOutcomes);
         }
     }
 }

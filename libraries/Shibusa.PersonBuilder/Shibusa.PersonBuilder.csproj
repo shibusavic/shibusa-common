@@ -5,12 +5,12 @@
 		<PackageId>Shibusa.PersonBuilder</PackageId>
 		<Title>Shibusa Random Person Construction Library</Title>
 		<Description>Provides a fluent-like interface for random and semi-random person construction.</Description>
-		<Version>6.0.2</Version>
+		<Version>7.0.0</Version>
 		<Authors>shibusavic</Authors>
 		<Company>Shibusa LLC</Company>
 		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Copyright>Shibusa, LLC 2021</Copyright>
+		<Copyright>Shibusa, LLC 2022</Copyright>
 		<PackageTags>common,utility,testing,person,name generator</PackageTags>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -26,8 +26,8 @@
 		<EmbeddedResource Include="Resources\surnames.txt" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Shibusa.Maths" Version="6.0.1" />
-		<PackageReference Include="Shibusa.Transformations" Version="6.0.2" />
-		<PackageReference Include="Shibusa.Validators" Version="6.0.1" />
+	  <ProjectReference Include="..\Shibusa.Maths\Shibusa.Maths.csproj" />
+	  <ProjectReference Include="..\Shibusa.Transformations\Shibusa.Transformations.csproj" />
+	  <ProjectReference Include="..\Shibusa.Validators\Shibusa.Validators.csproj" />
 	</ItemGroup>
 </Project>

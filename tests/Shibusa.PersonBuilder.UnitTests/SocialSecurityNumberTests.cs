@@ -11,8 +11,8 @@ namespace Shibusa.PersonBuilder.UnitTests
                 .WithFakeSsn()
                 .Build();
 
-            Assert.True(Validators.SocialSecurityNumber.IsValidStructure(person.SocialSecurityNumber));
-            Assert.False(Validators.SocialSecurityNumber.IsValid(person.SocialSecurityNumber));
+            Assert.True(Validators.SocialSecurityNumber.IsValidStructure(person.SocialSecurityNumber!));
+            Assert.False(Validators.SocialSecurityNumber.IsValid(person.SocialSecurityNumber!));
         }
 
         [Fact]
@@ -22,8 +22,8 @@ namespace Shibusa.PersonBuilder.UnitTests
                 .WithRealisticSsn()
                 .Build();
 
-            Assert.True(Validators.SocialSecurityNumber.IsValidStructure(person.SocialSecurityNumber));
-            Assert.True(Validators.SocialSecurityNumber.IsValid(person.SocialSecurityNumber));
+            Assert.True(Validators.SocialSecurityNumber.IsValidStructure(person.SocialSecurityNumber!));
+            Assert.True(Validators.SocialSecurityNumber.IsValid(person.SocialSecurityNumber!));
         }
     }
 }

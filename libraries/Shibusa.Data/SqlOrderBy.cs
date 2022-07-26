@@ -35,7 +35,7 @@ namespace Shibusa.Data
         /// </remarks>
         /// </returns>
         /// <remarks>A <see cref="SortOrder"/> value of <see cref="SortOrder.Unspecified"/>
-        /// will be converted to <see cref="SortOrder.Ascending"/>.</remarks>
+        /// will be converted to a blank string.</remarks>
         public static string Create(IDictionary<string, SortOrder> columns)
         {
             if (!columns.Any()) { return string.Empty; }
@@ -48,9 +48,9 @@ namespace Shibusa.Data
             return string.Join(", ", sorts);
         }
 
-        private static string ConvertSortOrderToString(SortOrder sortOrder)
-        {
-            return sortOrder == SortOrder.Descending ? "DESC" : "ASC";
-        }
+        private static string ConvertSortOrderToString(SortOrder sortOrder) =>
+            sortOrder == SortOrder.Descending ? "DESC" :
+            sortOrder == SortOrder.Ascending ? "ASC"
+            : string.Empty;
     }
 }

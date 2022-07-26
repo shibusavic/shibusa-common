@@ -1,5 +1,3 @@
-using System;
-
 namespace Shibusa.PersonBuilder
 {
     /// <summary>
@@ -32,6 +30,7 @@ namespace Shibusa.PersonBuilder
         /// <param name="max">The inclusive maximum age.</param>
         private Age(int min = 0, int max = 120)
         {
+            if (min > max) { throw new ArgumentException("Min must be before max."); }
             minimum = min;
             maximum = max;
             age = random.Next(min, max + 1);
@@ -145,4 +144,3 @@ namespace Shibusa.PersonBuilder
         }
     }
 }
-

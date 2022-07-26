@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace Shibusa.PersonBuilder
 {
     /// <summary>
@@ -89,7 +86,7 @@ namespace Shibusa.PersonBuilder
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
-        public override string ToString()
+        public override string? ToString()
         {
             return ToString(PersonNameFormat.Full);
         }
@@ -100,7 +97,7 @@ namespace Shibusa.PersonBuilder
         /// <param name="format">A <see cref="PersonNameFormat"/> value to dictate the name's format.</param>
         /// <param name="includeSuffix">If true, the person's suffix (if any) will be added to the end of the name.</param>
         /// <returns>A string that represents the person's name.</returns>
-        public string ToString(PersonNameFormat format, bool includeSuffix = false)
+        public string? ToString(PersonNameFormat format, bool includeSuffix = false)
         {
             string middleInitial = string.IsNullOrWhiteSpace(MiddleName) 
                 ? string.Empty

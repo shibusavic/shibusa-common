@@ -1,22 +1,22 @@
 namespace Shibusa.Data.Abstractions
 {
     /// <summary>
-    /// Represents the criteria used to formulate temporarl queries.
+    /// Represents the criteria used to formulate temporal queries.
     /// <seealso cref="https://docs.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-2017"/>
     /// </summary>
     public abstract class TemporalCriteriaBase : CriteriaBase
     {
-        private DateTime? from = default;
-        private DateTime? to = default;
-        private DateTime? betweenStart = default;
-        private DateTime? betweenEnd = default;
-        private DateTime? containedInStart = default;
-        private DateTime? containedInEnd = default;
+        private DateTime? from;
+        private DateTime? to;
+        private DateTime? betweenStart;
+        private DateTime? betweenEnd;
+        private DateTime? containedInStart;
+        private DateTime? containedInEnd;
 
         /// <summary>
         /// Gets or sets the AS OF value for temporal queries.
         /// </summary>
-        public virtual DateTime? AsOf { get; set; } = null;
+        public virtual DateTime? AsOf { get; set; }
 
         /// <summary>
         /// Gets or sets the FROM value in the FROM/TO syntax for temporal queries.
@@ -118,6 +118,6 @@ namespace Shibusa.Data.Abstractions
         /// <summary>
         /// Gets or sets an indicator for the ALL value in temporal queries.
         /// </summary>
-        public virtual bool? All { get; set; } = default;
+        public virtual bool? All { get; set; }
     }
 }

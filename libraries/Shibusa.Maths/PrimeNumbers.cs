@@ -4,7 +4,7 @@ namespace Shibusa.Maths
 {
     public static partial class Calculate
     {
-        private static readonly List<ulong> predefinedPrimes = new()
+        private static readonly SortedSet<ulong> predefinedPrimes = new()
         {
             2L,
             3L,
@@ -175,7 +175,7 @@ namespace Shibusa.Maths
             991L,
             997L
         };
-        
+
         private static readonly ulong largestPredeterminedPrime = predefinedPrimes.Last();
 
         /// <summary>
@@ -210,25 +210,23 @@ namespace Shibusa.Maths
             int count = predefinedPrimes.Count;
             if (position < count)
             {
-                return predefinedPrimes[position];
+                return predefinedPrimes.ElementAt(position);
             }
-            else
+         
+            int index = count - 1;
+            ulong prime = predefinedPrimes.Last();
+            ulong num = prime;
+            while (index < position)
             {
-                int index = count - 1;
-                ulong prime = predefinedPrimes.Last();
-                ulong num = prime;
-                while (index < position)
+                num += 2;
+                if (IsPrime(num))
                 {
-                    num += 2;
-                    if (IsPrime(num))
-                    {
-                        prime = num;
-                        index++;
-                        predefinedPrimes.Add(prime);
-                    }
+                    prime = num;
+                    index++;
+                    predefinedPrimes.Add(prime);
                 }
-                return prime;
             }
+            return prime;
         }
 
         /// <summary>
@@ -316,7 +314,7 @@ namespace Shibusa.Maths
         {
             IDictionary<ulong, int> results = new SortedDictionary<ulong, int>();
 
-            GetPrimeFactors(number, ref results);
+            GetPrimeFactors(number, results);
 
             return results;
         }
@@ -338,31 +336,31 @@ namespace Shibusa.Maths
             }
         }
 
-        private static void GetPrimeFactors(ulong number, ref IDictionary<ulong, int> dict)
+        private static void GetPrimeFactors(ulong number, IDictionary<ulong, int> dict)
         {
             if (number > 1L)
             {
                 int primeIndex = 0;
-                ulong p = predefinedPrimes[primeIndex];
+                ulong p = predefinedPrimes.ElementAt(primeIndex);
                 while (p <= number)
                 {
                     if (number % p == 0)
                     {
-                        AddToPrimeDictionary(p, ref dict);
-                        GetPrimeFactors(number / p, ref dict);
+                        AddToPrimeDictionary(p, dict);
+                        GetPrimeFactors(number / p, dict);
                         break;
                     }
                     else
                     {
                         p = (p >= predefinedPrimes.Last())
                             ? p + 2
-                            : predefinedPrimes[++primeIndex];
+                            : predefinedPrimes.ElementAt(++primeIndex);
                     }
                 }
             }
         }
 
-        private static void AddToPrimeDictionary(ulong prime, ref IDictionary<ulong, int> dict)
+        private static void AddToPrimeDictionary(ulong prime, IDictionary<ulong, int> dict)
         {
             if (dict.ContainsKey(prime))
             {

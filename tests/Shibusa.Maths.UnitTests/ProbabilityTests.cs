@@ -5,16 +5,6 @@ namespace Shibusa.Maths.UnitTests
     public class ProbabilityTests
     {
         [Fact]
-        public void Probability_Equality()
-        {
-            Probability a = new(4D, 52D);
-            Probability b = new(4D, 52D);
-            Assert.Equal(a, b);
-            b = new Probability(26D, 52D);
-            Assert.NotEqual(a, b);
-        }
-
-        [Fact]
         public void Probability_Likelihood_Complement()
         {
             Probability a = new(4D, 52D);

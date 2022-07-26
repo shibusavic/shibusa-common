@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Shibusa.Reports
+﻿namespace Shibusa.Reports
 {
     /// <summary>
     /// Represents a report targeting the console.

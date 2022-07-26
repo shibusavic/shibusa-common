@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Shibusa.Maths
 {
     public static partial class Calculate

@@ -11,7 +11,7 @@ namespace Shibusa.PersonBuilder.UnitTests
                     .WithPhone("1234567890")
                     .Build();
 
-            Assert.True(Validators.UnitedStatesPhoneNumber.IsValidStructure(person.PhoneNumber));
+            Assert.True(Validators.UnitedStatesPhoneNumber.IsValidStructure(person.PhoneNumber!));
         }
 
         [Fact]
@@ -21,7 +21,7 @@ namespace Shibusa.PersonBuilder.UnitTests
                 .WithPhone()
                 .Build();
 
-            Assert.True(Validators.UnitedStatesPhoneNumber.IsValidStructure(person.PhoneNumber));
+            Assert.True(Validators.UnitedStatesPhoneNumber.IsValidStructure(person.PhoneNumber!));
         }
     }
 }

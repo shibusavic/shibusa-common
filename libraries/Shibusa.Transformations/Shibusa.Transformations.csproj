@@ -5,12 +5,12 @@
 		<PackageId>Shibusa.Transformations</PackageId>
 		<Title>Shibusa Transformations Library</Title>
 		<Description>Common transformation functions, such as transforming DateTime objects, transforming raw text, creating file hashes, converting dollar amounts by frequency, dealing with Social Security Numbers, Enum descriptions, etc.</Description>
-		<Version>6.0.2</Version>
+		<Version>7.0.0</Version>
 		<Authors>shibusavic</Authors>
 		<Company>Shibusa LLC</Company>
 		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Copyright>Shibusa, LLC 2021</Copyright>
+		<Copyright>Shibusa, LLC 2022</Copyright>
 		<PackageTags>common,utility,transformations</PackageTags>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>

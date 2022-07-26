@@ -5,12 +5,12 @@
 		<PackageId>Shibusa.Data</PackageId>
 		<Title>Shibusa Data Library</Title>
 		<Description>Contains common utilities for constructing SQL statements and paged searching by criteria.</Description>
-		<Version>6.0.3</Version>
+		<Version>7.0.0</Version>
 		<Authors>shibusavic</Authors>
 		<Company>Shibusa LLC</Company>
 		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Copyright>Shibusa, LLC 2021</Copyright>
+		<Copyright>Shibusa, LLC 2022</Copyright>
 		<PackageTags>common,utility,data,SQL,criteria</PackageTags>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>

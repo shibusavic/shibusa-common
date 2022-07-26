@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Threading.Tasks;
-
-namespace Shibusa.Reports
+﻿namespace Shibusa.Reports
 {
     /// <summary>
     /// Represents a file-based report.
