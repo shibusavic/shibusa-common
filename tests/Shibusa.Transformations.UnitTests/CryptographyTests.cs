@@ -71,5 +71,22 @@ namespace Shibusa.Transformations.UnitTests
                 File.Delete(tempFilename);
             }
         }
+
+        [Fact]
+        public async Task EncryptDecryptAes_Decrypt_Bytes()
+        {
+            byte[] key = new byte[16];
+            Random rnd = new();
+            rnd.NextBytes(key);
+
+            var original = Encoding.UTF8.GetBytes(nameof(EncryptDecryptAes_Decrypt_Bytes));
+            var encrypted = Cryptography.EncryptAes(original, key);
+
+            Assert.NotEmpty(encrypted);
+
+            var decrypted = Cryptography.DecryptAes(encrypted, key);
+
+            Assert.Equal(original, decrypted);
+        }
     }
 }

@@ -61,5 +61,69 @@ namespace Shibusa.Transformations
         /// <returns>True if the hashes match, otherwise false.</returns>
         public static bool VerifyHashForFile(HashAlgorithm? hashAlgorithm, FileInfo fileInfo, string hash) =>
             VerifyHash(hashAlgorithm, File.ReadAllText(fileInfo.FullName), hash);
+
+        /// <summary>
+        /// Encrypt a byte array into a byte array using the "AesManaged" algorithm.
+        /// </summary>
+        /// <param name="original">The bytes to encrypt.</param>
+        /// <param name="key">The key, the length of which must be divisible by 16.</param>
+        /// <returns>A byte array of the encrypted cipher.</returns>
+        /// <exception cref="ArgumentException">Thrown if <paramref name="key"/>'s length is not divisible by 16.</exception>
+        public static byte[] EncryptAes(byte[] original, byte[] key)
+        {
+            if (key.Length < 1 || key.Length % 16 != 0) { throw new ArgumentException($"{nameof(key)} length must be divisible by 16."); }
+
+            var aes = Aes.Create("AesManaged");
+
+            if (aes == null) { throw new ArgumentException("Could not create AES."); }
+
+            using var encryptor = aes.CreateEncryptor(key, aes.IV);
+
+            using (MemoryStream ms = new())
+            {
+                ms.Write(aes.IV, 0, aes.IV.Length);
+                using (CryptoStream cs = new(ms, encryptor, CryptoStreamMode.Write))
+                {
+                    using (StreamWriter sw = new(cs))
+                    {
+                        sw.Write(Encoding.UTF8.GetString(original));
+                        sw.Flush();
+                        cs.FlushFinalBlock();
+                        return ms.ToArray();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Decrypt a byte array into a byte array using the "AesManaged" algorithm.
+        /// </summary>
+        /// <param name="cipher">The encrypted bytes to transform.</param>
+        /// <param name="key">The key, the length of which must be divisible by 16.</param>
+        /// <returns>A byte array matching the original.</returns>
+        /// <exception cref="ArgumentException">Thrown if <paramref name="key"/>'s length is not divisible by 16.</exception>
+        public static byte[] DecryptAes(byte[] cipher, byte[] key)
+        {
+            if (key.Length < 1 || key.Length % 16 != 0) { throw new ArgumentException($"{nameof(key)} length must be divisible by 16."); }
+
+            var aes = Aes.Create("AesManaged");
+
+            if (aes == null) { throw new ArgumentException("Could not create AES."); }
+
+            aes.IV = cipher[..aes.IV.Length];
+
+            var decryptor = aes.CreateDecryptor(key, aes.IV);
+
+            using (MemoryStream ms = new(cipher[aes.IV.Length..]))
+            {
+                using (CryptoStream cs = new(ms, decryptor, CryptoStreamMode.Read))
+                {
+                    using (StreamReader sr = new(cs))
+                    {
+                        return Encoding.UTF8.GetBytes(sr.ReadToEnd());
+                    }
+                }
+            }
+        }
     }
 }
