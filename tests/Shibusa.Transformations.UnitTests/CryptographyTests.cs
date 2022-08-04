@@ -73,7 +73,7 @@ namespace Shibusa.Transformations.UnitTests
         }
 
         [Fact]
-        public async Task EncryptDecryptAes_Decrypt_Bytes()
+        public void EncryptDecryptAes_Decrypt_Bytes()
         {
             byte[] key = new byte[16];
             Random rnd = new();
