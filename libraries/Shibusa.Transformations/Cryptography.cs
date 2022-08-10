@@ -66,6 +66,25 @@ namespace Shibusa.Transformations
         /// Encrypt a byte array into a byte array using the "AesManaged" algorithm.
         /// </summary>
         /// <param name="original">The bytes to encrypt.</param>
+        /// <param name="passkey">The secret passphrase.</param>
+        /// <returns>A byte array of the encrypted cipher.</returns>
+        public static byte[] EncryptAes(byte[] original, string passkey)
+        {
+            byte[] key = Enumerable.Repeat<byte>(0, 16).ToArray();
+            var passkeyBytes = Encoding.UTF8.GetBytes(passkey).Take(16).ToArray();
+
+            for (int i = 0; i < passkeyBytes.Length; i++)
+            {
+                key[i] = passkeyBytes[i];
+            }
+
+            return EncryptAes(original, key);
+        }
+
+        /// <summary>
+        /// Encrypt a byte array into a byte array using the "AesManaged" algorithm.
+        /// </summary>
+        /// <param name="original">The bytes to encrypt.</param>
         /// <param name="key">The key, the length of which must be divisible by 16.</param>
         /// <returns>A byte array of the encrypted cipher.</returns>
         /// <exception cref="ArgumentException">Thrown if <paramref name="key"/>'s length is not divisible by 16.</exception>
@@ -93,6 +112,25 @@ namespace Shibusa.Transformations
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Decrypt a byte array into a byte array using the "AesManaged" algorithm.
+        /// </summary>
+        /// <param name="cipher">The encrypted bytes to transform.</param>
+        /// <param name="passkey">The secret passphrase.</param>
+        /// <returns>A byte array matching the original.</returns>
+        public static byte[] DecryptAes(byte[] original, string passkey)
+        {
+            byte[] key = Enumerable.Repeat<byte>(0, 16).ToArray();
+            var passkeyBytes = Encoding.UTF8.GetBytes(passkey).Take(16).ToArray();
+
+            for (int i = 0; i < passkeyBytes.Length; i++)
+            {
+                key[i] = passkeyBytes[i];
+            }
+
+            return DecryptAes(original, key);
         }
 
         /// <summary>

@@ -88,5 +88,20 @@ namespace Shibusa.Transformations.UnitTests
 
             Assert.Equal(original, decrypted);
         }
+
+        [Fact]
+        public void EncryptDecryptAes_Decrypt_PassPhrase()
+        {
+            string password = "short";
+
+            var original = Encoding.UTF8.GetBytes(nameof(EncryptDecryptAes_Decrypt_PassPhrase));
+            var encrypted = Cryptography.EncryptAes(original, password);
+
+            Assert.NotEmpty(encrypted);
+
+            var decrypted = Cryptography.DecryptAes(encrypted, password);
+
+            Assert.Equal(original, decrypted);
+        }
     }
 }
