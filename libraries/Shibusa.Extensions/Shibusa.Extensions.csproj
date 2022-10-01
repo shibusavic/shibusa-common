@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <PackageId>Shibusa.Extensions</PackageId>
+    <Title>Shibusa Extensions Library</Title>
+    <Description>Common extensions.</Description>
+    <PackageVersion>7.0.0</PackageVersion>
+    <Authors>shibusavic</Authors>
+    <Company>Shibusa LLC</Company>
+    <RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>Shibusa, LLC 2022</Copyright>
+    <PackageTags>common,utility,extensions</PackageTags>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+</Project>

@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace Shibusa.Transformations.UnitTests
+namespace Shibusa.Extensions.UnitTests
 {
     public class DateTimeExtensionTests
     {

@@ -8,6 +8,7 @@ This is a collection of libraries containing common, non-proprietary logic and u
 | :----------------------------------------------------------- | :----------------------------------------------------------: |
 | **Shibusa.Calendar** contains calendar calculations for **U.S. holidays** and common manipulations, such as dealing with work days. |  ![Nuget](https://img.shields.io/nuget/v/Shibusa.Calendar)   |
 | **Shibusa.Data** contains code for fluent **WHERE clause construction** (very useful with inline SQL construction) and logic for paged query results, including temporal tables. |    ![Nuget](https://img.shields.io/nuget/v/Shibusa.Data)     |
+| **Shibusa.Extensions** contains common extensions for DateTime, Enum, and Streams. |  ![Nuget](https://img.shields.io/nuget/v/Shibusa.Extensions)   |
 | **Shibusa.Maths** contains some classic math calculations, including a few simple probability constructs. |    ![Nuget](https://img.shields.io/nuget/v/Shibusa.Maths)    |
 | **Shibusa.PersonBuilder** is a fluent person factory that **creates random or semi-random "people;"** it comes in handy in testing sometimes. See the unit tests for examples. | ![Nuget](https://img.shields.io/nuget/v/Shibusa.PersonBuilder) |
 | **Shibusa.Reports** contains functionality for quickly generating reports for the console or CSV. |   ![Nuget](https://img.shields.io/nuget/v/Shibusa.Reports)   |
@@ -23,6 +24,10 @@ PM > Install-Package Shibusa.Calendar
 
 ```
 PM > Install-Package Shibusa.Data
+```
+
+```
+PM > Install-Package Shibusa.Extensions
 ```
 
 ```

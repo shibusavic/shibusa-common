@@ -1,3 +1,4 @@
+using Shibusa.Extensions;
 using Xunit;
 
 namespace Shibusa.Transformations.UnitTests;
