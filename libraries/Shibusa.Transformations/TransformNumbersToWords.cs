@@ -28,8 +28,6 @@ namespace Shibusa.Transformations
         {
             if (string.IsNullOrWhiteSpace(val)) { throw new ArgumentNullException(nameof(val)); }
 
-            string words = string.Empty;
-
             val = val.Trim();
 
             Regex regex = new("-?\\d+");
@@ -37,6 +35,8 @@ namespace Shibusa.Transformations
             {
                 throw new ArgumentException("Value provided is not a number.");
             }
+
+            string words = string.Empty;
 
             bool isNegative = val[..1] == "-";
             if (isNegative)
@@ -73,15 +73,14 @@ namespace Shibusa.Transformations
 
                 words = $"{ConvertThreeDigits(Convert.ToInt32(val))} {denom[denomIndex]} {words}";
 
-                while (words.Contains("  "))
-                {
-                    words = words.Replace("  ", " ");
-                }
-
-                words = words.Trim();
                 if (isNegative)
                 {
                     words = $"negative {words}";
+                }
+             
+                while (words.Contains("  "))
+                {
+                    words = words.Replace("  ", " ");
                 }
             }
 
