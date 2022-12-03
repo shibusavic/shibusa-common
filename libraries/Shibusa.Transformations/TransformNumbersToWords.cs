@@ -38,10 +38,18 @@ namespace Shibusa.Transformations
 
             string words = string.Empty;
 
+#if NETSTANDARD2_0
+            bool isNegative = val.Substring(0, 1) == "-";
+#else
             bool isNegative = val[..1] == "-";
+#endif
             if (isNegative)
             {
+#if NETSTANDARD2_0
+                val = val.Substring(1);
+#else
                 val = val[1..];
+#endif
             }
 
             if (val.All(v => v == '0'))
@@ -77,7 +85,7 @@ namespace Shibusa.Transformations
                 {
                     words = $"negative {words}";
                 }
-             
+
                 while (words.Contains("  "))
                 {
                     words = words.Replace("  ", " ");
@@ -111,7 +119,11 @@ namespace Shibusa.Transformations
             string words;
             if (val < 0)
             {
+#if NETSTANDARD2_0
+                string str = val.ToString().Substring(1);
+#else
                 string str = val.ToString()[1..];
+#endif
                 if (!ulong.TryParse(str, out ulong res))
                 {
                     throw new Exception("Number too small to convert.");
@@ -163,9 +175,16 @@ namespace Shibusa.Transformations
 
         private static string GetLastThree(string val, out string newVal)
         {
+#if NETSTANDARD2_0
+            int len = val.Length;
+            newVal = len > 3 ? val.Substring(0, len - 3)
+                : string.Empty;
+            return val.Substring(len - 3);
+#else
             newVal = val.Length > 3 ? val[0..^3]
                 : string.Empty;
             return val[^3..];
+#endif
         }
 
         private static string ConvertThreeDigits(int val)

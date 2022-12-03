@@ -1,3 +1,4 @@
+#if NET6_0_OR_GREATER
 using System.Security.Cryptography;
 using System.Text;
 
@@ -92,7 +93,7 @@ namespace Shibusa.Transformations
         {
             if (key.Length < 1 || key.Length % 16 != 0) { throw new ArgumentException($"{nameof(key)} length must be divisible by 16."); }
 
-            var aes = Aes.Create("AesManaged");
+            var aes = Aes.Create();
 
             if (aes == null) { throw new ArgumentException("Could not create AES."); }
 
@@ -144,7 +145,7 @@ namespace Shibusa.Transformations
         {
             if (key.Length < 1 || key.Length % 16 != 0) { throw new ArgumentException($"{nameof(key)} length must be divisible by 16."); }
 
-            var aes = Aes.Create("AesManaged");
+            var aes = Aes.Create();
 
             if (aes == null) { throw new ArgumentException("Could not create AES."); }
 
@@ -165,3 +166,4 @@ namespace Shibusa.Transformations
         }
     }
 }
+#endif

@@ -13,6 +13,18 @@ namespace Shibusa.Calendar.UnitTests
         }
 
         [Fact]
+        public void GetNameForHoliday_Valid_FindsName()
+        {
+            Assert.Equal(UnitedStatesCalendar.HolidayNames.IndependenceDay, UnitedStatesCalendar.GetNameForHoliday(new DateOnly(2000, 7, 4)));
+        }
+
+        [Fact]
+        public void GetNameForHoliday_Invalid_ReturnsNull()
+        {
+            Assert.Null(UnitedStatesCalendar.GetNameForHoliday(new DateOnly(2000, 7, 5)));
+        }
+
+        [Fact]
         public void NewYears()
         {
             Assert.Equal(new DateOnly(2000, 1, 1), UnitedStatesCalendar.NewYearsDay(2000));

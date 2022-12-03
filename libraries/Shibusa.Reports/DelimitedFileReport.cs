@@ -22,7 +22,7 @@
             {
                 if (Headers.Any())
                 {
-                    await WriteLineToStreamAsync(stream, string.Join(Configuration.Delimiter, Headers)).ConfigureAwait(false);
+                    await WriteLineToStreamAsync(stream, string.Join(Configuration.Delimiter, Headers));
                 }
 
                 foreach (IDictionary<string, string> line in Lines)
@@ -40,10 +40,10 @@
                             lineItems.Add(string.Empty);
                         }
                     }
-                    await WriteLineToStreamAsync(stream, string.Join(Configuration.Delimiter, lineItems)).ConfigureAwait(false);
+                    await WriteLineToStreamAsync(stream, string.Join(Configuration.Delimiter, lineItems));
                 }
 
-                await stream.FlushAsync().ConfigureAwait(false);
+                await stream.FlushAsync();
             }
         }
 

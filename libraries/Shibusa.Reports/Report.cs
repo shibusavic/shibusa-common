@@ -269,7 +269,11 @@ namespace Shibusa.Reports
 
                 if (headerItem.Length > maxLen)
                 {
+#if NETSTANDARD2_0
+                    headerItem = headerItem.Substring(0,maxLen);
+#else
                     headerItem = headerItem[..maxLen];
+#endif
                 }
                 headerItems.Add(headerItem.PadRight(maxLen));
             }
@@ -294,7 +298,11 @@ namespace Shibusa.Reports
 
                 if (lineItem.Length > maxLen)
                 {
+#if NETSTANDARD2_0
+                    lineItem = lineItem.Substring(0,maxLen);
+#else
                     lineItem = lineItem[..maxLen];
+#endif
                 }
                 lineItems.Add(lineItem.PadRight(maxLen));
             }
@@ -319,12 +327,16 @@ namespace Shibusa.Reports
             if (stream?.CanWrite ?? false)
             {
                 var buffer = Encoding.UTF8.GetBytes(text);
-                await stream.WriteAsync(buffer.AsMemory(0, buffer.Length)).ConfigureAwait(false);
+#if NETSTANDARD2_0
+                await stream.WriteAsync(buffer, 0, buffer.Length);
+#else
+                await stream.WriteAsync(buffer.AsMemory(0, buffer.Length));
+#endif
             }
         }
 
         protected virtual async Task WriteLineToStreamAsync(Stream stream, string text)
-            => await WriteToStreamAsync(stream, $"{text}{Environment.NewLine}").ConfigureAwait(false);
+            => await WriteToStreamAsync(stream, $"{text}{Environment.NewLine}");
 
         protected virtual IEnumerable<string> ExtractValuesFromLine(IDictionary<string, string> line)
         {

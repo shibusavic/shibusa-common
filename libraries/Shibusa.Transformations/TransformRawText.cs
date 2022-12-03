@@ -37,7 +37,7 @@ namespace Shibusa.Transformations
         {
             return string.IsNullOrWhiteSpace(text)
                 ? text
-                : text.Replace("\n", " ").Replace("\r", "").Replace("\t", " ");
+                : text!.Replace("\n", " ").Replace("\r", "").Replace("\t", " ");
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Shibusa.Transformations
             if (keyValuePairs == null) { throw new ArgumentNullException(nameof(keyValuePairs)); }
             if (!keyValuePairs.Any()) { throw new ArgumentException($"{nameof(keyValuePairs)} cannot be empty."); }
 
-            string templateCopy = new(template);
+            string templateCopy = new(template.ToCharArray());
             Dictionary<string, string> dictionary;
 
             try

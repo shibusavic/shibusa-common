@@ -10,7 +10,7 @@ namespace Shibusa.Transformations.UnitTests
         public void HashAndVerify_Success()
         {
             string? content = File.ReadAllText("CryptoTest.txt");
-            HashAlgorithm? algorithm = HashAlgorithm.Create("SHA256");
+            HashAlgorithm? algorithm = SHA256.Create();
             string? hash = Cryptography.GetHash(algorithm, content);
 
             Assert.NotNull(hash);
@@ -23,7 +23,7 @@ namespace Shibusa.Transformations.UnitTests
         public void HashAndVerify_Fail()
         {
             string? content = File.ReadAllText("CryptoTest.txt");
-            HashAlgorithm? algorithm = HashAlgorithm.Create("SHA256");
+            HashAlgorithm? algorithm = SHA256.Create();
             string? hash = Cryptography.GetHash(algorithm, content);
 
             string? reverseContent = content.ToArray().Reverse().ToString();
@@ -40,7 +40,7 @@ namespace Shibusa.Transformations.UnitTests
 
             try
             {
-                HashAlgorithm? algorithm = HashAlgorithm.Create("SHA256");
+                HashAlgorithm? algorithm = SHA256.Create();
 
                 FileStream? tempFile = File.Create(tempFilename);
 

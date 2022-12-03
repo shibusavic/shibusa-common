@@ -90,7 +90,14 @@
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
         {
+#if NETSTANDARD2_0
+            int hashCode = -180594284;
+            hashCode = hashCode * -1521134295 + Point1.GetHashCode();
+            hashCode = hashCode * -1521134295 + Point2.GetHashCode();
+            return hashCode;        
+#else
             return HashCode.Combine(Point1, Point2);
+#endif
         }
 
         /// <summary>

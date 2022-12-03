@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System;
 
 namespace Shibusa.Extensions;
 
@@ -8,20 +9,27 @@ namespace Shibusa.Extensions;
 public static class StreamExtensions
 {
     /// <summary>
-    /// Write the specified message toA  the stream.
+    /// Write the specified message to the stream.
     /// </summary>
     /// <param name="stream">The stream to which to write.</param>
     /// <param name="message">The message to write.</param>
-    /// <exception cref="ArgumentException">Thrown if the stream is not in a writeable state</exception>
     public static void Write(this Stream stream, string message)
     {
         if (stream.CanWrite && message != null)
         {
+#if NETSTANDARD2_0
             byte[] buffer = Encoding.UTF8.GetBytes(message);
+#else
+            ReadOnlySpan<byte> buffer = Encoding.UTF8.GetBytes(message);
+#endif
 
             lock (stream)
             {
-                stream.Write(buffer, 0, buffer.Length);
+#if NETSTANDARD2_0
+            stream.Write(buffer, 0, buffer.Length);
+#else
+                stream.Write(buffer);
+#endif
             }
         }
     }
@@ -36,11 +44,18 @@ public static class StreamExtensions
     public static async Task WriteAsync(this Stream stream, string message,
         CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+
         if (stream.CanWrite && message != null && !cancellationToken.IsCancellationRequested)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(message);
 
-            await stream.WriteAsync(buffer, 0, buffer.Length);
+#if NETSTANDARD2_0
+            await stream.WriteAsync(buffer, 0, buffer.Length, cancellationToken);
+#else
+            await stream.WriteAsync(buffer, cancellationToken);
+#endif
+
         }
     }
 

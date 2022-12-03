@@ -1,3 +1,89 @@
+#if NETSTANDARD2_0
+namespace Shibusa.Calendar
+{
+    /// <summary>
+    /// Represents a generic calendar.
+    /// </summary>
+    public class Calendar
+    {
+        /// <summary>
+        /// Gets an <see cref="IEnumerable{T}"/> of <see cref="DateTime"/> objects containing an entry for each date
+        /// in the range, inclusive of both the <paramref name="start"/> and <paramref name="finish"/> dates.
+        /// </summary>
+        /// <param name="start">The inclusive start date.</param>
+        /// <param name="finish">The inclusive end date.</param>
+        /// <returns>A collection of inclusive <see cref="DateTime"/> objects between the 
+        /// <paramref name="start"/> and <paramref name="finish"/> dates.</returns>
+        public static IEnumerable<DateTime> GetInclusiveDays(DateTime start, DateTime finish)
+        {
+            var (first, last) = OrderDates(start, finish);
+
+            while (first <= last)
+            {
+                yield return first;
+                first = first.AddDays(1);
+            }
+        }
+
+        /// <summary>
+        /// Counts the days between the two dates, inclusively.
+        /// </summary>
+        /// <param name="start">The inclusive start date.</param>
+        /// <param name="finish">The inclusive end date.</param>
+        /// <returns>An inclusive count of days between two dates.</returns>
+        public static int CountInclusiveDays(DateTime start, DateTime finish) =>
+            new TimeSpan(finish.Ticks - start.Ticks).Days;
+
+        /// <summary>
+        /// Gets an <see cref="IEnumerable{T}"/> of <see cref="DateTime"/> objects containing
+        /// an entry for each weekday in the range, inclusively.
+        /// </summary>
+        /// <param name="start">The inclusive start date.</param>
+        /// <param name="finish">The inclusive end date.</param>
+        /// <returns>A collection of <see cref="DateTime"/> between the start and end dates, inclusively,
+        /// where the day of the week is a weekday.</returns>
+        public static IEnumerable<DateTime> GetInclusiveWeekDays(DateTime start, DateTime finish) =>
+            GetInclusiveDays(start, finish).Where(d => d.DayOfWeek != DayOfWeek.Saturday
+                 && d.DayOfWeek != DayOfWeek.Sunday);
+
+        /// <summary>
+        /// Counts the weekdays between two dates, inclusively.
+        /// </summary>
+        /// <param name="start">The inclusive start date.</param>
+        /// <param name="finish">The inclusive end date.</param>
+        /// <returns>An inclusive count of week days between two dates.</returns>
+        public static int CountInclusiveWeekDays(DateTime start, DateTime finish) =>
+            GetInclusiveWeekDays(start, finish).Count();
+
+        /// <summary>
+        /// Returns a date for a holiday falling on a weekend day to the day
+        /// on which it will be celebrated on the U.S. calendar.
+        /// </summary>
+        /// <param name="holiday">The holiday to adjust.</param>
+        /// <returns>The day on which the holiday will be celebrated.</returns>
+        public static DateTime AdjustWeekendHolidayToCelebratedDay(DateTime holiday) =>
+            holiday.DayOfWeek == DayOfWeek.Saturday // move to Friday
+                ? holiday.AddDays(-1)
+                : holiday.DayOfWeek == DayOfWeek.Sunday // move to Monday
+                    ? holiday.AddDays(1)
+                    : holiday; // keep as-is
+        
+        /// <summary>
+        /// Given two dates, return them in chronological order.
+        /// </summary>
+        /// <param name="date1">First date.</param>
+        /// <param name="date2">Second date.</param>
+        /// <returns>A tuple of first and last dates.</returns>
+        public static (DateTime First, DateTime Last) OrderDates(DateTime date1, DateTime date2)
+        {
+            DateTime first = date1 < date2 ? date1 : date2;
+            DateTime last = first < date2 ? date2 : date1;
+
+            return (first, last);
+        }
+    }
+}
+#else
 namespace Shibusa.Calendar
 {
     /// <summary>
@@ -31,7 +117,7 @@ namespace Shibusa.Calendar
         /// <param name="finish">The inclusive end date.</param>
         /// <returns>An inclusive count of days between two dates.</returns>
         public static int CountInclusiveDays(DateOnly start, DateOnly finish) =>
-            GetInclusiveDays(start, finish).Count();
+            finish.DayNumber - start.DayNumber + 1;
 
         /// <summary>
         /// Gets an <see cref="IEnumerable{T}"/> of <see cref="DateOnly"/> objects containing
@@ -66,7 +152,7 @@ namespace Shibusa.Calendar
                 : holiday.DayOfWeek == DayOfWeek.Sunday // move to Monday
                     ? holiday.AddDays(1)
                     : holiday; // keep as-is
-        
+
         /// <summary>
         /// Given two dates, return them in chronological order.
         /// </summary>
@@ -82,3 +168,4 @@ namespace Shibusa.Calendar
         }
     }
 }
+#endif

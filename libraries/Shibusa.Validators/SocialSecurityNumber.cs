@@ -33,9 +33,15 @@ namespace Shibusa.Validators
             if (IsValidStructure(socialSecurityNumber))
             {
                 string numbersOnly = socialSecurityNumber.Replace("-", "");
-                ushort area = ushort.Parse(numbersOnly[..3]);
+#if NETSTANDARD2_0
+                ushort area = ushort.Parse(numbersOnly.Substring(0,3));
                 ushort group = ushort.Parse(numbersOnly.Substring(3, 2));
+                ushort series = ushort.Parse(numbersOnly.Substring(5));
+#else
+                ushort area = ushort.Parse(numbersOnly[..3]);
+                ushort group = ushort.Parse(numbersOnly[3..5]);
                 ushort series = ushort.Parse(numbersOnly[5..]);
+#endif
 
                 isVerified = (area > 0 && group > 0 && series > 0
                     && !unusedAreas.Any(a => a.low <= area && area <= a.high));

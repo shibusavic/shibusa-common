@@ -89,7 +89,11 @@
         /// <summary>
         /// Gets the <see cref="Line"/> that is the hypotenuse of the triangle.
         /// </summary>
+#if NETSTANDARD2_0
+        public Line Hypotenuse => Lines.OrderByDescending(l => l.Length).FirstOrDefault();
+#else
         public Line Hypotenuse => Lines.MaxBy(l => l.Length);
+#endif
 
         /// <summary>
         /// Gets an indicator of whether the triangle is a right triangle.
@@ -151,7 +155,15 @@
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
         {
+#if NETSTANDARD2_0
+            int hashCode = -180594284;
+            hashCode = hashCode * -1521134295 + PointA.GetHashCode();
+            hashCode = hashCode * -1521134295 + PointB.GetHashCode();
+            hashCode = hashCode * -1521134295 + PointC.GetHashCode();
+            return hashCode;        
+#else
             return HashCode.Combine(PointA, PointB, PointC);
+#endif
         }
 
         /// <summary>

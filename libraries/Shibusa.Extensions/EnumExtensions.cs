@@ -40,7 +40,7 @@ public static class EnumExtensions
     /// <typeparam name="T">The type of enum.</typeparam>
     /// <param name="description">The description value.</param>
     /// <returns>The enum value.</returns>
-    public static T GetEnumByDescription<T>(this string text) where T : struct, Enum
+    public static T GetEnum<T>(this string text) where T : struct, Enum
     {
         var type = typeof(T);
         if (!type.IsEnum)

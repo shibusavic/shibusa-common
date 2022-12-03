@@ -41,9 +41,15 @@ namespace Shibusa.PersonBuilder
         /// <summary>
         /// Gets the person's middle initial.
         /// </summary>
+#if NETSTANDARD2_0
         public string? MiddleInitial => string.IsNullOrWhiteSpace(MiddleName)
                 ? null
-                : MiddleName[..1];
+                : MiddleName!.Substring(0, 1);
+#else
+        public string? MiddleInitial => string.IsNullOrWhiteSpace(MiddleName)
+            ? null
+            : MiddleName[..1];
+#endif
 
         /// <summary>
         /// Get the suffix of the person's name.
@@ -79,7 +85,16 @@ namespace Shibusa.PersonBuilder
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
         {
+#if NETSTANDARD2_0
+            int hashCode = -180594284;
+            hashCode = hashCode * -1521134295 + FirstName.GetHashCode();
+            hashCode = hashCode * -1521134295 + LastName.GetHashCode();
+            hashCode = hashCode * -1521134295 + MiddleName?.GetHashCode() ?? 0;
+            hashCode = hashCode * -1521134295 + Suffix?.GetHashCode() ?? 0;
+            return hashCode;        
+#else
             return HashCode.Combine(FirstName, LastName, MiddleName, Suffix);
+#endif
         }
 
         /// <summary>
@@ -99,9 +114,15 @@ namespace Shibusa.PersonBuilder
         /// <returns>A string that represents the person's name.</returns>
         public string? ToString(PersonNameFormat format, bool includeSuffix = false)
         {
-            string middleInitial = string.IsNullOrWhiteSpace(MiddleName) 
+#if NETSTANDARD2_0
+            string middleInitial = string.IsNullOrWhiteSpace(MiddleName)
+                ? string.Empty
+                : MiddleName?.Substring(0, 1) ?? string.Empty;
+#else
+            string middleInitial = string.IsNullOrWhiteSpace(MiddleName)
                 ? string.Empty
                 : MiddleName[..1];
+#endif
 
             var name = format switch
             {
