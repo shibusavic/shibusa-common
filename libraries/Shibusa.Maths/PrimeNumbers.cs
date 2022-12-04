@@ -4,7 +4,7 @@ namespace Shibusa.Maths
 {
     public static partial class Calculate
     {
-        private static readonly SortedSet<ulong> predefinedPrimes = new()
+        private static readonly List<ulong> predefinedPrimes = new()
         {
             2L,
             3L,
@@ -176,7 +176,7 @@ namespace Shibusa.Maths
             997L
         };
 
-        private static readonly ulong largestPredeterminedPrime = predefinedPrimes.Last();
+        private static ulong largestPredeterminedPrime = predefinedPrimes.Last();
 
         /// <summary>
         /// Determine if a number is prime.
@@ -196,6 +196,9 @@ namespace Shibusa.Maths
             {
                 if (number % i == 0) { return false; }
             }
+
+            
+            largestPredeterminedPrime = number > largestPredeterminedPrime ? number : largestPredeterminedPrime;
 
             return true;
         }
@@ -226,6 +229,9 @@ namespace Shibusa.Maths
                     predefinedPrimes.Add(prime);
                 }
             }
+
+            largestPredeterminedPrime = prime > largestPredeterminedPrime ? prime : largestPredeterminedPrime;
+            
             return prime;
         }
 
@@ -274,7 +280,7 @@ namespace Shibusa.Maths
 
             for (int i = 1; i <= boundary; i++)
             {
-                if (primeBits.Get((int)i))
+                if (primeBits.Get(i))
                 {
                     for (int j = i * 2 * (i + 1); j <= sieveBound; j += 2 * i + 1)
                     {

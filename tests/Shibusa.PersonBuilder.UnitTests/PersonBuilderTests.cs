@@ -15,6 +15,7 @@ namespace Shibusa.PersonBuilder.UnitTests
                 .WithEthnicity(PersonBuilder.Constants.Ethnicity.NOT_HISPANIC)
                 .Build();
 
+
             Assert.Equal<int>(24, person.Age);
             Assert.Equal(Gender.Female, person.Gender);
             Assert.NotNull(person.Name.FirstName);

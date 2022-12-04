@@ -1,6 +1,7 @@
 ﻿namespace Shibusa.Maths
 {
     /// <summary>
+    /// Represents a triangle.
     /// <seealso href="https://en.wikipedia.org/wiki/Law_of_cosines"/>
     /// </summary>
     /// <remarks>
@@ -103,7 +104,9 @@
         /// <summary>
         /// Gets an indicator of whether the triangle is a scalene triangle.
         /// </summary>
-        public bool IsScalene => LineA.Length != LineB.Length && LineB.Length != LineC.Length && LineA.Length != LineC.Length;
+        public bool IsScalene => LineA.Length != LineB.Length &&
+            LineB.Length != LineC.Length && 
+            LineA.Length != LineC.Length;
 
         /// <summary>
         /// Gets an indicator of whether the triangle is an isosceles triangle.

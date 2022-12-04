@@ -35,7 +35,7 @@ namespace Shibusa.Maths
         /// <summary>
         /// Gets the complement of <see cref="Likelihood"/> (1 - <see cref="Likelihood"/>).
         /// </summary>
-        public double Complement => 1 - Likelihood;
+        public double Complement => 1D - Likelihood;
 
         /// <summary>
         /// Determine the likelihood of a collection of events occurring.

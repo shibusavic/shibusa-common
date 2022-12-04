@@ -19,5 +19,22 @@ namespace Shibusa.Maths
 
             return age;
         }
+
+#if NET6_0_OR_GREATER
+        /// <summary>
+        /// Calculate an age from a <paramref name="birthDate"/>.
+        /// </summary>
+        /// <param name="birthDate">The date of birth.</param>
+        /// <param name="fromDate">The date from which to calculate.</param>
+        /// <returns>An integer representation of age.</returns>
+        public static int AgeInYears(DateOnly birthDate, DateOnly? fromDate = null)
+        {
+            fromDate ??= DateOnly.FromDateTime(DateTime.Now);
+            var age = fromDate.Value.Year - birthDate.Year;
+            if (birthDate > fromDate.Value.AddYears(-age)) { age--; }
+
+            return age;
+        }
+#endif
     }
 }
