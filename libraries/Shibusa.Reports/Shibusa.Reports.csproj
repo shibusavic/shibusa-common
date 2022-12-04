@@ -5,7 +5,7 @@
 		<PackageId>Shibusa.Reports</PackageId>
 		<Title>Shibusa Reporting Library</Title>
 		<Description>Contains tools for report generation.</Description>
-		<PackageVersion>7.0.5</PackageVersion>
+    <PackageVersion>7.1.0</PackageVersion>
 		<Authors>shibusavic</Authors>
 		<Company>Shibusa LLC</Company>
 		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>

@@ -5,7 +5,7 @@
 		<PackageId>Shibusa.PersonBuilder</PackageId>
 		<Title>Shibusa Random Person Construction Library</Title>
 		<Description>Provides a fluent-like interface for random and semi-random person construction.</Description>
-    <PackageVersion>7.0.5</PackageVersion>
+    <PackageVersion>7.1.0</PackageVersion>
 		<Authors>shibusavic</Authors>
 		<Company>Shibusa LLC</Company>
 		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>

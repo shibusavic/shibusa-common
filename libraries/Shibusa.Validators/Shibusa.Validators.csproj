@@ -5,7 +5,7 @@
 		<PackageId>Shibusa.Validators</PackageId>
 		<Title>Shibusa Validation Library</Title>
 		<Description>Validates the structure of email addresses, Social Security Numbers, and U.S. phone numbers.</Description>
-    <PackageVersion>7.0.5</PackageVersion>
+    <PackageVersion>7.1.0</PackageVersion>
 		<Authors>shibusavic</Authors>
 		<Company>Shibusa LLC</Company>
 		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>

@@ -1,8 +1,14 @@
 # Shibusa Common (C#) Libraries
 
-This is a collection of libraries containing common, non-proprietary logic and utilities for use in many kinds of projects.
+This is a collection of libraries containing common, non-proprietary logic and generic utilities for use in many kinds of projects.
 
 ## Libraries
+
+### Target Frameworks
+
+The libraries currently target `netstandard2.0`, `net6.0`, and `net7.0`, though not all features are available for `netstandard2.0`.
+
+### Packages
 
 | Project                                                      |                        NuGet Package                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------: |
@@ -18,34 +24,13 @@ This is a collection of libraries containing common, non-proprietary logic and u
 
 To install from **Package Manager Console**:
 
-```
-PM > Install-Package Shibusa.Calendar
-```
-
-```
-PM > Install-Package Shibusa.Data
-```
-
-```
-PM > Install-Package Shibusa.Extensions
-```
-
-```
-PM > Install-Package Shibusa.Maths
-```
-
-```
-PM > Install-Package Shibusa.PersonBuilder
-```
-
-```
-PM > Install-Package Shibusa.Reports
-```
-
-```
-PM > Install-Package Shibusa.Transformations
-```
-
-```
-PM > Install-Package Shibusa.Validators
-```
+| Project    |  Install Command   |
+| ---------- | ------------------ |
+| **Shibusa.Calendar** | PM > Install-Package Shibusa.Calendar |
+| **Shibusa.Data** | PM > Install-Package Shibusa.Data |
+| **Shibusa.Extensions** | PM > Install-Package Shibusa.Extensions |
+| **Shibusa.Maths** | PM > Install-Package Shibusa.Maths |
+| **Shibusa.PersonBuilder** | PM > Install-Package Shibusa.PersonBuilder |
+| **Shibusa.Reports** | PM > Install-Package Shibusa.Reports |
+| **Shibusa.Transformations** | PM > Install-Package Shibusa.Transformations |
+| **Shibusa.Validators** | PM > Install-Package Shibusa.Validators |
