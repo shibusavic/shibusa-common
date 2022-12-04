@@ -7,7 +7,7 @@
 		<Description>
 			Common calendar functions, such as determining the dates of US holidays and counting days or weekdays.
 		</Description>
-		<PackageVersion>7.0.5</PackageVersion>
+		<PackageVersion>7.0.6</PackageVersion>
 		<Authors>shibusavic</Authors>
 		<Company>Shibusa LLC</Company>
 		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>

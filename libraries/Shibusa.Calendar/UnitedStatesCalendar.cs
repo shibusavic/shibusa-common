@@ -259,7 +259,7 @@ namespace Shibusa.Calendar
     /// </summary>
     public sealed class UnitedStatesCalendar
     {
-        private static readonly SortedDictionary<int, IDictionary<string, DateOnly>> cachedYears = new();
+        private static readonly Dictionary<int, IDictionary<string, DateOnly>> cachedYears = new();
 
         /// <summary>
         /// Represents the U.S. holiday names.

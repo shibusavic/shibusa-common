@@ -267,7 +267,7 @@ namespace Shibusa.Maths
             if (upperLimit <= 1) return Array.Empty<int>();
             if (upperLimit == 2) return new int[1] { 2 };
 
-            int sieveBound = (int)(upperLimit - 1) / 2;
+            int sieveBound = (upperLimit - 1) / 2;
             int boundary = ((int)Math.Sqrt(upperLimit) - 1) / 2;
 
             BitArray primeBits = new(sieveBound + 1, true);
