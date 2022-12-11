@@ -118,7 +118,7 @@ namespace Shibusa.PersonBuilder
                 name = $"{name} {Suffix}";
             }
 
-            return Transformations.TransformRawText.CondenseSpacingAndTrim(name);
+            return Transformations.RawText.CondenseSpacingAndTrim(name);
         }
 
         /// <summary>

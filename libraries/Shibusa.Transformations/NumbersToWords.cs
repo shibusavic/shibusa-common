@@ -5,7 +5,7 @@ namespace Shibusa.Transformations
     /// <summary>
     /// Utility class for converting numbers to English text.
     /// </summary>
-    public static class TransformNumbersToWords
+    public static class NumbersToWords
     {
         private static readonly string[] zeroToNineteen = { "zero",  "one",   "two",  "three", "four",   "five",   "six",
             "seven", "eight", "nine", "ten",   "eleven", "twelve", "thirteen",

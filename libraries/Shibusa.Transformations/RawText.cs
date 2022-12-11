@@ -5,7 +5,7 @@ namespace Shibusa.Transformations
     /// <summary>
     /// Utility class for common text manipulations.
     /// </summary>
-    public static class TransformRawText
+    public static class RawText
     {
         /// <summary>
         /// The regular expression for the data tag match.

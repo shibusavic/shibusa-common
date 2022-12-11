@@ -5,7 +5,7 @@ namespace Shibusa.Transformations
     /// <summary>
     /// 
     /// </summary>
-    public static class TransformWordsToTime
+    public static class WordsToTime
     {
         private static readonly Regex timeRefRegex = new(@"(\d+)\s+([^ ]+)\s+?(ago)?", RegexOptions.Singleline);
 

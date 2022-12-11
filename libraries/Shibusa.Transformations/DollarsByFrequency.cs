@@ -3,7 +3,7 @@ namespace Shibusa.Transformations
     /// <summary>
     /// Utility class for converting dollar amounts between frequencies.
     /// </summary>
-    public static class TransformDollarsByFrequency
+    public static class DollarsByFrequency
     {
         /// <summary>
         /// Frequencies

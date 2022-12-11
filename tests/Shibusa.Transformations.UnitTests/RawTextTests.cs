@@ -3,11 +3,11 @@ using Xunit.Abstractions;
 
 namespace Shibusa.Transformations.UnitTests
 {
-    public class TransformRawTextTests
+    public class RawTextTests
     {
         private readonly ITestOutputHelper testOutputHelper;
 
-        public TransformRawTextTests(ITestOutputHelper testOutputHelper)
+        public RawTextTests(ITestOutputHelper testOutputHelper)
         {
             this.testOutputHelper = testOutputHelper;
         }
@@ -15,13 +15,13 @@ namespace Shibusa.Transformations.UnitTests
         [Fact]
         public void CovertNewLinesAndTabsToSpaces_Null_Null()
         {
-            Assert.Null(TransformRawText.ConvertNewLinesAndTabsToSpaces(null));
+            Assert.Null(RawText.ConvertNewLinesAndTabsToSpaces(null));
         }
 
         [Fact]
         public void CovertNewLinesAndTabsToSpaces_Empty_Empty()
         {
-            Assert.Equal(string.Empty, TransformRawText.ConvertNewLinesAndTabsToSpaces(string.Empty));
+            Assert.Equal(string.Empty, RawText.ConvertNewLinesAndTabsToSpaces(string.Empty));
         }
 
         [Fact]
@@ -29,8 +29,8 @@ namespace Shibusa.Transformations.UnitTests
         {
             const string Empty = "    ";
             const string NoNewlinesOrTabsHere = "I am string, hear me roar.";
-            Assert.Equal(Empty, TransformRawText.ConvertNewLinesAndTabsToSpaces(Empty));
-            Assert.Equal(NoNewlinesOrTabsHere, TransformRawText.ConvertNewLinesAndTabsToSpaces(NoNewlinesOrTabsHere));
+            Assert.Equal(Empty, RawText.ConvertNewLinesAndTabsToSpaces(Empty));
+            Assert.Equal(NoNewlinesOrTabsHere, RawText.ConvertNewLinesAndTabsToSpaces(NoNewlinesOrTabsHere));
         }
 
         [Fact]
@@ -38,26 +38,26 @@ namespace Shibusa.Transformations.UnitTests
         {
             string testMe = $"\t{Environment.NewLine}I{Environment.NewLine}am\tstring,\t\t\thear\t{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}me{Environment.NewLine}roar.\t\t\t{Environment.NewLine}";
             string expected = "  I am string,   hear    me roar.    ";
-            Assert.Equal(expected, TransformRawText.ConvertNewLinesAndTabsToSpaces(testMe));
+            Assert.Equal(expected, RawText.ConvertNewLinesAndTabsToSpaces(testMe));
         }
 
         [Fact]
         public void CondenseSpacingAndTrim_Null_Null()
         {
-            Assert.Null(TransformRawText.CondenseSpacingAndTrim(null));
+            Assert.Null(RawText.CondenseSpacingAndTrim(null));
         }
 
         [Fact]
         public void CondenseSpacingAndTrim_AllWhitespace_OneSpace()
         {
-            Assert.Equal(string.Empty, TransformRawText.CondenseSpacingAndTrim("         "));
+            Assert.Equal(string.Empty, RawText.CondenseSpacingAndTrim("         "));
         }
 
         [Fact]
         public void CondenseSpacingAndTrim_NoDoubleSpacing_NoChange()
         {
             string expected = "I am string, I am constant.";
-            Assert.Equal(expected, TransformRawText.CondenseSpacingAndTrim(expected));
+            Assert.Equal(expected, RawText.CondenseSpacingAndTrim(expected));
         }
 
         [Fact]
@@ -65,7 +65,7 @@ namespace Shibusa.Transformations.UnitTests
         {
             string testMe = $"\t  I    am\tstring,\t\t\thear\t \t \tme    roar.\t\t\t";
             string expected = "I am string, hear me roar.";
-            Assert.Equal(expected, TransformRawText.CondenseSpacingAndTrim(testMe));
+            Assert.Equal(expected, RawText.CondenseSpacingAndTrim(testMe));
         }
 
         [Fact]
@@ -78,7 +78,7 @@ namespace Shibusa.Transformations.UnitTests
             testOutputHelper.WriteLine(text);
 
             var dictionary = new Dictionary<string, string> { { "FirstName", firstName } };
-            var output = TransformRawText.Transform(template: text,
+            var output = RawText.Transform(template: text,
                 keyValuePairs: dictionary,
                 indexOfGroupWithKey: 1);
 
@@ -86,7 +86,7 @@ namespace Shibusa.Transformations.UnitTests
 
             Assert.Equal(expected, output);
 
-            output = TransformRawText.TransformDataTags(text, dictionary);
+            output = RawText.TransformDataTags(text, dictionary);
             Assert.Equal(expected, output);
         }
 
@@ -101,16 +101,16 @@ namespace Shibusa.Transformations.UnitTests
 
             var dictionary = new Dictionary<string, string> { { "FirstName", firstName } };
 
-            var output = TransformRawText.Transform(template: text,
+            var output = RawText.Transform(template: text,
                 keyValuePairs: dictionary,
-                regularExpression: TransformRawText.CurlyBraceExpression,
+                regularExpression: RawText.CurlyBraceExpression,
                 indexOfGroupWithKey: 1);
 
             testOutputHelper.WriteLine(output);
 
             Assert.Equal(expected, output);
 
-            output = TransformRawText.TransformBraces(template: text,
+            output = RawText.TransformBraces(template: text,
                 keyValuePairs: dictionary);
 
             Assert.Equal(expected, output);
@@ -127,16 +127,16 @@ namespace Shibusa.Transformations.UnitTests
 
             var dictionary = new Dictionary<string, string> { { "FirstName", firstName } };
 
-            var output = TransformRawText.Transform(template: text,
+            var output = RawText.Transform(template: text,
                 keyValuePairs: dictionary,
-                regularExpression: TransformRawText.BracketExpression,
+                regularExpression: RawText.BracketExpression,
                 indexOfGroupWithKey: 1);
 
             testOutputHelper.WriteLine(output);
 
             Assert.Equal(expected, output);
 
-            output = TransformRawText.TransformBrackets(template: text,
+            output = RawText.TransformBrackets(template: text,
                 keyValuePairs: dictionary);
 
             Assert.Equal(expected, output);
@@ -152,16 +152,16 @@ namespace Shibusa.Transformations.UnitTests
             testOutputHelper.WriteLine(text);
 
             var dictionary = new Dictionary<string, string> { { "firstname", firstName } };
-            var output = TransformRawText.Transform(template: text,
+            var output = RawText.Transform(template: text,
                 keyValuePairs: dictionary,
-                regularExpression: TransformRawText.PoundExpression,
+                regularExpression: RawText.PoundExpression,
                 indexOfGroupWithKey: 1);
 
             testOutputHelper.WriteLine(output);
 
             Assert.Equal(expected, output);
 
-            output = TransformRawText.TransformPounds(text, dictionary);
+            output = RawText.TransformPounds(text, dictionary);
             Assert.Equal(expected, output);
         }
 
@@ -180,9 +180,9 @@ Hello #FirstName#!
 
             testOutputHelper.WriteLine(text);
 
-            var output = TransformRawText.Transform(template: text,
+            var output = RawText.Transform(template: text,
                 keyValuePairs: new Dictionary<string, string> { { "firstname", firstName } },
-                regularExpression: TransformRawText.PoundExpression,
+                regularExpression: RawText.PoundExpression,
                 indexOfGroupWithKey: 1);
 
             testOutputHelper.WriteLine(output);
@@ -206,7 +206,7 @@ Hello #FirstName#!
                 { "fullname", fullName}
             };
 
-            var output = TransformRawText.Transform(template: text,
+            var output = RawText.Transform(template: text,
                 keyValuePairs: dictionary,
                 indexOfGroupWithKey: 1,
                 recursive: true);
@@ -234,7 +234,7 @@ Hello #FirstName#!
 
             Assert.Throws<ArgumentException>(() =>
             {
-                var output = TransformRawText.Transform(template: text,
+                var output = RawText.Transform(template: text,
                     keyValuePairs: new Dictionary<string, string> { { "firstname", firstName },
                         { "FIRSTNAME",firstName.ToUpper()} },
                     indexOfGroupWithKey: 1);
@@ -251,9 +251,9 @@ Hello #FirstName#!
 
             Assert.Throws<Exception>(() =>
             {
-                var output = TransformRawText.Transform(template: text,
+                var output = RawText.Transform(template: text,
                     keyValuePairs: new Dictionary<string, string> { { "firstname", firstName } },
-                    regularExpression: TransformRawText.PoundExpression);
+                    regularExpression: RawText.PoundExpression);
             });
         }
 
@@ -266,9 +266,9 @@ Hello #FirstName#!
 
             testOutputHelper.WriteLine(text);
 
-            var output = TransformRawText.Transform(template: text,
+            var output = RawText.Transform(template: text,
                 keyValuePairs: new Dictionary<string, string> { { "firstname", firstName } },
-                regularExpression: TransformRawText.PoundExpression,
+                regularExpression: RawText.PoundExpression,
                 indexOfGroupWithKey: 1,
                 throwOnMissingKeys: false,
                 replaceMissingKeysWithEmptySpace: false);
@@ -287,9 +287,9 @@ Hello #FirstName#!
 
             testOutputHelper.WriteLine(text);
 
-            var output = TransformRawText.Transform(template: text,
+            var output = RawText.Transform(template: text,
                 keyValuePairs: new Dictionary<string, string> { { "firstname", firstName } },
-                regularExpression: TransformRawText.PoundExpression,
+                regularExpression: RawText.PoundExpression,
                 indexOfGroupWithKey: 1,
                 throwOnMissingKeys: false,
                 replaceMissingKeysWithEmptySpace: true);
@@ -358,9 +358,9 @@ Hello #FirstName#!
                 { "game-6", game6},
 
             };
-            var output = TransformRawText.Transform(template: text,
+            var output = RawText.Transform(template: text,
                 keyValuePairs: dictionary,
-                regularExpression: TransformRawText.PoundExpression,
+                regularExpression: RawText.PoundExpression,
                 indexOfGroupWithKey: 1);
 
             testOutputHelper.WriteLine(output);
@@ -376,12 +376,12 @@ Hello #FirstName#!
 
             testOutputHelper.WriteLine(text);
 
-            var output = TransformRawText.Transform(template: text,
+            var output = RawText.Transform(template: text,
                 keyValuePairs: new Dictionary<string, string> {
                     { "firstname", "#lastname#" },
                     { "lastname", "#firstname#" },
                 },
-                regularExpression: TransformRawText.PoundExpression,
+                regularExpression: RawText.PoundExpression,
                 indexOfGroupWithKey: 1,
                 throwOnMissingKeys: false,
                 recursive: true,

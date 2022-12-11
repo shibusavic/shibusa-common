@@ -8,7 +8,7 @@
       Common transformation functions, such as transforming DateTime objects, transforming raw text,
       creating file hashes, converting dollar amounts by frequency, dealing with Social Security Numbers, Enum descriptions, etc.
     </Description>
-    <PackageVersion>8.0.0</PackageVersion>
+    <PackageVersion>8.1.0</PackageVersion>
     <Authors>shibusavic</Authors>
     <Company>Shibusa LLC</Company>
     <RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>
