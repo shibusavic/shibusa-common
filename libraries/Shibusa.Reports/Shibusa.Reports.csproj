@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
 		<PackageId>Shibusa.Reports</PackageId>
 		<Title>Shibusa Reporting Library</Title>
 		<Description>Contains tools for report generation.</Description>
-    <PackageVersion>7.1.0</PackageVersion>
+    <PackageVersion>8.0.0</PackageVersion>
 		<Authors>shibusavic</Authors>
 		<Company>Shibusa LLC</Company>
 		<RepositoryUrl>https://github.com/shibusavic/Shibusa.Common</RepositoryUrl>

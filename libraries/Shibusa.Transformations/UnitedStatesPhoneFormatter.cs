@@ -48,19 +48,11 @@ namespace Shibusa.Transformations
                     }
                     else if (numericString.Length == 7)
                     {
-#if NETSTANDARD2_0
-                        result = $"{numericString.Substring(0,3)}-{numericString.Substring(3)}";
-#else
                         result = $"{numericString[..3]}-{numericString[3..]}";
-#endif
                     }
                     else if (numericString.Length == 10)
                     {
-#if NETSTANDARD2_0
-                        result = $"({numericString.Substring(0,3)}) {numericString.Substring(3, 3)}-{numericString.Substring(6)}";
-#else
                         result = $"({numericString[..3]}) {numericString[3..6]}-{numericString[6..]}";
-#endif
                     }
                     else
                     {
@@ -74,20 +66,11 @@ namespace Shibusa.Transformations
                     }
                     else if (numericString.Length == 7)
                     {
-#if NETSTANDARD2_0
-                        result = $"{numericString.Substring(0,3)}.{numericString.Substring(3)}";
-#else
                         result = $"{numericString[..3]}.{numericString[3..]}";
-#endif
                     }
                     else if (numericString.Length == 10)
                     {
-#if NETSTANDARD2_0
-                        result = $"{numericString.Substring(0,3)}.{numericString.Substring(3,3)}.{numericString.Substring(6)}";
-#else
                         result = $"{numericString[..3]}.{numericString[3..6]}.{numericString[6..]}";
-#endif
-
                     }
                     else
                     {
@@ -101,11 +84,7 @@ namespace Shibusa.Transformations
                     }
                     else
                     {
-#if NETSTANDARD2_0
-                        result = $"+1 ({numericString.Substring(0,3)}) {numericString.Substring(3, 3)}-{numericString.Substring(6)}";
-#else
                         result = $"+1 ({numericString[..3]}) {numericString[3..6]}-{numericString[6..]}";
-#endif
                     }
                     break;
                 case "Idots":
@@ -115,11 +94,7 @@ namespace Shibusa.Transformations
                     }
                     else
                     {
-#if NETSTANDARD2_0
-                        result = $"+1.{numericString.Substring(0,3)}.{numericString.Substring(3,3)}.{numericString.Substring(6)}";
-#else
                         result = $"+1.{numericString[..3]}.{numericString[3..6]}.{numericString[6..]}";
-#endif
                     }
                     break;
                 default:

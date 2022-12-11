@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace Shibusa.Data.Abstractions
 {
     /// <summary>
@@ -183,5 +185,22 @@ namespace Shibusa.Data.Abstractions
         /// Rows are sorted in descending order.
         /// </summary>
         Descending = 1
+    }
+
+    /// <summary>
+    /// Represents possible database engines.
+    /// </summary>
+    public enum DatabaseEngine
+    {
+        [Description("None")]
+        None = 0,
+        [Description("PostgreSQL")]
+        Postgres,
+        [Description("MS SQL Server")]
+        SqlServer,
+        [Description("MySQL")]
+        MySql,
+        [Description("SQLite")]
+        Sqlite
     }
 }

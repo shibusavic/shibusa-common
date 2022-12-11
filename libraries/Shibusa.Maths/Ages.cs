@@ -20,7 +20,6 @@ namespace Shibusa.Maths
             return age;
         }
 
-#if NET6_0_OR_GREATER
         /// <summary>
         /// Calculate an age from a <paramref name="birthDate"/>.
         /// </summary>
@@ -35,6 +34,5 @@ namespace Shibusa.Maths
 
             return age;
         }
-#endif
     }
 }

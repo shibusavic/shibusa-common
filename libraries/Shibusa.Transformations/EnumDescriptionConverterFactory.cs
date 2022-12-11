@@ -1,5 +1,4 @@
-﻿#if NET6_0_OR_GREATER
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -79,4 +78,3 @@ namespace Shibusa.Transformations
         }
     }
 }
-#endif

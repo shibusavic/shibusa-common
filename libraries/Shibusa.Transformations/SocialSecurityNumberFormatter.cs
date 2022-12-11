@@ -32,9 +32,6 @@ namespace Shibusa.Transformations
 
             string result = numericString;
 
-#if NETSTANDARD2_0
-
-#else
             result = format switch
             {
                 "N" => numericString,
@@ -42,16 +39,6 @@ namespace Shibusa.Transformations
                 "dots" => $"{numericString.Substring(0,3)}.{numericString.Substring(3, 2)}.{numericString.Substring(5)}",
                 _ => throw new FormatException(string.Format("The {0} format specifier is invalid.", format)),
             };
-
-
-            //result = format switch
-            //{
-            //    "N" => numericString,
-            //    "F" => $"{numericString[..3]}-{numericString[3..5]}-{numericString[5..]}",
-            //    "dots" => $"{numericString[..3]}.{numericString.Substring(3, 2)}.{numericString[5..]}",
-            //    _ => throw new FormatException(string.Format("The {0} format specifier is invalid.", format)),
-            //};
-#endif
 
             return result;
         }

@@ -16,19 +16,11 @@ public static class StreamExtensions
     {
         if (stream.CanWrite && message != null)
         {
-#if NETSTANDARD2_0
-            byte[] buffer = Encoding.UTF8.GetBytes(message);
-#else
             ReadOnlySpan<byte> buffer = Encoding.UTF8.GetBytes(message);
-#endif
 
             lock (stream)
             {
-#if NETSTANDARD2_0
-            stream.Write(buffer, 0, buffer.Length);
-#else
                 stream.Write(buffer);
-#endif
             }
         }
     }
@@ -49,12 +41,7 @@ public static class StreamExtensions
         {
             byte[] buffer = Encoding.UTF8.GetBytes(message);
 
-#if NETSTANDARD2_0
-            await stream.WriteAsync(buffer, 0, buffer.Length, cancellationToken);
-#else
             await stream.WriteAsync(buffer, cancellationToken);
-#endif
-
         }
     }
 

@@ -1,4 +1,3 @@
-#if NET6_0_OR_GREATER
 using System.Security.Cryptography;
 using System.Text;
 
@@ -166,4 +165,3 @@ namespace Shibusa.Transformations
         }
     }
 }
-#endif

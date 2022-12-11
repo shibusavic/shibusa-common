@@ -15,17 +15,10 @@ namespace Shibusa.Transformations
 
             var matches = timeRefRegex.Matches(timeRef);
 
-#if NETSTANDARD2_0
-            if (matches.Count > 0)
-            {
-                string numberText = matches[0].Groups[1].Value.Trim();
-                string periodText = matches[0].Groups[2].Value.ToLower().Trim();
-#else
             if (matches?.Any() ?? false)
             {
                 string numberText = matches.First().Groups[1].Value.Trim();
                 string periodText = matches.First().Groups[2].Value.ToLower().Trim();
-#endif
 
                 if (int.TryParse(numberText, out int number))
                 {
