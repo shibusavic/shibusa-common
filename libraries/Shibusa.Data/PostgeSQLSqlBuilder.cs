@@ -168,11 +168,11 @@ public static class PostgeSQLSqlBuilder
     {
         if (type == null) { throw new ArgumentNullException(nameof(type)); }
 
-        object[] attributes = type.GetCustomAttributes(typeof(TableAttribute), true);
+        TableAttribute[] attributes = type.GetCustomAttributes(typeof(TableAttribute), true).Cast<TableAttribute>().ToArray();
 
         if (attributes?.Any() ?? false)
         {
-            return $"DELETE FROM {((TableAttribute)attributes.Last()).Name}";
+            return $"DELETE FROM {GetFullTableName(attributes.Last())}";
         }
 
         return null;
