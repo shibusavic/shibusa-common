@@ -1,7 +1,7 @@
 namespace Shibusa.Transformations
 {
     /// <summary>
-    /// Providers formatting for U.S. phone numbers.
+    /// Provides formatting for U.S. phone numbers.
     /// </summary>
     public sealed class UnitedStatesPhoneFormatter : IFormatProvider, ICustomFormatter
     {

@@ -45,9 +45,9 @@ namespace Shibusa.Validators
 
             result = result && !(left.StartsWith(".") || left.EndsWith("."));
 
-            result = result && (!left.Any(c => char.IsDigit(c))
-               || !left.Any(c => char.IsUpper(c))
-               || !left.Any(c => char.IsLower(c)));
+            result = result && !(!left.Any(char.IsDigit)
+               && !left.Any(char.IsUpper)
+               && !left.Any(char.IsLower));
 
             if (!result)
             {

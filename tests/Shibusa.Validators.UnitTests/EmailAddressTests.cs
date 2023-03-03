@@ -26,7 +26,8 @@ namespace Shibusa.Validators.UnitTests
         [InlineData("email@example.museum")]
         [InlineData("email@example.co.jp")]
         [InlineData("firstname-lastname@example.com")]
-        [InlineData("myemail@cover.me")]
+        [InlineData("myemail@test.me")]
+        [InlineData("MyEmail123@test.com")]
         public void ValidEmail_Valid(string email)
         {
             Assert.True(EmailAddress.IsValid(email));
